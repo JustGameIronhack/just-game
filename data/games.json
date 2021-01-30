@@ -1,0 +1,14 @@
+[
+    {
+        "name": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F523473156664934255%2F&psig=AOvVaw0fIDmlgzseTbR4wWtOW7lP&ust=1612099635060000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKiuyKThw-4CFQAAAAAdAAAAABAD",
+        "platform": "PS4",
+        "price": 35,
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    }
+]
