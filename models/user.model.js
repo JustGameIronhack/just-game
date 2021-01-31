@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt= require('bcrypt');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^.{8,}$/;
+const admins = (process.env.ADMINS_EMAIL || '')
+    .split(',')
+    .map(admin => admin.trim());
 
 const userSchema = new Schema(
     {
@@ -38,14 +42,35 @@ const userSchema = new Schema(
           enum: ['admin', 'guest'],
           default: 'guest'
       },
-    }, { timestamps: true },
-)
+      verified: {
+          date: Date,
+          token: {
+              type: String,
+              default: () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+          },
+      },
+    }, { timestamps: true }
+);
 
 userSchema.virtual('games', {
     ref: 'Game',
     localField: '_id',
     foreignField: 'user'
-})
+});
+
+userSchema.pre('save', function(next) {
+    if (admins.includes(this.email)) {
+        this.role = 'admin'
+    }
+    if (this.isModified('password')) {
+        bcrypt.hash(this.password, 10).then((hash) => {
+            this.password = hash,
+            next();
+        });
+    }else {
+        next();
+    }
+});
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

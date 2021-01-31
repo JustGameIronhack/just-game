@@ -7,5 +7,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/register', usersController.register);
+router.post('/register', usersController.doRegister);
+router.get('/activate', usersController.activate);
 
 module.exports = router;
