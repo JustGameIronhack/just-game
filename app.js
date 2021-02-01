@@ -2,16 +2,24 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const createError = require('http-errors');
+const passport = require('passport');
+const session = require('./configs/session.config');
 require('dotenv').config();
 require('./configs/hbs.config');
 require('./configs/db.config');
+require('./configs/passport.config');
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
+app.use(session);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use((req, res, next) => {
     res.locals.path = req.path;
+    res.locals.currentUser = req.user;
     next();
 });
 
@@ -21,7 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 const router = require('./configs/routes.config');
-
+console.log(process.env.SESSION_SECRET)
 app.use('/', router);
 
 

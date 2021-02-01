@@ -35,7 +35,7 @@ const userSchema = new Schema(
       },
       location: {
           type: String,
-          //TODO
+          required: 'We need your city name'
       },
       role: {
           type: String,
@@ -71,6 +71,10 @@ userSchema.pre('save', function(next) {
         next();
     }
 });
+
+userSchema.methods.checkPassword = function (passwordToCheck) {
+    return bcrypt.compare(passwordToCheck, this.password);
+};
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
