@@ -29,9 +29,9 @@ const userSchema = new Schema(
       },
       avatar: {
           type: String,
-          default: function() {
-              return '/images/defaultProfileAvatar.jpg';
-          }
+          default: function () {
+              return '/images/default avatar.png'
+        }
       },
       location: {
           type: String,

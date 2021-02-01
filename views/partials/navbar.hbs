@@ -6,7 +6,7 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="/posts">Games</a></li>
+        <li class="nav-item"><a class="nav-link" href="/games">Games</a></li>
         
           <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
         
@@ -15,7 +15,10 @@
   </div>
   <div class="d-flex justify-content-end">
             <ul class="navbar-nav my-2 my-lg-0">
-                
+                {{#if currentUser}}
+                  <li><img class="img-fluid avatar" src="{{currentUser.avatar}}" alt="UserAvatar"></li>
+                  <li class="ps-5">Hi {{currentUser.name}}</li>
+                {{/if}}
                 <li class="nav-item">
                     <form action="/logout" method="POST">
                     <a href="/profile"><span class="mr-3 text-muted"></span></a>

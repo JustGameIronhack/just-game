@@ -19,7 +19,7 @@ module.exports.doRegister = (req, res, next) => {
         .then((user) => {
             if (user) {
                 renderWithErrors({ email: 'Email already registered' });
-            }else {
+            }else { 
                return User.create(req.body).then((user) => {
                 mailer.sendValidationEmail(user.email, user.verified.token, user.name);
                 res.redirect('/login');
@@ -69,3 +69,7 @@ module.exports.doLogin = (req, res, next) => {
     }) (req, res, next);
 }
 
+module.exports.logout = (req, res, next) => {
+    req.logout();
+    res.redirect('/login');
+};
