@@ -35,7 +35,8 @@ const userSchema = new Schema(
       },
       location: {
           type: String,
-          required: 'We need your city name'
+          required: 'We need your city name',
+          default: 'World'
       },
       role: {
           type: String,
@@ -49,6 +50,10 @@ const userSchema = new Schema(
               default: () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
           },
       },
+      social: {
+          google: String,
+          steam: String
+      }
     }, { timestamps: true }
 );
 

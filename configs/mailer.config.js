@@ -15,7 +15,7 @@ module.exports.sendValidationEmail = (email, activationToken, name) => {
     transport
         .sendMail({
             to: email,
-            from: 'Just Game Team <remotept1020@gmail.com>',
+            from: 'Just Game Team <justgameIronHack@gmail.com>',
             subject: 'Just Game activation account',
             html: `<h1>Hi ${name}</h1> <p>Click on the button below to activate your account ❤️</p> <a href="${appUrl}/activate?token=${activationToken}" style="padding: 10px 20px; color: white; background-color: pink; border-radius: 5px;">Click here</a>`
         });

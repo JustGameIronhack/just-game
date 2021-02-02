@@ -29,7 +29,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 const router = require('./configs/routes.config');
-console.log(process.env.SESSION_SECRET)
 app.use('/', router);
 
 

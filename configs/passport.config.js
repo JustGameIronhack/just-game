@@ -40,3 +40,76 @@ passport.use('local-auth', new LocalStrategy({
             }
         }).catch(next)
 }));
+
+passport.use('google-auth', new GoogleStrategy({
+    clientID: process.env.G_CLIENT_ID,
+    clientSecret: process.env.G_CLIENT_SECRET,
+    callbackURL: process.env.G_REDIRECT_URI || '/authenticate/google/just-game',
+}, (accessToken, refreshToken, profile, next) => {
+    const googleId = profile.id;
+    const name = profile.displayName;
+    const email = profile.emails[0] ? profile.emails[0].value : undefined;
+    if (googleId && name && email) {
+        User.findOne({ $or: [
+            { email },
+            { 'social.google': googleId }
+        ]})
+        .then(user => {
+            if (!user) {
+                user = new User({
+                    name,
+                    email,
+                    password: mongoose.Types.ObjectId(),
+                    social: {
+                        google: googleId
+                    },
+                    verified: {
+                        date: new Date(),
+                        token: null
+                    },
+                });
+                return user.save()
+                .then(user => next(null, user))
+            } else {
+                next(null, user);
+            }
+        }).catch(next)
+    } else {
+        next(null, null, { oauth: 'Invalid google oauth response' })
+    }
+}));
+
+
+passport.use('steam-auth', new SteamStrategy({
+    returnURL: 'http://localhost:3000/steam/return',
+    realm: 'http://localhost:3000/',
+    apiKey: '420C0AB3AC375086FD46DBD1DBC2AD73'
+}, (identifier, profile, next) => {
+    console.log(profile)
+    if (profile.id && profile.displayName) {
+        User.findOne({ 'social.steam': profile.id })
+        .then(user => {
+            if (!user) {
+                user = new User({
+                    name: profile.displayName,
+                    email: `${profile.displayName}@${profile.displayName}.com`,
+                    password: mongoose.Types.ObjectId(),
+                    social: {
+                        steam: profile.id
+                    },
+                    verified: {
+                        date: new Date(),
+                        token: null
+                    },
+                    avatar: profile.photos[2].value
+                });
+                return user.save()
+                .then(user => next(null, user))
+            } else {
+                next(null, user);
+            }
+        }).catch(next);
+    } else {
+        next(null, null, { oauth: 'Invalid steam oauth response' })
+    }  
+}));

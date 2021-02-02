@@ -19,7 +19,7 @@ module.exports.doRegister = (req, res, next) => {
         .then((user) => {
             if (user) {
                 renderWithErrors({ email: 'Email already registered' });
-            }else { 
+            } else { 
                return User.create(req.body).then((user) => {
                 mailer.sendValidationEmail(user.email, user.verified.token, user.name);
                 res.redirect('/login');
@@ -29,7 +29,7 @@ module.exports.doRegister = (req, res, next) => {
         .catch((error) => {
             if (error instanceof mongoose.Error.ValidationError) {
                 renderWithErrors(error.errors);
-            }else {
+            } else {
                 next(error);
             }
         })
@@ -43,7 +43,7 @@ module.exports.activate = (req, res, next) => {
     ).then( user => {
         if (!user) {
             next(httpError(404, 'Invalid activation token'));
-        }else {
+        } else {
             res.redirect('/login');
         }
     }).catch(next);
@@ -69,7 +69,25 @@ module.exports.doLogin = (req, res, next) => {
     }) (req, res, next);
 }
 
+module.exports.loginWithGoogle = (req, res, next) => {
+    passport.authenticate('google-auth', (error, user, validations) => {
+        if (error) {
+            next(error);
+        } else if (!user) {
+            res.status(400).render('users/login', { user: req.body, errors: validations });
+        } else {
+            req.login(user, error => {
+                if (error) next(error)
+                else res.redirect('/')
+                //TODO redirect /games  ??
+            })
+        }
+    }) (req, res, next);
+}
+
+
 module.exports.logout = (req, res, next) => {
     req.logout();
     res.redirect('/login');
 };
+
