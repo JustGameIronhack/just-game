@@ -7,7 +7,7 @@ const GOOGLE_SCOPES = ['https://www.googleapis.com/auth/userinfo.email', 'https:
 
 router.get('/', (req, res, next) => {
     res.render('index');
-})
+});
 
 router.get('/register', usersController.register);
 router.post('/register', usersController.doRegister);
@@ -16,9 +16,20 @@ router.get('/login', usersController.login);
 router.post('/login', usersController.doLogin);
 router.get('/authenticate/google', passport.authenticate('google-auth', {
     scope: GOOGLE_SCOPES
-}))
+}));
 router.get('/authenticate/google/just-game', usersController.loginWithGoogle);
 router.post('/logout', usersController.logout);
+router.get('/profile', usersController.profile);
+router.post('/profile', usersController.doProfile);
+
+
+
+
+
+
+
+
+
 router.get('/steam',
     passport.authenticate('steam-auth', {
         failureRedirect: '/login'
@@ -26,6 +37,8 @@ router.get('/steam',
     (req, res) => {
         res.redirect('/');
     });
+
+
 router.get('/steam/return',
     (req, res, next) => {
         req.url = req.originalUrl;
@@ -37,4 +50,6 @@ router.get('/steam/return',
     (req, res) => {
         res.redirect('/');
     });
+
+
 module.exports = router;

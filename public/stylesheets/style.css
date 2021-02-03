@@ -1,4 +1,12 @@
 .avatar {
     margin-right: 5px;
-    max-width: 50px; 
+    max-width: 30px; 
+}
+
+.input-group-text {
+    min-width: 42px;
+}
+
+.input-group-text i {
+    margin: 0 auto;
 }

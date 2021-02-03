@@ -85,7 +85,6 @@ passport.use('steam-auth', new SteamStrategy({
     realm: 'http://localhost:3000/',
     apiKey: '420C0AB3AC375086FD46DBD1DBC2AD73'
 }, (identifier, profile, next) => {
-    console.log(profile)
     if (profile.id && profile.displayName) {
         User.findOne({ 'social.steam': profile.id })
         .then(user => {

@@ -32,8 +32,8 @@ module.exports.doRegister = (req, res, next) => {
             } else {
                 next(error);
             }
-        })
-}
+        });
+};
 
 module.exports.activate = (req, res, next) => {
     User.findOneAndUpdate(
@@ -61,13 +61,13 @@ module.exports.doLogin = (req, res, next) => {
             res.status(400).render('users/login', { user: req.body, errors: validations });
         } else {
             req.login(user, error => {
-                if (error) next(error)
-                else res.redirect('/')
+                if (error) next(error);
+                else res.redirect('/');
                 //TODO redirect /games  ??
-            })
+            });
         }
     }) (req, res, next);
-}
+};
 
 module.exports.loginWithGoogle = (req, res, next) => {
     passport.authenticate('google-auth', (error, user, validations) => {
@@ -77,13 +77,64 @@ module.exports.loginWithGoogle = (req, res, next) => {
             res.status(400).render('users/login', { user: req.body, errors: validations });
         } else {
             req.login(user, error => {
-                if (error) next(error)
-                else res.redirect('/')
+                if (error) next(error);
+                else res.redirect('/');
                 //TODO redirect /games  ??
-            })
+            });
         }
     }) (req, res, next);
-}
+};
+
+module.exports.profile = (req, res, next) => {
+    User.findById(req.user.id)
+        .then((user) => {
+            res.render('users/profile', { user });
+        })
+        .catch(next);
+};
+
+module.exports.doProfile = (req, res, next) => {
+    function renderWithErrors(errors) {
+        Object.assign(req.user, req.body);
+        res.status(400).render('users/profile', {
+            user: req.body,
+            errors: errors,
+        });
+    }
+    const { password, passwordMatch, email, name, location} = req.body;
+    if (password && password !== passwordMatch) {
+        renderWithErrors({ passwordMatch: 'The password do not match!'});
+    }else {
+        const updateField = { name };
+        if (req.file) {
+            updateField.avatar = req.file.path;
+        }
+        if (password) {
+            updateField.password = password;
+        }
+        if (email) {
+            updateField.email = email;
+        }
+        if (location) {
+            updateField.location = location;
+        }
+        Object.assign(req.user, updateField);
+        req.user.save()
+            .then((user) => {
+                req.login(user, error => {
+                    if (error) next(error);
+                    else res.redirect('/profile');
+                });
+            })
+            .catch(error => {
+                if (error instanceof mongoose.Error.ValidationError) {
+                    renderWithErrors(error.errors);
+                }else {
+                    next(error);
+                }
+            });
+    }
+};
 
 
 module.exports.logout = (req, res, next) => {
