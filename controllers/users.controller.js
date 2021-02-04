@@ -69,21 +69,26 @@ module.exports.doLogin = (req, res, next) => {
     }) (req, res, next);
 };
 
-module.exports.loginWithGoogle = (req, res, next) => {
-    passport.authenticate('google-auth', (error, user, validations) => {
-        if (error) {
-            next(error);
-        } else if (!user) {
-            res.status(400).render('users/login', { user: req.body, errors: validations });
-        } else {
-            req.login(user, error => {
-                if (error) next(error);
-                else res.redirect('/');
-                //TODO redirect /games  ??
-            });
-        }
-    }) (req, res, next);
-};
+
+module.exports.loginWithIDP = (strategy) => {
+    return (req, res, next) => {
+        passport.authenticate(strategy, (error, user, validations) => {
+            if (error) {
+                next(error);
+            } else if (!user) {
+                res.status(400).render('users/login', { user: req.body, errors: validations });
+            } else {
+                req.login(user, error => {
+                    if (error) next(error);
+                    else res.redirect('/');
+                    //TODO redirect /games  ??
+                });
+            }
+        }) (req, res, next);
+    }
+}
+
+
 
 module.exports.profile = (req, res, next) => {
     User.findById(req.user.id)
@@ -97,7 +102,7 @@ module.exports.doProfile = (req, res, next) => {
     function renderWithErrors(errors) {
         Object.assign(req.user, req.body);
         res.status(400).render('users/profile', {
-            user: req.body,
+            user: req.user,
             errors: errors,
         });
     }
@@ -105,20 +110,23 @@ module.exports.doProfile = (req, res, next) => {
     if (password && password !== passwordMatch) {
         renderWithErrors({ passwordMatch: 'The password do not match!'});
     }else {
-        const updateField = { name };
+        const updateFields = {};
+        if (name) {
+            updateFields.name = name;
+        }
         if (req.file) {
-            updateField.avatar = req.file.path;
+            updateFields.avatar = req.file.path;
         }
         if (password) {
-            updateField.password = password;
+            updateFields.password = password;
         }
         if (email) {
-            updateField.email = email;
+            updateFields.email = email;
         }
         if (location) {
-            updateField.location = location;
+            updateFields.location = location;
         }
-        Object.assign(req.user, updateField);
+        Object.assign(req.user, updateFields);
         req.user.save()
             .then((user) => {
                 req.login(user, error => {
@@ -136,9 +144,14 @@ module.exports.doProfile = (req, res, next) => {
     }
 };
 
-
 module.exports.logout = (req, res, next) => {
     req.logout();
     res.redirect('/login');
 };
+
+module.exports.list = (req, res, next) => {
+    User.find()
+        .then(users => res.render('users/list', { users }))
+        .catch(next)
+}
 

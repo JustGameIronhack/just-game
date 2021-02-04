@@ -83,15 +83,16 @@ passport.use('google-auth', new GoogleStrategy({
 passport.use('steam-auth', new SteamStrategy({
     returnURL: 'http://localhost:3000/steam/return',
     realm: 'http://localhost:3000/',
-    apiKey: '420C0AB3AC375086FD46DBD1DBC2AD73'
+    apiKey: process.env.STEAM_API_KEY,
 }, (identifier, profile, next) => {
     if (profile.id && profile.displayName) {
         User.findOne({ 'social.steam': profile.id })
         .then(user => {
             if (!user) {
+                const avatar =  profile.photos && profile.photos[2] ? profile.photos[2].value : undefined;
                 user = new User({
                     name: profile.displayName,
-                    email: `${profile.displayName}@${profile.displayName}.com`,
+                    email: `${profile.id}@justgame.com`,
                     password: mongoose.Types.ObjectId(),
                     social: {
                         steam: profile.id
@@ -100,7 +101,7 @@ passport.use('steam-auth', new SteamStrategy({
                         date: new Date(),
                         token: null
                     },
-                    avatar: profile.photos[2].value
+                    avatar
                 });
                 return user.save()
                 .then(user => next(null, user))

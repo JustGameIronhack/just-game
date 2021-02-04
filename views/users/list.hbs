@@ -1,0 +1,36 @@
+<section>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h1>Users list</h1>
+            <a class="btn btn-primary" href="/register"><i class="fa fa-plus"></i>Add User</a>
+        </div>
+    </div>
+
+    <hr class="mt-0">
+
+    {{#if users}}
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Location</th>
+                <th scope="col">Role</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each users as | user |}}
+            {{#with user}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{location}}</td>
+                <td>{{role}}</td>
+            </tr>
+            {{/with}}
+            {{/each}}
+        </tbody>
+    </table>
+    {{/if}}
+</section>
