@@ -15,8 +15,17 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
-    Game.create(req.body)
-        .then((game) => res.redirect(`/game/${game.id}`))
+    /* return res.json(req.body) */
+    const image = {};
+    if (req.file) {
+        image.image = req.file.path
+    }
+    Object.assign(req.body, image)
+    Game.create({
+        ...req.body,
+        user: req.user.id
+    })
+        .then((game) => res.redirect(`/games`))
         .catch((error) => {
             console.log(req.body)
             console.error(error)
