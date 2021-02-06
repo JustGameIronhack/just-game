@@ -9,9 +9,9 @@ const gameSchema = new Schema(
             trim: true
         },
         genre: {
-            type: String,
+            type: [String],
             required: 'At least one game genre is required',
-            enum: ['Action', 'Action-adventure', 'Adventure', 'Role-playing', 'Simulation', 'Strategy', 'Sports', 'MMO', 'Shooter', 'Sandbox', 'Horror', 'Fight', 'Hack "n" Slash'],
+            enum: ['Action', 'Action-adventure', 'Adventure', 'Role-playing', 'Simulation', 'Strategy', 'Sports', 'MMO', 'Shooter', 'Sandbox', 'Horror', 'Fight', 'Hack and Slash'],
             
         },
         platform: {
@@ -36,7 +36,6 @@ const gameSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }
-
         
     }, { timestamps: true });
 
