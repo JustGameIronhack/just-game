@@ -1,10 +1,103 @@
 [
     {
-        "name": "The Evil Within",
+        "title": "The Evil Within",
         "genre": "Horror",
-        "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F523473156664934255%2F&psig=AOvVaw0fIDmlgzseTbR4wWtOW7lP&ust=1612099635060000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKiuyKThw-4CFQAAAAAdAAAAABAD",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
         "platform": "PS4",
         "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    },
+    
+    {
+        "title": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+        "platform": "PS4",
+        "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    },
+    {
+        "title": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+        "platform": "PS4",
+        "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    },
+    {
+        "title": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+        "platform": "PS4",
+        "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    },
+    {
+        "title": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+        "platform": "PS4",
+        "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    },
+    {
+        "title": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+        "platform": "PS4",
+        "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    },
+    {
+        "title": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+        "platform": "PS4",
+        "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+        "reviews": [{
+            "title": "tests",
+            "rate": 5,
+            "text": "test"
+        }]
+    },
+    {
+        "title": "The Evil Within",
+        "genre": "Horror",
+        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+        "platform": "PS4",
+        "price": 35,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
         "reviews": [{
             "title": "tests",
             "rate": 5,

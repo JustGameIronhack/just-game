@@ -30,7 +30,7 @@ const userSchema = new Schema(
       avatar: {
           type: String,
           default: function () {
-              return '/images/default avatar.png'
+              return 'https://res.cloudinary.com/djrv6yqfc/image/upload/v1612468494/default_avatar_qvlfsx.png'
         }
       },
       location: {

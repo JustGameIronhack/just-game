@@ -17,16 +17,12 @@
                         <li class="list-group-item"><a class="btn btn-primary">Compras</a></li>
                         <li class="list-group-item"><a class="btn btn-primary">Ventas</a></li>
                     </ul>
-                    {{!-- <div class="card-body">
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div> --}}
                 </div>
             </div>
             <div class="col-12 col-lg-9">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/profile" method="POST" class="row g-3">
+                        <form action="/profile" method="POST" class="row g-3" enctype="multipart/form-data">
                             <div class="input-group mb-1">
                                 <label class="form-label">Avatar</label>
                                 <div class="input-group">
@@ -83,7 +79,6 @@
                                     {{formError errors.passwordMatch}}
                                 </div>
                             </div>
-                            <!--TODO: REPEAT THE PASSWORD-->
                             <div class="input-group mb-1">
                                 <label for="validationCustomUsername" class="form-label">Location</label>
                                 <div class="input-group">

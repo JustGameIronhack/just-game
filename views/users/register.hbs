@@ -8,7 +8,7 @@
                             aria-hidden="true"></i></span>
                     <input placeholder="Enter your name" value="{{user.name}}" name="name" type="text"
                         class="form-control {{isInvalid errors.name}}" aria-describedby="inputGroupPrepend">
-                        {{formError errors.name}}
+                    {{formError errors.name}}
                 </div>
             </div>
             <div class="col-md-12">
@@ -18,7 +18,7 @@
                             aria-hidden="true"></i></span>
                     <input placeholder="Please, enter your email" value="{{user.email}}" name="email" type="text"
                         class="form-control {{isInvalid errors.email}}" aria-describedby="inputGroupPrepend">
-                        {{formError errors.email}}
+                    {{formError errors.email}}
                 </div>
             </div>
             <div class="col-md-12">
@@ -26,12 +26,21 @@
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
                             aria-hidden="true"></i></span>
-                    <input placeholder="Please, enter your password" name="password" type="password" class="form-control {{isInvalid errors.email}}"
-                        aria-describedby="inputGroupPrepend">
-                        {{formError errors.password}}
+                    <input placeholder="Please, enter your password" name="password" type="password"
+                        class="form-control {{isInvalid errors.email}}" aria-describedby="inputGroupPrepend">
+                    {{formError errors.password}}
                 </div>
             </div>
-            <!--TODO: REPEAT THE PASSWORD-->
+            <div class="input-group mb-1">
+                <label for="validationCustomUsername" class="form-label">Repeat password</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
+                            aria-hidden="true"></i></span>
+                    <input placeholder="Please, repeat your password" name="passwordMatch" type="password"
+                        class="form-control {{isInvalid errors.passwordMatch}}" aria-describedby="inputGroupPrepend">
+                    {{formError errors.passwordMatch}}
+                </div>
+            </div>
             <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Location</label>
                 <div class="input-group">
@@ -39,8 +48,8 @@
                             aria-hidden="true"></i></span>
                     <input value="{{user.location}}" placeholder="Please, enter your city" name="location" type="text"
                         class="form-control {{isInvalid errors.location}}" aria-describedby="inputGroupPrepend">
-                        {{formError errors.location}}
-                        
+                    {{formError errors.location}}
+
                 </div>
             </div>
             <div class="col-12">
@@ -48,7 +57,9 @@
             </div>
         </form>
         <hr>
-        <a class="btn btn-secondary btn-block" href="/authenticate/google"><i class="fa fa-google"></i> Login with Google</a>
-        <a class="btn btn-secondary btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Login with Steam</a>
+        <a class="btn btn-secondary btn-block" href="/authenticate/google"><i class="fa fa-google"></i> Login with
+            Google</a>
+        <a class="btn btn-secondary btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Login with
+            Steam</a>
     </div>
 </div>

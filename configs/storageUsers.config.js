@@ -9,5 +9,11 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
-    cloudinary: cloudinary
-})
+    cloudinary: cloudinary,
+    params: {
+        folder: 'JustGame/Users',
+        format: 'png'
+    }
+});
+
+module.exports = multer({storage});

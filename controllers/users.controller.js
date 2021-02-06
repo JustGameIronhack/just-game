@@ -15,7 +15,12 @@ module.exports.doRegister = (req, res, next) => {
             errors: errors,
         });
     }
-    User.findOne({ email: req.body.email })
+
+    const { password, passwordMatch} = req.body;
+    if (password && password !== passwordMatch) {
+        renderWithErrors({passwordMatch: 'The password do not match!'})
+    }else {
+        User.findOne({ email: req.body.email })
         .then((user) => {
             if (user) {
                 renderWithErrors({ email: 'Email already registered' });
@@ -33,6 +38,7 @@ module.exports.doRegister = (req, res, next) => {
                 next(error);
             }
         });
+    }
 };
 
 module.exports.activate = (req, res, next) => {

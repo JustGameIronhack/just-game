@@ -12,3 +12,13 @@ hbs.registerHelper('isInvalid', (error) => {
 hbs.registerHelper('formError', (error) => {
     return error ? new hbs.SafeString(`<div class="invalid-feedback">${error}</div>`) : '';
 });
+
+// HELPER CHECK ROLE IN VIEWS
+
+hbs.registerHelper('checkRole', (user, role, options) => {
+    if (user && user.role === role) {
+        return options.fn();
+    } else {
+        return options.inverse();
+    }
+})
