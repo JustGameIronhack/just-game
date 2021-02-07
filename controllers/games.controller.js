@@ -39,3 +39,16 @@ module.exports.doCreate = (req, res, next) => {
             }
         });
 };
+
+module.exports.details = (req, res, next) => {
+    Game.findById(req.params.id)
+        .populate('reviews')
+        .then((game) => {
+            if (game) {
+                res.render('games/details', { game });
+            } else {
+                res.redirect('/games');
+            }
+        })
+        .catch(next);
+};

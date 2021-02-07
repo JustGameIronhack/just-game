@@ -36,7 +36,7 @@ router.get('/users', secure.isAuthenticated, secure.checkRole('admin'), usersCon
 router.get('/games', gamesController.list);
 router.get('/games/new', secure.isAuthenticated, gamesController.create);
 router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), gamesController.doCreate);
-
+router.get('/details/:id', secure.isAuthenticated ,gamesController.details);
 
 
 
