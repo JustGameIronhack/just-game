@@ -21,9 +21,9 @@ hbs.registerHelper('checkRole', (user, role, options) => {
     } else {
         return options.inverse();
     }
-})
+});
 
 
 hbs.registerHelper('stringSpace', (array) => {
     return array.join(", ");
-})
+});
