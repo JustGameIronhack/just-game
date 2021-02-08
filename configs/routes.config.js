@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users.controller');
 const gamesController = require('../controllers/games.controller');
+const reviewController = require('../controllers/reviews.controller');
 const passport = require('passport');
 const GOOGLE_SCOPES = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
 const secure = require('../middlewares/secure.middleware');
@@ -37,6 +38,7 @@ router.get('/games', gamesController.list);
 router.get('/games/new', secure.isAuthenticated, gamesController.create);
 router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), gamesController.doCreate);
 router.get('/details/:id', secure.isAuthenticated ,gamesController.details);
+router.post('/games/:gameId/reviews', secure.isAuthenticated, reviewController.create);
 
 
 

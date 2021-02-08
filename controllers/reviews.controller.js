@@ -23,11 +23,11 @@ module.exports.create = (req, res, next) => {
         })
 
         return review.save()
-          .then(review => res.redirect(`/games/${game.id}`));
+          .then(review => res.redirect(`/details/${game.id}`));
       }
     }).catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.render('posts/detail', {
+        res.render('games/details', {
           game: reviewGame,
           errors: error.errors
         });

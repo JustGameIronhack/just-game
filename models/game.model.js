@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Review = require('./review.model');
 
 const gameSchema = new Schema(
     {
@@ -40,14 +41,14 @@ const gameSchema = new Schema(
     }, { timestamps: true });
 
     gameSchema.virtual('reviews', {
-        ref: 'Review',
+        ref: Review.constructor.modelName,
         localField: '_id',
         foreignField: 'game',
         options: {
             sort: { createdAt: -1 },
             limit: 10
         }
-    })
+    });
 
 
     const Game = mongoose.model('Game', gameSchema);

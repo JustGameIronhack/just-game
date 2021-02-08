@@ -16,10 +16,10 @@ const reviewSchema = new Schema(
         text: {
             type: String,
         },
-        user: {
+        /* user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
-        },
+        }, */
         game: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Game'
