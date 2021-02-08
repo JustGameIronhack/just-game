@@ -41,7 +41,7 @@ const gameSchema = new Schema(
     }, { timestamps: true });
 
     gameSchema.virtual('reviews', {
-        ref: Review.constructor.modelName,
+        ref: Review.modelName,
         localField: '_id',
         foreignField: 'game',
         options: {

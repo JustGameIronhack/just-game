@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Game = require('../models/game.model');
 const createError = require('http-errors');
+const Review = require('../models/review.model');
 
 module.exports.list = (req, res, next) => {
     Game.find()
@@ -39,6 +40,7 @@ module.exports.doCreate = (req, res, next) => {
 };
 
 module.exports.details = (req, res, next) => {
+    
     Game.findById(req.params.id)
         .populate('reviews')
         .then((game) => {
