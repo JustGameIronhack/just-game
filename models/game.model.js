@@ -42,7 +42,11 @@ const gameSchema = new Schema(
     gameSchema.virtual('reviews', {
         ref: 'Review',
         localField: '_id',
-        foreignField: 'game'
+        foreignField: 'game',
+        options: {
+            sort: { createdAt: -1 },
+            limit: 10
+        }
     })
 
 
