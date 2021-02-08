@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Review = require('./review.model');
+const User = require('./user.model');
+
 
 const gameSchema = new Schema(
     {
@@ -36,9 +38,9 @@ const gameSchema = new Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
-        }
-        
-    }, { timestamps: true });
+        },   
+    }, { timestamps: true }
+);
 
     gameSchema.virtual('reviews', {
         ref: Review.modelName,

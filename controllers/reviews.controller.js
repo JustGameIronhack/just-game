@@ -19,6 +19,7 @@ module.exports.create = (req, res, next) => {
           title: title,
           rate: rate,
           text: text,
+          user: req.user.id,
           game: game.id
         })
 

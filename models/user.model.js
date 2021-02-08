@@ -53,15 +53,19 @@ const userSchema = new Schema(
       social: {
           google: String,
           steam: String
-      }
+      },
+      game: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Game'
+    }
     }, { timestamps: true }
 );
 
-userSchema.virtual('games', {
+/* userSchema.virtual('games', {
     ref: 'Game',
     localField: '_id',
     foreignField: 'user'
-});
+}); */
 
 userSchema.pre('save', function(next) {
     if (admins.includes(this.email)) {

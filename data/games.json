@@ -1,107 +1,110 @@
 [
     {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
-    },
-    
-    {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
-    },
-    {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
-    },
-    {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
-    },
-    {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
-    },
-    {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
-    },
-    {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
-    },
-    {
-        "title": "The Evil Within",
-        "genre": "Horror",
-        "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
-        "platform": "PS4",
-        "price": 35,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
-        "reviews": [{
-            "title": "tests",
-            "rate": 5,
-            "text": "test"
-        }]
+    "title": "The Evil Within",
+    "genre": "Horror",
+    "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612602066/JustGame/Games/fb1f0dc6d84b27ccb779d02801b3234a_rcnuqz.jpg",
+    "platform": "PS4",
+    "price": 35,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque.",
+    "review": {
+        "title": "lorem ipsum",
+        "rate": 4,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et blandit orci. Vivamus."
     }
+  },
+  {
+    "genre": [
+      "Action",
+      "Role-playing"
+    ],
+    "title": "Dark Souls 1",
+    "platform": "PS4",
+    "description": "Best rol game ever! Good conditions and price",
+    "price": 30,
+    "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612696251/JustGame/Games/6320516-l_nwnigy.jpg",
+    "review": {
+        "title": "lorem ipsum",
+        "rate": 4,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et blandit orci. Vivamus."
+    }
+  },
+  {
+    "genre": [
+      "Action",
+      "Role-playing"
+    ],
+    "title": "Nioh 2",
+    "platform": "PS4",
+    "description": "Very long game, althoug very difficult!",
+    "price": 40,
+    "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612696074/JustGame/Games/tphmzrzdbvjukojhfcgj.png",
+    "review": {
+        "title": "lorem ipsum",
+        "rate": 4,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et blandit orci. Vivamus."
+    }
+  },
+  {
+    "genre": [
+      "Strategy"
+    ],
+    "title": "Total war Warhammer 2",
+    "platform": "PC",
+    "description": "Digital version of the game, I will give you the key",
+    "price": 60,
+    "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612696454/JustGame/Games/nexbdu9bjnqjvh9iyi6h.png",
+    "review": {
+        "title": "lorem ipsum",
+        "rate": 4,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et blandit orci. Vivamus."
+    }
+  },
+  {
+    "genre": [
+      "Shooter",
+      "Horror"
+    ],
+    "title": "Resident Evil VII",
+    "platform": "XBOX One",
+    "description": "Fair price, quick delivery! ",
+    "price": 55,
+    "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612697087/JustGame/Games/k6rmb5ewz4c69f4qxbnl.png",
+    "review": {
+        "title": "lorem ipsum",
+        "rate": 4,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et blandit orci. Vivamus."
+    }
+  },
+  {
+    "genre": [
+      "Role-playing",
+      "Strategy"
+    ],
+    "title": "FF VIII",
+    "platform": "PS1",
+    "description": "A mithycal Play Station1 game, it is simply a relic!",
+    "price": 100,
+    "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612698067/JustGame/Games/lg5pzezryhsmjlg0pwyj.png",
+    "review": {
+        "title": "lorem ipsum",
+        "rate": 4,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et blandit orci. Vivamus."
+    }
+  },
+  {
+    "genre": [
+      "Fight"
+    ],
+    "title": "Super Smash Bros",
+    "platform": "Nintendo Wii U",
+    "description": "Fun game to play with family and friends",
+    "price": 45,
+    "image": "https://res.cloudinary.com/djrv6yqfc/image/upload/v1612698477/JustGame/Games/ox78vo1xjrqrgj0o9uoe.png",
+    "review": {
+        "title": "lorem ipsum",
+        "rate": 4,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et blandit orci. Vivamus."
+    }
+  }
 ]
+  

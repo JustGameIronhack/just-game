@@ -13,14 +13,14 @@ mongoose.connection.once('open', () => {
         .then(games => {
             console.info(`Added ${games.length} games`);
             const gamesReview = games.map(game => {
-                const reviews = gamesData.find(g => g.name === game.name)
+                const reviews = gamesData.find(g => g.title === game.title)
                 .reviews
                 .map(review => {
                     review.game = game.id;
                     return review;
                 });
                 return Review.create(reviews)
-                .then(reviews => console.info(`Added ${reviews ? reviews.length : 0} reviews to game ${game.name}`))
+                .then(reviews => console.info(`Added ${reviews ? reviews.length : 0} reviews to game ${game.title}`))
             });
             return Promise.all(gamesReview);
         })
