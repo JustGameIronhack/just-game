@@ -61,3 +61,15 @@ module.exports.details = (req, res, next) => {
         .catch(next);
 };
 
+module.exports.delete = (req, res, next) => {
+    Game.findByIdAndDelete(req.params.id)
+        .then((game) => {
+            if (game) {
+                res.redirect('/games');
+            }else {
+                next(createError(404, 'The game doesn´t exist!'))
+            }
+        })
+        .catch(next);
+};
+

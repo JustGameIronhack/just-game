@@ -39,6 +39,7 @@ router.get('/games/new', secure.isAuthenticated, gamesController.create);
 router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), gamesController.doCreate);
 router.get('/details/:id', secure.isAuthenticated ,gamesController.details);
 router.post('/games/:gameId/reviews', secure.isAuthenticated, reviewController.create);
+router.post('/games/:id/delete', secure.isAuthenticated, secure.checkRole('admin'), gamesController.delete);
 
 
 
