@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const Game = require('../models/game.model');
 
 module.exports.isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -17,3 +18,19 @@ module.exports.checkRole = (role) => {
         };
     };
 };
+
+module.exports.checkOwner = (req, res, next) => {
+    if(req.user.role === 'admin') {
+        return next()
+    }
+    Game.findById(req.params.id)
+        .then((game) => {
+            console.log(game.user)
+            if(game.user.toString() === req.user.id.toString()) {
+                next();
+            }else {
+                next(createError(403, 'You are not allow to delete this game'));
+            }
+        })
+        .catch(next);
+};  

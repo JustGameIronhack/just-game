@@ -51,7 +51,6 @@ module.exports.details = (req, res, next) => {
             }
         })
         .then((game) => {
-            console.log(game)
             if (game) {
                 res.render('games/details', { game });
             } else {

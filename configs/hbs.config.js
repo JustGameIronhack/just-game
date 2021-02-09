@@ -1,6 +1,10 @@
 const hbs = require('hbs');
 const path = require('path');
 const moment = require('moment');
+const { options } = require('./routes.config');
+const Game = require('../models/game.model');
+const createHttpError = require('http-errors');
+
 
 hbs.registerPartials(path.join(__dirname, '../views/partials'));
 
