@@ -14,11 +14,8 @@ mongoose.connection.once('open', () => {
             console.info(`Added ${games.length} games`);
             const gamesReview = games.map(game => {
                 const reviews = gamesData.find(g => g.title === game.title)
-                .reviews
-                .map(review => {
-                    review.game = game.id;
-                    return review;
-                });
+                .review
+                reviews.game = game._id
                 return Review.create(reviews)
                 .then(reviews => console.info(`Added ${reviews ? reviews.length : 0} reviews to game ${game.title}`))
             });
