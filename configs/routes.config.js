@@ -40,6 +40,8 @@ router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), 
 router.get('/details/:id', secure.isAuthenticated ,gamesController.details);
 router.post('/games/:gameId/reviews', secure.isAuthenticated, reviewController.create);
 router.post('/games/:id/delete', secure.isAuthenticated, secure.checkOwner, gamesController.delete);
+router.get('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.edit);
+router.post('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.doEdit);
 
 
 

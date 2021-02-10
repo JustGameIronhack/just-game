@@ -43,7 +43,6 @@ module.exports.doCreate = (req, res, next) => {
 module.exports.details = (req, res, next) => {
     
     Game.findById(req.params.id)
-        /* .populate('reviews') */
         .populate({
             path: "reviews",
             populate: {
@@ -72,3 +71,36 @@ module.exports.delete = (req, res, next) => {
         .catch(next);
 };
 
+module.exports.edit = (req, res, next) => {
+    Game.findById(req.params.id)  
+        .then((game) => {
+            if (game) {
+                res.render('games/edit', { game });
+            } else {
+                next(createError(404, 'Game does not exist'))
+            }
+        }).catch(next);
+};
+
+module.exports.doEdit = (req, res, next) => {
+    Game.findByIdAndUpdate(req.params.id, { $set: req.body }, { runValidators: true })
+        .then((game) => {
+            if (game) {
+                res.render('games/details', { game });
+            } else {
+                next(createError(404, 'Game does not exist'))
+            }
+        })
+        .catch((error) => {
+            if (error instanceof mongoose.Error.ValidationError) {
+                const game = req.body;
+                game.id = req.params.id;
+                res.render('games/edit', {
+                    errors: error.errors,
+                    game: game
+                });
+            } else {
+                next(error);
+            }
+        });
+};

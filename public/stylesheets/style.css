@@ -10,3 +10,55 @@
 .input-group-text i {
     margin: 0 auto;
 }
+
+/* Stars */
+
+.txt-center {
+    text-align: center;
+  }
+  .hide {
+    display: none;
+  }
+  
+  .clear {
+    float: none;
+    clear: both;
+  }
+  
+  .rating {
+      width: 180px;
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      text-align: center;
+      position: relative;
+  }
+  
+  .rating > label {
+      float: right;
+      display: inline;
+      padding: 0;
+      margin: 5px;
+      position: relative;
+      width: 1.1em;
+      cursor: pointer;
+      color: #000;
+      transform: scale(2);
+  }
+  
+  .rating > label:hover,
+  .rating > label:hover ~ label,
+  .rating > input.radio-btn:checked ~ label {
+      color: transparent;
+  }
+  
+  .rating > label:hover:before,
+  .rating > label:hover ~ label:before,
+  .rating > input.radio-btn:checked ~ label:before,
+  .rating > input.radio-btn:checked ~ label:before {
+      content: "\2605";
+      position: absolute;
+      left: 0;
+      color: #FFD700;
+  }
+  
+ /*  End Stars */

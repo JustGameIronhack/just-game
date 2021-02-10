@@ -1,28 +1,29 @@
 <div class="container">
   <section class="mb-3">
-
     <h1>Game detail</h1>
-
     <hr class="mt-0" />
+    <div class="row d-flex align-items-sm-center">
+      <div class="col-lg-4">
 
-    <div class="card">
-      <img class="card-img-top" src="{{game.image}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Title: {{game.title}}</h5>
-        <p class="card-text">Platform: {{game.platform}}</p>
-        <p class="card-text">Price: {{game.price}}</p>
-        <p class="card-text">{{date game.createdAt }}</p>
+        <img class="card-img-top" src="{{game.image}}" alt="Card image cap">
+      </div>
 
-        <div class="d-flex">
-          <a class="btn btn-primary mr-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog mr-2"></i>Edit</a>
-          <form action="/games/{{game.id}}/delete" method="POST">
+      <div class="col-lg-8">
+        <div class="card-body text-center">
+          <h5 class="card-title fs-2">Title: {{game.title}}</h5>
+          <p class="card-text fs-4">Platform: {{game.platform}}</p>
+          <p class="card-text fs-4">Description:<em> {{game.description}}</em></p>
+          <p class="card-text fs-4">Price: {{game.price}}€</p>
+          <p class="card-text fs-4">Uploaded: {{date game.createdAt }}</p>
+
           {{#checkOwner game currentUser }}
-            <button type="submit" class="btn btn-danger"><i class="fa fa-trash mr-2"></i>Delete</button>
-          {{/checkOwner}}
+          <a class="btn btn-primary mb-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog me-2"></i>Edit</a>
+          <form action="/games/{{game.id}}/delete" method="POST">
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Delete</button>
           </form>
+          {{/checkOwner}}
         </div>
       </div>
-    </div>
   </section>
 
   <section class="mt-4">
@@ -53,11 +54,21 @@
         {{/if}}
       </div>
       <div class="input-group mb-1">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+        <div class="txt-center">
+            <div class="rating">
+              <input id="star5" name="rate" type="radio" value="5" class="radio-btn hide" />
+              <label for="star5">☆</label>
+              <input id="star4" name="rate" type="radio" value="4" class="radio-btn hide" />
+              <label for="star4">☆</label>
+              <input id="star3" name="rate" type="radio" value="3" class="radio-btn hide" />
+              <label for="star3">☆</label>
+              <input id="star2" name="rate" type="radio" value="2" class="radio-btn hide" />
+              <label for="star2">☆</label>
+              <input id="star1" name="rate" type="radio" value="1" class="radio-btn hide" />
+              <label for="star1">☆</label>
+              <div class="clear"></div>
+            </div>
         </div>
-        <input type="number" name="rate" class="form-control {{#if errors.rate }}is-invalid{{/if}}"
-          placeholder="Your rate"></input>
         {{#if errors.rate }}
         <div class="invalid-feedback">
           {{ errors.rate }}
