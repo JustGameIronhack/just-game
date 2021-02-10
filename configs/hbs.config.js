@@ -36,3 +36,12 @@ hbs.registerHelper('stringSpace', (array) => {
 hbs.registerHelper('date', (date) => {
     return moment(date).startOf().fromNow();
 });
+
+
+hbs.registerHelper('checkOwner', (game, user, options) => {
+    if ((user && user.role === 'admin') || (user && user.id.toString() === game.user.toString())) {
+        return options.fn();
+    } else {
+        return options.inverse();
+    };
+});
