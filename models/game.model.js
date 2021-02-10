@@ -14,7 +14,7 @@ const gameSchema = new Schema(
         genre: {
             type: [String],
             required: 'At least one game genre is required',
-            enum: ['Action', 'Action-adventure', 'Adventure', 'Role-playing', 'Simulation', 'Strategy', 'Sports', 'MMO', 'Shooter', 'Sandbox', 'Horror', 'Fight', 'Hack and Slash'],
+            enum: ['Action', 'Action-Adventure', 'Adventure', 'Role-playing', 'Simulation', 'Strategy', 'Sports', 'MMO', 'Shooter', 'Sandbox', 'Horror', 'Fight', 'Hack and Slash'],
             
         },
         platform: {
