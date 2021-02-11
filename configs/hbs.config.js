@@ -1,8 +1,7 @@
 const hbs = require('hbs');
 const path = require('path');
 const moment = require('moment');
-
-
+const Game = require('../models/game.model');
 
 hbs.registerPartials(path.join(__dirname, '../views/partials'));
 
@@ -42,4 +41,23 @@ hbs.registerHelper('checkOwner', function (game, user, options) {
     } else {
         return options.inverse(this);
     };
+});
+
+hbs.registerHelper('previous', (page) => {
+    const currentPage = Number(page);
+    if (currentPage === 1) {
+        return 1;
+    } else {
+        return currentPage - 1
+    }  
+});
+
+hbs.registerHelper('next',  (page, gamesLength) => {
+    const currentPage = Number(page);
+            const maxPage = Math.ceil(gamesLength / 6);
+            if(currentPage === maxPage) {
+                return maxPage;
+            } else {  
+                return currentPage + 1;
+            }     
 });

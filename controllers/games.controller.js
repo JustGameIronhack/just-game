@@ -4,12 +4,32 @@ const createError = require('http-errors');
 const Review = require('../models/review.model');
 
 module.exports.list = (req, res, next) => {
+    const { page } = req.query;
+    const limit = 6;
     Game.find()
         .populate('user')
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
         .then((games) => {
-            res.render('games/list', { games });
+           return Game.countDocuments().exec()
+                .then((gamesLength) => {
+                    res.render('games/list', { games, gamesLength })
+                })
         })
         .catch(next);
+
+    /* Game.aggregate( [
+        { $count:"Total Count" },
+        { $limit: limit },
+        { $skip: (page - 1) * limit },
+        { $group: { _id: null, count: { $sum: 1 }, results:{$push:'$$ROOT'} } },
+        { $project: {count:1, results:{ $slice: 5}}}
+     ])
+     .then((games) => {
+         console.log("GAMES", games)
+        res.render('games/list', { games });
+    })
+    .catch(next); */       
 };
 
 module.exports.create = (req, res, next) => {

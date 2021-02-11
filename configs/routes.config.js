@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Game = require('../models/game.model');
 const usersController = require('../controllers/users.controller');
 const gamesController = require('../controllers/games.controller');
 const reviewController = require('../controllers/reviews.controller');
