@@ -21,10 +21,8 @@
         </div>
         {{/each}}
     </div>
-    <div class="sticky-bottom">
-
     <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-end fixed-bottom me-5">
             <li class="page-item"><a class="page-link" href="/games?page={{previous page}}">Previous</a></li>
             <li class="page-item"><a class="page-link" href="/games?page=1">1</a></li>
             <li class="page-item"><a class="page-link" href="/games?page=2">2</a></li>
@@ -32,5 +30,4 @@
             <li class="page-item"><a class="page-link" href="/games?page={{next page gamesLength}}">Next</a></li>
         </ul>
     </nav>
-    </div>
 </div>
