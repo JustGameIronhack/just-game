@@ -1,8 +1,10 @@
 <section>
     <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-between align-items-center">
+        <div>
+            <div class="col-12 d-flex align-items-center">
                 <h1>Upload New Game</h1>
+            </div>
+            <div>
                 <h3>Enter the details of the game you want sell!</h3>
             </div>
         </div>
@@ -180,7 +182,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-eur"
                                             aria-hidden="true"></i></span>
-                                    <input value="{{game.price}}" placeholder="Please, enter the price you want to sell your game"
+                                    <input value="{{game.price}}" step=".01" placeholder="Please, enter the price you want to sell your game"
                                         name="price" type="number" class="form-control {{isInvalid errors.price}}"
                                         aria-describedby="inputGroupPrepend">
                                     {{formError errors.price}}
@@ -188,7 +190,7 @@
                                 </div>
                             </div>
                             <div class="input-group mb-1">
-                                <button class="btn btn-primary btn-block" type="submit">Sell it!</button>
+                                <button class="btn btnRegular btn-block" type="submit">Sell it!</button>
                             </div>
                         </form>
                     </div>

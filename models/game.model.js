@@ -33,7 +33,7 @@ const gameSchema = new Schema(
         },        
         price: {
             type: Number,
-            required: 'A Game price is required'
+            required: 'A Game price is required',
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,

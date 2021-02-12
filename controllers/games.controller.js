@@ -13,8 +13,8 @@ module.exports.list = (req, res, next) => {
         .then((games) => {
            return Game.countDocuments().exec()
                 .then((gamesLength) => {
-                    res.render('games/list', { games, gamesLength })
-                })
+                    res.render('games/list', { games, gamesLength });
+                });
         })
         .catch(next);
 
@@ -47,7 +47,7 @@ module.exports.doCreate = (req, res, next) => {
         ...req.body,
         user: req.user, 
     })
-        .then((game) => res.redirect(`/games`))
+        .then((game) => res.redirect(`/details/${game.id}`))
         .catch((error) => {
             if (error instanceof mongoose.Error.ValidationError) {
                 res.render('games/new', {
@@ -85,7 +85,7 @@ module.exports.delete = (req, res, next) => {
             if (game) {
                 res.redirect('/games');
             }else {
-                next(createError(404, 'The game doesn´t exist!'))
+                next(createError(404, 'The game doesn´t exist!'));
             }
         })
         .catch(next);
@@ -97,7 +97,7 @@ module.exports.edit = (req, res, next) => {
             if (game) {
                 res.render('games/edit', { game });
             } else {
-                next(createError(404, 'Game does not exist'))
+                next(createError(404, 'Game does not exist'));
             }
         }).catch(next);
 };
@@ -108,7 +108,7 @@ module.exports.doEdit = (req, res, next) => {
             if (game) {
                 res.render('games/details', { game });
             } else {
-                next(createError(404, 'Game does not exist'))
+                next(createError(404, 'Game does not exist'));
             }
         })
         .catch((error) => {
