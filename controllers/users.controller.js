@@ -18,7 +18,7 @@ module.exports.doRegister = (req, res, next) => {
 
     const { password, passwordMatch} = req.body;
     if (password && password !== passwordMatch) {
-        renderWithErrors({passwordMatch: 'The password do not match!'})
+        renderWithErrors({passwordMatch: 'The password do not match!'});
     }else {
         User.findOne({ email: req.body.email })
         .then((user) => {
@@ -91,8 +91,8 @@ module.exports.loginWithIDP = (strategy) => {
                 });
             }
         }) (req, res, next);
-    }
-}
+    };
+};
 
 
 
@@ -158,6 +158,6 @@ module.exports.logout = (req, res, next) => {
 module.exports.list = (req, res, next) => {
     User.find()
         .then(users => res.render('users/list', { users }))
-        .catch(next)
-}
+        .catch(next);
+};
 

@@ -1,3 +1,6 @@
+@import url('../fonts/Blanka-Regular.otf');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+
 .avatar {
     margin-right: 5px;
     max-width: 50px; 
@@ -62,3 +65,74 @@
   }
   
  /*  End Stars */
+
+ .registerBlock {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     margin-top: 30px;
+ }
+
+ .registerSocialLogin {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .verticalLine {
+    border-right: solid grey;
+    margin-right: 45px;
+    padding-right: 45px;
+    border-width: 1px;
+ }
+
+ .registerSize {
+     width: 600px;
+ }
+
+ .registerSize > a {
+     width: 300px;
+ }
+
+ .btnGoogle {
+     background-color: #4885ed;
+     color: white;
+ }
+
+ .btnSteam {
+    background-color: #000;
+    color: white;
+ }
+
+ .btnGoogle:hover {
+   box-shadow: 0 0.5em 0.5em -0.4em grey;
+   transform: translateY(-0.25em);
+   color: white;
+ }
+
+ .btnSteam:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em grey;
+    transform: translateY(-0.25em);
+    color: white;
+  }
+
+  h1 {
+    font-family: 'Blanka';
+    font-size: 40px;
+    color: #0029ff;
+  }
+
+  h2,
+  h3 {
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 20px;
+  }
+
+  h4,
+  h5 {
+      font-family: 'Maven Pro', sans-serif;
+      font-size: 15px;
+      font-style: italic;
+  }

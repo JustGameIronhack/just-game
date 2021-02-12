@@ -40,7 +40,7 @@ hbs.registerHelper('checkOwner', function (game, user, options) {
         return options.fn(this);
     } else {
         return options.inverse(this);
-    };
+    }
 });
 
 hbs.registerHelper('previous', (page) => {
@@ -48,7 +48,7 @@ hbs.registerHelper('previous', (page) => {
     if (currentPage === 1) {
         return 1;
     } else {
-        return currentPage - 1
+        return currentPage - 1;
     }  
 });
 

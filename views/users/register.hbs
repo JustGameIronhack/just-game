@@ -1,7 +1,20 @@
-<div class="row">
-    <div class="col-12 col-sm-4 mx-auto">
-        <form action="/register" method="POST" class="row g-3">
-            <div class="col-md-12">
+<div class="registerSocialLogin">
+    <div>
+        <h1>REGISTER YOUR SELF!</h1>
+    </div>
+    <div>
+        <h3>Access thousands of games to buy or put your own for sale</h3>
+    </div>
+    <div>
+        <h4>Don't forget to check your e-mail to activate your account</h4>
+    </div>
+</div>
+
+
+<div class="registerBlock">
+    <div class="verticalLine registerSize">
+        <form action="/register" method="POST">
+            <div>
                 <label for="validationCustomUsername" class="form-label">Name</label>
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-user"
@@ -11,7 +24,7 @@
                     {{formError errors.name}}
                 </div>
             </div>
-            <div class="col-md-12">
+            <div>
                 <label for="validationCustomUsername" class="form-label">Email</label>
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-envelope-o"
@@ -21,7 +34,7 @@
                     {{formError errors.email}}
                 </div>
             </div>
-            <div class="col-md-12">
+            <div>
                 <label for="validationCustomUsername" class="form-label">Password</label>
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
@@ -31,7 +44,7 @@
                     {{formError errors.password}}
                 </div>
             </div>
-            <div class="input-group mb-1">
+            <div>
                 <label for="validationCustomUsername" class="form-label">Repeat password</label>
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
@@ -41,7 +54,7 @@
                     {{formError errors.passwordMatch}}
                 </div>
             </div>
-            <div class="col-md-12">
+            <div>
                 <label for="validationCustomUsername" class="form-label">Location</label>
                 <div class="input-group">
                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-map-marker"
@@ -52,14 +65,17 @@
 
                 </div>
             </div>
-            <div class="col-12">
+            <div class="mt-4">
                 <button class="btn btn-primary btn-block" type="submit">Register</button>
             </div>
         </form>
-        <hr>
-        <a class="btn btn-secondary btn-block" href="/authenticate/google"><i class="fa fa-google"></i> Login with
+    </div>
+
+
+    <div class="registerSocialLogin registerSize">
+        <a class="btn btnGoogle btn-block mb-3" href="/authenticate/google"><i class="fa fa-google"></i> Login with
             Google</a>
-        <a class="btn btn-secondary btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Login with
+        <a class="btn btnSteam btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Login with
             Steam</a>
     </div>
 </div>
