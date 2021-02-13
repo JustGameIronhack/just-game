@@ -6,22 +6,14 @@ const Review = require('../models/review.model');
 module.exports.list = (req, res, next) => {
     const { page } = req.query;
     const limit = 6;
-    console.log('PAGE', page)
-    const skip = (page -1) * limit
-    console.log('SKIP', skip)    
-    Game.aggregate( [
-        { $facet: {
-            totalCount: [{ $count:"total" }],
-            pagination: [{ $skip: skip }, { $limit: limit }]
-        }}
-     ])
-     .then((games) => {
-         const arrGames = games[0].pagination;
-         const count = games[0].totalCount[0].total;
-         console.log('GAMES', games)
-        res.render('games/list', { count, arrGames });
-    })
-    .catch(next);       
+    const skip = (page -1) * limit;
+        
+    Promise.all([
+        Game.find().populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit),
+        Game.estimatedDocumentCount()
+        ])
+        .then(([games, count]) => res.render('games/list', {games, count}))
+        .catch(next);   
 };
 
 module.exports.create = (req, res, next) => {

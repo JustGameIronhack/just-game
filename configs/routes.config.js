@@ -32,6 +32,7 @@ router.post('/logout', usersController.logout);
 router.get('/profile', secure.isAuthenticated, usersController.profile);
 router.post('/profile', secure.isAuthenticated, storageUsers.single('avatar'), usersController.doProfile);
 router.get('/users', secure.isAuthenticated, secure.checkRole('admin'), usersController.list);
+router.get('/user/:id/message', secure.isAuthenticated, usersController.messages);
 
 //GAMES ROUTES
 

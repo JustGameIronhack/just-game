@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row d-flex align-items-center">
-        {{#each arrGames as | game |}}
+        {{#each games as | game |}}
         <div class="col col-lg-4 mb-5 d-flex align-items-center flex-column">
             <div class="imageContainer">
                 <img src="{{game.image}}" class="mb-2 mt-3 imageList" alt="game-image">
@@ -13,7 +13,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Genre: {{stringSpace game.genre}}</li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by: {{game.user.name}}</li>
+                    <li class="list-group-item"><a href="/user/{{game._id}}/message">Uploaded by: {{game.user.name}}</a></li>
                 </ul>
                 <div class="card-body">
                     <a href="/cart" class="card-link">Add to cart</a>
@@ -33,3 +33,4 @@
         </ul>
     </nav>
 </div>
+

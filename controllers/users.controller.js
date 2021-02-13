@@ -3,6 +3,7 @@ const User = require('../models/user.model');
 const httpError = require('http-errors');
 const mailer = require('../configs/mailer.config');
 const passport = require('passport');
+const Game = require('../models/game.model');
 
 module.exports.register = (req, res, next) => {
     res.render('users/register');
@@ -158,6 +159,15 @@ module.exports.logout = (req, res, next) => {
 module.exports.list = (req, res, next) => {
     User.find()
         .then(users => res.render('users/list', { users }))
+        .catch(next);
+};
+
+module.exports.messages = (req, res, next) => {
+    Game.findById(req.params.id)
+        .populate('user')
+        .then((game) => {
+            res.render('users/messages', { game })
+        })
         .catch(next);
 };
 
