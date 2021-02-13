@@ -54,10 +54,11 @@ hbs.registerHelper('previous', (page) => {
 
 hbs.registerHelper('next',  (page, gamesLength) => {
     const currentPage = Number(page);
-            const maxPage = Math.ceil(gamesLength / 6);
+            const maxPage = Math.ceil(Number(gamesLength) / 6);
             if(currentPage === maxPage) {
                 return maxPage;
             } else {  
                 return currentPage + 1;
             }     
 });
+

@@ -147,3 +147,14 @@
       font-size: 15px;
       font-style: italic;
   }
+
+  .imageContainer {
+      width: 200px;
+      height: 300px;
+  }
+
+  .imageList {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }

@@ -6,30 +6,22 @@ const Review = require('../models/review.model');
 module.exports.list = (req, res, next) => {
     const { page } = req.query;
     const limit = 6;
-    Game.find()
-        .populate('user')
-        .limit(limit * 1)
-        .skip((page - 1) * limit)
-        .then((games) => {
-           return Game.countDocuments().exec()
-                .then((gamesLength) => {
-                    res.render('games/list', { games, gamesLength });
-                });
-        })
-        .catch(next);
-
-    /* Game.aggregate( [
-        { $count:"Total Count" },
-        { $limit: limit },
-        { $skip: (page - 1) * limit },
-        { $group: { _id: null, count: { $sum: 1 }, results:{$push:'$$ROOT'} } },
-        { $project: {count:1, results:{ $slice: 5}}}
+    console.log('PAGE', page)
+    const skip = (page -1) * limit
+    console.log('SKIP', skip)    
+    Game.aggregate( [
+        { $facet: {
+            totalCount: [{ $count:"total" }],
+            pagination: [{ $skip: skip }, { $limit: limit }]
+        }}
      ])
      .then((games) => {
-         console.log("GAMES", games)
-        res.render('games/list', { games });
+         const arrGames = games[0].pagination;
+         const count = games[0].totalCount[0].total;
+         console.log('GAMES', games)
+        res.render('games/list', { count, arrGames });
     })
-    .catch(next); */       
+    .catch(next);       
 };
 
 module.exports.create = (req, res, next) => {

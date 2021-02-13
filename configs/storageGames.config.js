@@ -12,7 +12,8 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: 'JustGame/Games',
-        format: 'png'
+        format: 'png',
+        eager: [{ width: 200, height: 300, crop: 'scale'}]
     }
 });
 

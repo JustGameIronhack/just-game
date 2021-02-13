@@ -1,8 +1,10 @@
 <div class="container">
     <div class="row d-flex align-items-center">
-        {{#each games as | game |}}
+        {{#each arrGames as | game |}}
         <div class="col col-lg-4 mb-5 d-flex align-items-center flex-column">
-            <img src="{{game.image}}" class="mb-2 mt-3" style="width: 14rem" alt="game-image">
+            <div class="imageContainer">
+                <img src="{{game.image}}" class="mb-2 mt-3 imageList" alt="game-image">
+            </div>
             <div class="card" style="width: 15rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{game.title}}</h5>
@@ -27,7 +29,7 @@
             <li class="page-item"><a class="page-link" href="/games?page=1">1</a></li>
             <li class="page-item"><a class="page-link" href="/games?page=2">2</a></li>
             <li class="page-item"><a class="page-link" href="/games?page=3">3</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page={{next page gamesLength}}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="/games?page={{next page count}}">Next</a></li>
         </ul>
     </nav>
 </div>
