@@ -4,6 +4,7 @@ const Game = require('../models/game.model');
 const usersController = require('../controllers/users.controller');
 const gamesController = require('../controllers/games.controller');
 const reviewController = require('../controllers/reviews.controller');
+const messageController = require('../controllers/messages.controller')
 const passport = require('passport');
 const GOOGLE_SCOPES = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
 const secure = require('../middlewares/secure.middleware');
@@ -32,7 +33,7 @@ router.post('/logout', usersController.logout);
 router.get('/profile', secure.isAuthenticated, usersController.profile);
 router.post('/profile', secure.isAuthenticated, storageUsers.single('avatar'), usersController.doProfile);
 router.get('/users', secure.isAuthenticated, secure.checkRole('admin'), usersController.list);
-router.get('/user/:id/message', secure.isAuthenticated, usersController.messages);
+
 
 //GAMES ROUTES
 
@@ -44,6 +45,8 @@ router.post('/games/:gameId/reviews', secure.isAuthenticated, reviewController.c
 router.post('/games/:id/delete', secure.isAuthenticated, secure.checkOwner, gamesController.delete);
 router.get('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.edit);
 router.post('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.doEdit);
+router.get('/game/:id/message', secure.isAuthenticated, gamesController.messages);
+router.post('/game/:gameId/message', secure.isAuthenticated, messageController.create);
 
 
 

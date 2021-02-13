@@ -162,12 +162,7 @@ module.exports.list = (req, res, next) => {
         .catch(next);
 };
 
-module.exports.messages = (req, res, next) => {
-    Game.findById(req.params.id)
-        .populate('user')
-        .then((game) => {
-            res.render('users/messages', { game })
-        })
-        .catch(next);
-};
+
+
+
 

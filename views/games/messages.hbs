@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-3">
+            <div class="card" style="width: 18rem;">
+                <img src='{{game.user.avatar}}' class="card-img-top" alt="user avatar">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{game.user.name}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-9">
+            <div>
+                <img src="{{game.image}}" style="width: 10rem" alt="game image">
+            </div>
+            <div>
+                <h3>{{game.title}}</h3>
+            </div>
+            <div>
+                <h3>{{game.price}}€</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="/game/{{ game.id }}/message" method="post">
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text">Message</span>
+            <textarea class="form-control {{isInvalid errors.message}}" name="text" aria-label="With textarea">{{message.text}}</textarea>
+            {{formError errors.message}}
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+</form>

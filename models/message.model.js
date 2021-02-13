@@ -7,6 +7,7 @@ const messageSchema = new Schema(
         text: {
             type: String,
             required: 'A text is required for your message',
+            minlength: [5, 'Write at least 5 chars']
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,
@@ -15,7 +16,7 @@ const messageSchema = new Schema(
         game: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Game'
-        }
+        },
     }
 );
 

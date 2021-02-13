@@ -108,3 +108,14 @@ module.exports.doEdit = (req, res, next) => {
             }
         });
 };
+
+module.exports.messages = (req, res, next) => {
+    Game.findById(req.params.id)
+        .populate('user')
+        .populate('messages')
+        .then((game) => {
+            console.log('GAMEMESSAGE', game);
+            res.render('games/messages', { game })
+        })
+        .catch(next);
+};

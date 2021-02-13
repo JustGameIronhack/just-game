@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Review = require('./review.model');
+const Message = require('../models/message.model');
+
 
 
 const gameSchema = new Schema(
@@ -37,12 +39,22 @@ const gameSchema = new Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
-        },   
+        },  
     }, { timestamps: true }
 );
 
     gameSchema.virtual('reviews', {
         ref: Review.modelName,
+        localField: '_id',
+        foreignField: 'game',
+        options: {
+            sort: { createdAt: -1 },
+            limit: 10
+        }
+    });
+
+    gameSchema.virtual('messages', {
+        ref: Message.modelName,
         localField: '_id',
         foreignField: 'game',
         options: {

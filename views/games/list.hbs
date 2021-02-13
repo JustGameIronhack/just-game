@@ -13,7 +13,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Genre: {{stringSpace game.genre}}</li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item"><a href="/user/{{game._id}}/message">Uploaded by: {{game.user.name}}</a></li>
+                    <li class="list-group-item">Uploaded by:<a href="/game/{{game._id}}/message"> {{game.user.name}}</a></li>
                 </ul>
                 <div class="card-body">
                     <a href="/cart" class="card-link">Add to cart</a>
