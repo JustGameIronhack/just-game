@@ -67,7 +67,8 @@ module.exports.answer = (req, res, next) => {
         text: text,
         from: req.user.id,
         to: user.id,
-        game: game.id
+        game: game.id,
+        user: req.user.id
       });
 
       message.save()
