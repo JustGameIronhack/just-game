@@ -2,6 +2,7 @@ const hbs = require('hbs');
 const path = require('path');
 const moment = require('moment');
 const Game = require('../models/game.model');
+const { options } = require('./routes.config');
 
 hbs.registerPartials(path.join(__dirname, '../views/partials'));
 
@@ -61,4 +62,3 @@ hbs.registerHelper('next',  (page, gamesLength) => {
                 return currentPage + 1;
             }     
 });
-

@@ -17,6 +17,7 @@ module.exports.create = (req, res, next) => {
       } else {
         const message = new Message ({
           text: text,
+          user: req.user.id,
           from: req.user.id,
           to: game.user,
           game: game.id
@@ -46,4 +47,43 @@ module.exports.list = (req, res, next) => {
   ])
   .then(([buyMessages, sellMessages]) => res.render('users/messages', { buyMessages, sellMessages }))
   .catch(next);
+};
+
+
+
+module.exports.answer = (req, res, next) => {
+  const { userId,  gameId } = req.params;
+  const { text } = req.body;
+  Promise.all([
+    User.findById(userId),
+    Game.findById(gameId)
+  ])
+  .then(([user,  game]) => {
+    messageUser = user;
+    if (!user) {
+      next(createError(404, 'User not found'));
+    } else {
+      const message = new Message ({
+        text: text,
+        from: req.user.id,
+        to: user.id,
+        game: game.id
+      });
+
+      message.save()
+        .then(message => {
+          res.redirect(`/messages/${req.user.id}`);
+        });
+    }
+  })
+  .catch(error => {
+    if (error instanceof mongoose.Error.ValidationError) {
+      res.render('games/messages', {
+        user: messageUser,
+        errors: error.errors
+      });
+    } else {
+      next(error);
+    }
+  });
 }

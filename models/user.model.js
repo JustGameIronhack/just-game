@@ -55,14 +55,6 @@ const userSchema = new Schema({
         google: String,
         steam: String
     },
-    /* game: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Game'
-    }, */
-    /* message: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Message'
-    } */
 }, {
     timestamps: true
 });

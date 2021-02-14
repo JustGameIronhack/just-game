@@ -1,32 +1,57 @@
 <div class="container">
 
-    <h1>CONVERSACIONES DE COMPRA</h1>
-        {{#each buyMessages as |message|}}
-    <div class="card mb-3 mt-3" style="width: 18rem;">
-        <img class="card-img-top" src="{{message.game.image}}" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">{{message.game.title}}</p>
+    <h1>SENT MESSAGES</h1>
+    <hr>
+    {{#each buyMessages as |message|}}
+    <div class="row mb-5 d-flex align-items-sm-center">
+        <div class="col col-lg-2">
+            <img style="width: 9rem" src="{{message.game.image}}" alt="Card image cap">
         </div>
-        <div class="card-body">
+        <div class="col col-lg-10 border-start">
+            <p>{{message.game.title}}</p>
             <p class="card-text">{{message.text}}</p>
-            <p><em>{{message.from.name}}</em></p>
+            <p>from: <em>{{message.from.name}}</em></p>
+            <p>to: <em>{{message.to.name}}</em></p>
+            <p>{{date message.createdAt}}</p>
         </div>
+    </div>
+    <div class="separatorLines mx-auto">
+        <hr>
     </div>
     {{/each}}
 
-    <H1>CONVERSACIONES DE VENTA</H1>
-    Popular los mensajes de los juegos que el ususario tiene en venta
+    <h1>RECEIVED MESSAGES</h1>
+    <hr>
 
     {{#each sellMessages as |message|}}
-    <div class="card mb-3 mt-3" style="width: 18rem;">
-        <img class="card-img-top" src="{{message.game.image}}" alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">{{message.game.title}}</p>
+
+    <div class="row mb-5 d-flex align-items-sm-center">
+        <div class="col col-lg-2">
+            <img style="width: 9rem" src="{{message.game.image}}" alt="Card image cap">
         </div>
-        <div class="card-body">
-            <p class="card-text">{{message.text}}</p>
-            <p><em>{{message.from.name}}</em></p>
+        <div class="col col-lg-6 border-start">
+            <p>{{message.game.title}}</p>
+            <p>{{message.text}}</p>
+            <p>from: <em>{{message.from.name}}</em></p>
+            <p>to: <em>{{message.to.name}}</em></p>
+            <p>{{date message.createdAt}}</p>
+        </div>
+
+
+
+        <div class="col col-lg-4"> 
+            <form action="/messages/{{message.user}}/{{message.game.id}}/answer" method="post">
+                <p>Answer to: {{message.from.name}}</p>
+                <textarea name="text" cols="50" rows="7"></textarea>
+                <div>
+                    <button class="btn btnRegular" type="submit">Send</button>
+                </div>
+            </form>  
         </div>
     </div>
+    <div class="separatorLines mx-auto">
+        <hr>
+    </div>
+    
     {{/each}}
 </div>
