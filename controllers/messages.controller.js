@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 const Game = require('../models/game.model');
 const Message = require('../models/message.model');
+const User = require('../models/user.model');
 
 module.exports.create = (req, res, next) => {
   const { gameId } = req.params;
@@ -16,7 +17,8 @@ module.exports.create = (req, res, next) => {
       } else {
         const message = new Message ({
           text: text,
-          user: req.user.id,
+          from: req.user.id,
+          to: game.user,
           game: game.id
         });
 
@@ -35,4 +37,13 @@ module.exports.create = (req, res, next) => {
         next(error);
       }
     });
+};
+
+module.exports.list = (req, res, next) => {
+  Promise.all([
+    Message.find({ from: req.params.id }).populate('game to from'),
+    Message.find({ to: req.params.id }).populate('game to from')
+  ])
+  .then(([buyMessages, sellMessages]) => res.render('users/messages', { buyMessages, sellMessages }))
+  .catch(next);
 }

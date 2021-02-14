@@ -6,7 +6,6 @@ const Review = require('../models/review.model');
 module.exports.list = (req, res, next) => {
     const { page } = req.query;
     const limit = 6;
-    const skip = (page -1) * limit;
         
     Promise.all([
         Game.find().populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit),

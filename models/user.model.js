@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const Game = require('./game.model');
+const Message = require('./message.model');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^.{8,}$/;
 const admins = (process.env.ADMINS_EMAIL || '')
@@ -53,23 +55,27 @@ const userSchema = new Schema({
         google: String,
         steam: String
     },
-    game: {
+    /* game: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Game'
-    },
-    message: {
+    }, */
+    /* message: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Message'
-    }
+    } */
 }, {
     timestamps: true
 });
 
-/* userSchema.virtual('games', {
-    ref: 'Game',
+userSchema.virtual('games', {
+    ref: Message.modelName,
     localField: '_id',
-    foreignField: 'user'
-}); */
+    foreignField: 'user',
+    options: {
+        sort: { createdAt: -1 },
+        limit: 10
+    }
+});
 
 userSchema.pre('save', function (next) {
     if (admins.includes(this.email)) {
@@ -91,5 +97,3 @@ userSchema.methods.checkPassword = function (passwordToCheck) {
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
-
-//TODO => bcrypt, verified(model)

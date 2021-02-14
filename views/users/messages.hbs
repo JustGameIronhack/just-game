@@ -1,8 +1,32 @@
-<h1>CONVERSACIONES DE COMPRA</h1>
+<div class="container">
 
+    <h1>CONVERSACIONES DE COMPRA</h1>
+        {{#each buyMessages as |message|}}
+    <div class="card mb-3 mt-3" style="width: 18rem;">
+        <img class="card-img-top" src="{{message.game.image}}" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">{{message.game.title}}</p>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{message.text}}</p>
+            <p><em>{{message.from.name}}</em></p>
+        </div>
+    </div>
+    {{/each}}
 
+    <H1>CONVERSACIONES DE VENTA</H1>
+    Popular los mensajes de los juegos que el ususario tiene en venta
 
-
-
-<H1>CONVERSACIONES DE VENTA</H1>
-Popular los mensajes de los juegos que el ususario tiene en venta
+    {{#each sellMessages as |message|}}
+    <div class="card mb-3 mt-3" style="width: 18rem;">
+        <img class="card-img-top" src="{{message.game.image}}" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text">{{message.game.title}}</p>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{message.text}}</p>
+            <p><em>{{message.from.name}}</em></p>
+        </div>
+    </div>
+    {{/each}}
+</div>

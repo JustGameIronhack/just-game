@@ -9,7 +9,11 @@ const messageSchema = new Schema(
             required: 'A text is required for your message',
             minlength: [5, 'Write at least 5 chars']
         },
-        user: {
+        from: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        to: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },

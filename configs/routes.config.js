@@ -47,6 +47,7 @@ router.get('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesCo
 router.post('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.doEdit);
 router.get('/game/:id/message', secure.isAuthenticated, gamesController.messages);
 router.post('/game/:gameId/message', secure.isAuthenticated, messageController.create);
+router.get('/messages/:id', secure.isAuthenticated, messageController.list);
 
 
 
