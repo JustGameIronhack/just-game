@@ -113,8 +113,17 @@ module.exports.messages = (req, res, next) => {
         .populate('user')
         .populate('messages')
         .then((game) => {
-            console.log('GAMEMESSAGE', game);
             res.render('games/messages', { game })
         })
         .catch(next);
 };
+
+module.exports.locations = (req, res, next) => {
+    Game.find()
+        .populate('user')
+        .limit(100)
+        .then((games) => {
+           res.json(games) 
+        })
+        .catch(next);
+}

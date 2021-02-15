@@ -165,3 +165,8 @@
       background-color: #0029ff;
       height: 0.1rem;
   }
+
+  #map {
+    height: 50rem;
+    width: 100%;
+  }

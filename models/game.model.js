@@ -39,7 +39,14 @@ const gameSchema = new Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
-        },  
+        },
+        location: {
+            type: {
+                type: String,
+                default: "Point"
+            },
+            coordinates: [Number] 
+        }
     }, { timestamps: true }
 );
 
