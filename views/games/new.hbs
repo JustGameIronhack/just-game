@@ -49,29 +49,29 @@
                                         </label>
                                     </div>
                                     <div class="form-check col col-lg-3">
-                                        <input class="form-check-input" type="checkbox" name="genre[]" value="Action-Adventure"
-                                            id="flexCheckDefault2">
+                                        <input class="form-check-input" type="checkbox" name="genre[]"
+                                            value="Action-Adventure" id="flexCheckDefault2">
                                         <label class="form-check-label" for="flexCheckDefault2">
                                             Action-Adventure
                                         </label>
                                     </div>
                                     <div class="form-check col col-lg-3">
-                                        <input class="form-check-input" type="checkbox" name="genre[]"  value="Adventure"
+                                        <input class="form-check-input" type="checkbox" name="genre[]" value="Adventure"
                                             id="flexCheckDefault3">
                                         <label class="form-check-label" for="flexCheckDefault3">
                                             Adventure
                                         </label>
                                     </div>
                                     <div class="form-check col col-lg-3">
-                                        <input class="form-check-input" type="checkbox" name="genre[]" value="Role-playing"
-                                            id="flexCheckDefault4">
+                                        <input class="form-check-input" type="checkbox" name="genre[]"
+                                            value="Role-playing" id="flexCheckDefault4">
                                         <label class="form-check-label" for="flexCheckDefault4">
                                             Role-playing
                                         </label>
                                     </div>
                                     <div class="form-check col col-lg-3">
-                                        <input class="form-check-input" type="checkbox" name="genre[]" value="Simulation"
-                                            id="flexCheckDefault5">
+                                        <input class="form-check-input" type="checkbox" name="genre[]"
+                                            value="Simulation" id="flexCheckDefault5">
                                         <label class="form-check-label" for="flexCheckDefault5">
                                             Simulation
                                         </label>
@@ -126,8 +126,8 @@
                                         </label>
                                     </div>
                                     <div class="form-check col col-lg-3">
-                                        <input class="form-check-input" type="checkbox" name="genre[]" value="Hack and Slash"
-                                            id="flexCheckDefault13">
+                                        <input class="form-check-input" type="checkbox" name="genre[]"
+                                            value="Hack and Slash" id="flexCheckDefault13">
                                         <label class="form-check-label" for="flexCheckDefault13">
                                             Hack and Slash
                                         </label>
@@ -172,9 +172,11 @@
                                 <div class="input-group">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-commenting-o"
                                             aria-hidden="true"></i></span>
-                                        <textarea name="description" type="text" class="form-control {{isInvalid errors.description}}"
-                                            id="text" placeholder="Describe, in a few words, your game" rows="5">{{ game.description }}</textarea>
-                                        {{formError errors.description}}
+                                    <textarea name="description" type="text"
+                                        class="form-control {{isInvalid errors.description}}" id="text"
+                                        placeholder="Describe, in a few words, your game"
+                                        rows="5">{{ game.description }}</textarea>
+                                    {{formError errors.description}}
                                 </div>
                             </div>
                             <div class="input-group mb-1">
@@ -182,15 +184,23 @@
                                 <div class="input-group">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-eur"
                                             aria-hidden="true"></i></span>
-                                    <input value="{{game.price}}" step=".01" placeholder="Please, enter the price you want to sell your game"
-                                        name="price" type="number" class="form-control {{isInvalid errors.price}}"
+                                    <input value="{{game.price}}" step=".01"
+                                        placeholder="Please, enter the price you want to sell your game" name="price"
+                                        type="number" class="form-control {{isInvalid errors.price}}"
                                         aria-describedby="inputGroupPrepend">
                                     {{formError errors.price}}
-
                                 </div>
                             </div>
+                            <div class="input-group-text mb-1">
+                                <div>
+                                    <label for="gameLocation">Game Location</label>
+                                </div>
+                                <input id="autocomplete" placeholder="Game Location" type="text" name="location" value="{{game.location}}">
+                                <input id="latitude"  type="hidden" name="latitude">
+                                <input id="longitude"  type="hidden" name="longitude">
+                            </div>
                             <div class="input-group mb-1">
-                                <button class="btn btnRegular btn-block" type="submit">Sell it!</button>
+                                <button class="btn btnRegular btn-block"  type="submit">Sell it!</button>
                             </div>
                         </form>
                     </div>

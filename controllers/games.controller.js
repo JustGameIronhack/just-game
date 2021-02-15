@@ -21,14 +21,21 @@ module.exports.create = (req, res, next) => {
 
 module.exports.doCreate = (req, res, next) => {
     /* return res.json(req.body) */
+    const {latitude, longitude} = req.body;
+    console.log('LT:', typeof latitude)
+    console.log('LG:', typeof longitude)
     const image = {};
     if (req.file) {
         image.image = req.file.path;
     }
     Object.assign(req.body, image);
+    console.log(req.body)
     Game.create({
         ...req.body,
-        user: req.user, 
+        user: req.user,
+        location: {
+            coordinates: [Number(latitude), Number(longitude)]
+        }  
     })
         .then((game) => res.redirect(`/details/${game.id}`))
         .catch((error) => {

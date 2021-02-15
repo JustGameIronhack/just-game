@@ -1,4 +1,3 @@
-
 function initMap() {
     const mapContainer = document.getElementById('map');
 
@@ -6,13 +5,27 @@ function initMap() {
         window.gameMap = new GameMap(mapContainer);
         window.gameMap.centerOnBrowser();
         window.gameMap.fetchGames();
-    };
-}
+    }
 
+    function initialize() {
+        const input = document.getElementById('autocomplete');
+        const autocomplete = new google.maps.places.Autocomplete(input, {
+            types: ['geocode'],
+            componentRestrictions: {'country' : ['ES', 'DE']},
+            fields: ['place_id', 'geometry', 'name']
+        });
+          google.maps.event.addListener(autocomplete, 'place_changed', function () {
+              const place = autocomplete.getPlace();
+              document.getElementById('latitude').value = place.geometry.location.lat();
+              document.getElementById('longitude').value = place.geometry.location.lng();
+          });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+}
 class GameMap {
     constructor(container) {
         const center = {
-            lat: 40.2085, 
+            lat: 40.2085,
             lng: -3.7130
         };
 
@@ -27,7 +40,7 @@ class GameMap {
     centerOnBrowser() {
         if (!navigator.geolocation) return
 
-        navigator.geolocation.getCurrentPosition( (position) => {
+        navigator.geolocation.getCurrentPosition((position) => {
             const center = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -40,7 +53,10 @@ class GameMap {
     addGame(game) {
         const [lat, lng] = game.location.coordinates
         const gameMarker = new google.maps.Marker({
-            position: { lat, lng },
+            position: {
+                lat,
+                lng
+            },
             map: this.map
         });
 
@@ -73,4 +89,5 @@ class GameMap {
             .catch(err => console.error(err))
     }
 }
+
 
