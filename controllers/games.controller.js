@@ -8,7 +8,7 @@ module.exports.list = (req, res, next) => {
     const limit = 6;
         
     Promise.all([
-        Game.find().populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit),
+        Game.find().populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }),
         Game.estimatedDocumentCount()
         ])
         .then(([games, count]) => res.render('games/list', {games, count}))

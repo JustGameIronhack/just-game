@@ -5,15 +5,15 @@
             <div class="imageContainer">
                 <img src="{{game.image}}" class="mb-2 mt-3 imageList" alt="game-image">
             </div>
-            <div class="card" style="width: 15rem;">
+            <div class="card" style="width: 20rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{game.title}}</h5>
+                    <h5 class="card-title fw-bold fs-4">{{game.title}}</h5>
                     <h4 class="card-text">{{game.platform}}</h4>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Genre: {{stringSpace game.genre}}</li>
+                <ul class="list-group list-group-flush fs-5">
+                    <li class="list-group-item">Genre: <em>{{stringSpace game.genre}}</em></li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by:<a href="/game/{{game._id}}/message"> {{game.user.name}}</a></li>
+                    <li class="list-group-item">Uploaded by: <a href="/game/{{game._id}}/message">{{game.user.name}}</a> <em>{{date game.createdAt}}</em></li>
                 </ul>
                 <div class="card-body">
                     <a href="/cart" class="card-link">Add to cart</a>

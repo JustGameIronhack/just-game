@@ -1,26 +1,27 @@
 function initMap() {
     const mapContainer = document.getElementById('map');
-
+    const geocode = document.getElementById('autocomplete');
     if (mapContainer) {
         window.gameMap = new GameMap(mapContainer);
         window.gameMap.centerOnBrowser();
         window.gameMap.fetchGames();
     }
-
-    function initialize() {
-        const input = document.getElementById('autocomplete');
-        const autocomplete = new google.maps.places.Autocomplete(input, {
-            types: ['geocode'],
-            componentRestrictions: {'country' : ['ES', 'DE']},
-            fields: ['place_id', 'geometry', 'name']
-        });
-          google.maps.event.addListener(autocomplete, 'place_changed', function () {
-              const place = autocomplete.getPlace();
-              document.getElementById('latitude').value = place.geometry.location.lat();
-              document.getElementById('longitude').value = place.geometry.location.lng();
-          });
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+    if (geocode) {
+        function initialize() {
+            const autocomplete = new google.maps.places.Autocomplete(geocode, {
+                types: ['geocode'],
+                componentRestrictions: {'country' : ['ES', 'DE']},
+                fields: ['place_id', 'geometry', 'name']
+            });
+              google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                  const place = autocomplete.getPlace();
+                  document.getElementById('latitude').value = place.geometry.location.lat();
+                  document.getElementById('longitude').value = place.geometry.location.lng();
+              });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    }
+    
 }
 class GameMap {
     constructor(container) {
@@ -63,10 +64,10 @@ class GameMap {
         const infoWindow = new google.maps.InfoWindow({
             content: `
             <div style="width: 10rem">
-            <img style="max-width: 150px", src="${game.image}"/>
-            <p>Title: ${game.title}</p>
-            <p>Price: ${game.price}€</p>
-            <p><em>Seller: ${game.user.name}</em></p>
+            <img style="max-width: 10rem", src="${game.image}"/>
+            <p><b>Title:</b> ${game.title}</p>
+            <p><b>Price:</b> ${game.price}€</p>
+            <p><b>Seller:</b> <em><a href="/game/${game._id}/message">${game.user.name}</a></em></p>
             </div>`
         });
 

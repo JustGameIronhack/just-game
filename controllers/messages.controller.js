@@ -42,8 +42,8 @@ module.exports.create = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   Promise.all([
-    Message.find({ from: req.params.id }).populate('game to from'),
-    Message.find({ to: req.params.id }).populate('game to from')
+    Message.find({ from: req.user.id }).populate('game to from'),
+    Message.find({ to: req.user.id }).populate('game to from')
   ])
   .then(([buyMessages, sellMessages]) => res.render('users/messages', { buyMessages, sellMessages }))
   .catch(next);

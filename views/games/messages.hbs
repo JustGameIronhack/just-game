@@ -1,33 +1,42 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12 col-lg-3">
-            <div class="card" style="width: 18rem;">
+    <h1>Send a Message to {{game.user.name}}!!</h1>
+    <hr class="mb-4">
+    <div class="row mb-4 d-flex align-items-center">
+        <div class="col-12 col-lg-2">
+            <div class="card" style="width: 10rem;">
                 <img src='{{game.user.avatar}}' class="card-img-top" alt="user avatar">
                 <div class="card-body text-center">
                     <h5 class="card-title">{{game.user.name}}</h5>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-9">
-            <div>
-                <img src="{{game.image}}" style="width: 10rem" alt="game image">
-            </div>
-            <div>
-                <h3>{{game.title}}</h3>
-            </div>
-            <div>
-                <h3>{{game.price}}€</h3>
+        <div class="col-12 col-lg-3 border-start">
+            <div class="ms-5">
+                <img src="{{game.image}}" style="width: 14rem" alt="game image">
             </div>
         </div>
-    </div>
-</div>
+        <div class="col-12 col-lg-7">
 
-<form action="/game/{{ game.id }}/message" method="post">
-    <div class="mb-3">
-        <div class="input-group">
-            <span class="input-group-text">Message</span>
-            <textarea class="form-control {{isInvalid errors.message}}" name="text" aria-label="With textarea">{{message.text}}</textarea>
-            {{formError errors.message}}
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-</form>
+            <div>
+                <h3>Tittle: {{game.title}}</h3>
+            </div>
+            <div>
+                <h3>Price: {{game.price}}€</h3>
+            </div>
+        </div> 
+        
+    </div>
+
+
+    <form action="/game/{{ game.id }}/message" method="post">
+        <div class="mb-3 w-75">
+            <div class="input-group">
+                <span class="input-group-text">Message</span>
+                <textarea class="form-control {{isInvalid errors.message}}" name="text"
+                    aria-label="With textarea">{{message.text}}</textarea>
+                {{formError errors.message}}
+                <button type="submit" class="btn btn-primary">Post</button>
+            </div>
+            
+    </form>
+</div>

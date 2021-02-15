@@ -149,8 +149,8 @@
   }
 
   .imageContainer {
-      width: 200px;
-      height: 300px;
+      width: 15rem;
+      height: 22rem;
   }
 
   .imageList {
@@ -169,9 +169,4 @@
   #map {
     height: 50rem;
     width: 100%;
-  }
-
-  #newGameMap {
-      height: 40rem;
-      width: 50%;
   }
