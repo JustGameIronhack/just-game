@@ -4,14 +4,14 @@ const createError = require('http-errors');
 const Review = require('../models/review.model');
 
 module.exports.list = (req, res, next) => {
-    const { page } = req.query;
+    const { page, searchGame } = req.query;
     const limit = 6;
         
     Promise.all([
         Game.find().populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }),
         Game.estimatedDocumentCount()
         ])
-        .then(([games, count]) => res.render('games/list', {games, count}))
+        .then(([games, count]) =>  res.render('games/list', {games, count}))
         .catch(next);   
 };
 
@@ -22,8 +22,6 @@ module.exports.create = (req, res, next) => {
 module.exports.doCreate = (req, res, next) => {
     /* return res.json(req.body) */
     const {latitude, longitude} = req.body;
-    console.log('LT:', typeof latitude)
-    console.log('LG:', typeof longitude)
     const image = {};
     if (req.file) {
         image.image = req.file.path;

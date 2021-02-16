@@ -1,4 +1,12 @@
 <div class="container">
+    <form action="/games" method="get">
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input type="text" class="form-control" name="searchGame" placeholder="Search a game">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+
+    </form>
     <div class="row d-flex align-items-center">
         {{#each games as | game |}}
         <div class="col col-lg-4 mb-5 d-flex align-items-center flex-column">
@@ -13,7 +21,8 @@
                 <ul class="list-group list-group-flush fs-5">
                     <li class="list-group-item">Genre: <em>{{stringSpace game.genre}}</em></li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by: <a href="/game/{{game._id}}/message">{{game.user.name}}</a> <em>{{date game.createdAt}}</em></li>
+                    <li class="list-group-item">Uploaded by: <a href="/game/{{game._id}}/message">{{game.user.name}}</a>
+                        <em>{{date game.createdAt}}</em></li>
                 </ul>
                 <div class="card-body">
                     <a href="/cart" class="card-link">Add to cart</a>
@@ -34,4 +43,3 @@
     </nav>
     <div id="map"></div>
 </div>
-
