@@ -1,57 +1,23 @@
 <div class="container">
 
-    <h1>SENT MESSAGES</h1>
+    <h1>MESSAGES</h1>
     <hr>
-    {{#each buyMessages as |message|}}
+    {{#each messages as |message|}}
     <div class="row mb-5 d-flex align-items-sm-center">
         <div class="col col-lg-2">
             <img style="width: 9rem" src="{{message.game.image}}" alt="Card image cap">
         </div>
         <div class="col col-lg-10 border-start">
-            <p>{{message.game.title}}</p>
+            <p class="fw-bold">{{message.game.title}}</p>
             <p class="card-text">{{message.text}}</p>
-            <p>from: <em>{{message.from.name}}</em></p>
-            <p>to: <em>{{message.to.name}}</em></p>
-            <p>{{date message.createdAt}}</p>
+            <p>{{date message.createdAt}} - <em>{{message.from.name}}</em></p>
+        </div>
+        <div class="col col-lg-12">
+            <a href="/conversation/{{message.conversation}}">Conversation</a>
         </div>
     </div>
     <div class="separatorLines mx-auto">
         <hr>
     </div>
-    {{/each}}
-
-    <h1>RECEIVED MESSAGES</h1>
-    <hr>
-
-    {{#each sellMessages as |message|}}
-
-    <div class="row mb-5 d-flex align-items-sm-center">
-        <div class="col col-lg-2">
-            <img style="width: 9rem" src="{{message.game.image}}" alt="Card image cap">
-        </div>
-        <div class="col col-lg-6 border-start">
-            <p>{{message.game.title}}</p>
-            <p>{{message.text}}</p>
-            <p>from: <em>{{message.from.name}}</em></p>
-            <p>to: <em>{{message.to.name}}</em></p>
-            <p>{{date message.createdAt}}</p>
-        </div>
-
-
-
-        <div class="col col-lg-4"> 
-            <form action="/messages/{{message.user}}/{{message.game.id}}/answer" method="post">
-                <p>Answer to: {{message.from.name}}</p>
-                <textarea name="text" cols="50" rows="7"></textarea>
-                <div>
-                    <button class="btn btnRegular" type="submit">Send</button>
-                </div>
-            </form>  
-        </div>
-    </div>
-    <div class="separatorLines mx-auto">
-        <hr>
-    </div>
-    
     {{/each}}
 </div>

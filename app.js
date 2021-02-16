@@ -1,5 +1,4 @@
 const express = require('express');
-const axios = require('axios').default;
 const path = require('path');
 const logger = require('morgan');
 const createError = require('http-errors');

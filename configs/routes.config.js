@@ -45,12 +45,15 @@ router.post('/games/:gameId/reviews', secure.isAuthenticated, reviewController.c
 router.post('/games/:id/delete', secure.isAuthenticated, secure.checkOwner, gamesController.delete);
 router.get('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.edit);
 router.post('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.doEdit);
+router.get('/games/locations', secure.isAuthenticated, gamesController.locations);
+
+//MESSAGES ROUTES
 router.get('/game/:id/message', secure.isAuthenticated, gamesController.messages);
 router.post('/game/:gameId/message', secure.isAuthenticated, messageController.create);
 router.get('/messages', secure.isAuthenticated, messageController.list);
-router.post('/messages/:userId/:gameId/answer', secure.isAuthenticated, messageController.answer);
-router.get('/games/locations', secure.isAuthenticated, gamesController.locations);
-
+/* router.post('/messages/:userId/:gameId/answer', secure.isAuthenticated, messageController.answer); */
+router.get('/conversation/:conversationId', secure.isAuthenticated, messageController.conversation);
+router.post('/conversation/:conversationId', secure.isAuthenticated, messageController.answer);
 
 
 module.exports = router;

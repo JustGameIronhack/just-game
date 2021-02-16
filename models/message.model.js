@@ -9,10 +9,6 @@ const messageSchema = new Schema(
             required: 'A text is required for your message',
             minlength: [5, 'Write at least 5 chars']
         },
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-        },
         from: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
@@ -25,8 +21,16 @@ const messageSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Game'
         },
+        conversation: {
+            type: String,
+        }
     }, { timestamps: true }
 );
+
+messageSchema.pre('save', function (next) {
+    this.conversation = [this.from, this.to, this.game].map(x => x.toString()).sort().join("");
+    next();
+});
 
 const Message = mongoose.model('Message', messageSchema);
 

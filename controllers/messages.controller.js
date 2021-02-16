@@ -17,7 +17,6 @@ module.exports.create = (req, res, next) => {
       } else {
         const message = new Message ({
           text: text,
-          user: req.user.id,
           from: req.user.id,
           to: game.user,
           game: game.id
@@ -41,50 +40,59 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.list = (req, res, next) => {
-  Promise.all([
-    Message.find({ from: req.user.id }).populate('game to from'),
-    Message.find({ to: req.user.id }).populate('game to from')
-  ])
-  .then(([buyMessages, sellMessages]) => res.render('users/messages', { buyMessages, sellMessages }))
-  .catch(next);
+  Message.find({ $or: [{ from: req.user.id }, { to: req.user.id }]})
+    .populate('game from to')
+    .sort({ createdAt: -1 })
+    .then(messages => {
+      messages = messages.reduce((acc, el) => {
+        const conversations = acc.map(x => x.conversation)
+
+        if (conversations.includes(el.conversation)) {
+          return acc
+        }
+
+        return [...acc, el]
+      }, [])
+
+      res.render('users/messages', { messages });
+    })
+    .catch(next)
+};
+
+module.exports.conversation = (req, res, next) => {
+  const { conversationId } = req.params;
+  Message.find( {conversation: conversationId})
+    .sort({ createdAt: -1 })
+    .populate('game from to')
+    .then(messages => {
+     const to = messages.find(message => message.from.id !== req.user.id)
+      res.render('games/conversation', { messages, to, conversationId })
+    })
+    .catch(next);
 };
 
 
-
 module.exports.answer = (req, res, next) => {
-  const { userId,  gameId } = req.params;
-  const { text } = req.body;
-  Promise.all([
-    User.findById(userId),
-    Game.findById(gameId)
-  ])
-  .then(([user,  game]) => {
-    messageUser = user;
-    if (!user) {
-      next(createError(404, 'User not found'));
-    } else {
-      const message = new Message ({
+  const { text, toId, gameId } = req.body;
+  const { conversationId } = req.params;
+      const newMessage = new Message ({
         text: text,
         from: req.user.id,
-        to: user.id,
-        game: game.id,
-        user: req.user.id
+        to: toId,
+        game: gameId,
       });
-
-      message.save()
+      newMessage.save()
         .then(message => {
-          res.redirect(`/messages/${req.user.id}`);
+          res.redirect(`/conversation/${conversationId}`);
+        })
+        .catch(error => {
+          if (error instanceof mongoose.Error.ValidationError) {
+            res.render('games/conversation', {
+              message: text,
+              errors: error.errors
+            });
+          } else {
+            next(error);
+          }
         });
-    }
-  })
-  .catch(error => {
-    if (error instanceof mongoose.Error.ValidationError) {
-      res.render('games/messages', {
-        user: messageUser,
-        errors: error.errors
-      });
-    } else {
-      next(error);
-    }
-  });
 }
