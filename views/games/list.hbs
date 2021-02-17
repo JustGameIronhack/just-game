@@ -11,7 +11,7 @@
         {{#each games as | game |}}
         <div class="col col-lg-4 mb-5 d-flex align-items-center flex-column">
             <div class="imageContainer">
-                <img src="{{game.image}}" class="mb-2 mt-3 imageList" alt="game-image">
+                <img src="{{game.image}}" class="mb-2 mt-3 imageList mainShadow" alt="game-image">
             </div>
             <div class="card" style="width: 20rem;">
                 <div class="card-body">
@@ -21,14 +21,9 @@
                 <ul class="list-group list-group-flush fs-5">
                     <li class="list-group-item">Genre: <em>{{stringSpace game.genre}}</em></li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.id}}">{{game.user.name}}</a>
-                    <li class="list-group-item"><a class="btn btnRegular" href="/game/{{game._id}}/message">contact</a>
-                        <em>{{date game.createdAt}}</em></li>
+                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.id}}">{{game.user.name}}</a> <em>{{date game.createdAt}}</em></li>
+                    <li class="list-group-item d-flex justify-content-around"><a class="btn btnRegular" href="/game/{{game._id}}/message">Contact</a> <a href="/details/{{game.id}}" class="btn btnRegular">Details</a></li>
                 </ul>
-                <div class="card-body">
-                    <a href="/cart" class="card-link">Add to cart</a>
-                    <a href="/details/{{game.id}}" class="card-link">Details</a>
-                </div>
             </div>
         </div>
         {{/each}}
