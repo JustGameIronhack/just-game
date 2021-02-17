@@ -21,7 +21,8 @@
                 <ul class="list-group list-group-flush fs-5">
                     <li class="list-group-item">Genre: <em>{{stringSpace game.genre}}</em></li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by: <a href="/game/{{game._id}}/message">{{game.user.name}}</a>
+                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.id}}">{{game.user.name}}</a>
+                    <li class="list-group-item"><a class="btn btnRegular" href="/game/{{game._id}}/message">contact</a>
                         <em>{{date game.createdAt}}</em></li>
                 </ul>
                 <div class="card-body">

@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Game = require('../models/game.model');
 const createError = require('http-errors');
-const Review = require('../models/review.model');
+
 
 module.exports.list = (req, res, next) => {
     const { page, search } = req.query;
     const limit = 6;
     let criteria;
     if (search) {
-        criteria = { title: { $regex : ".*"+ search +".*", $options:'i' }}
+        criteria = { title: { $regex : ".*"+ search +".*", $options:'i' }};
     } else {
         criteria = {};
     }
@@ -33,7 +33,7 @@ module.exports.doCreate = (req, res, next) => {
         image.image = req.file.path;
     }
     Object.assign(req.body, image);
-    console.log(req.body)
+    console.log(req.body);
     Game.create({
         ...req.body,
         user: req.user,
@@ -55,14 +55,8 @@ module.exports.doCreate = (req, res, next) => {
 };
 
 module.exports.details = (req, res, next) => {
-    
     Game.findById(req.params.id)
-        .populate({
-            path: "reviews",
-            populate: {
-                path: "user"
-            }
-        })
+        .populate('user')
         .then((game) => {
             if (game) {
                 res.render('games/details', { game });
@@ -124,7 +118,7 @@ module.exports.messages = (req, res, next) => {
         .populate('user')
         .populate('messages')
         .then((game) => {
-            res.render('games/messages', { game })
+            res.render('games/messages', { game });
         })
         .catch(next);
 };
@@ -134,7 +128,7 @@ module.exports.locations = (req, res, next) => {
         .populate('user')
         .limit(100)
         .then((games) => {
-           res.json(games) 
+           res.json(games); 
         })
         .catch(next);
-}
+};

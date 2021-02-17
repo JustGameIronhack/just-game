@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reviewSchema = new Schema(
+const valorationSchema = new Schema(
     {
         title: {
             type: String,
@@ -20,13 +20,13 @@ const reviewSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         },
-        game: {
+        seller: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Game'
+            ref: 'User'
         }
     }
-)
+);
 
-const Review = mongoose.model('Review', reviewSchema);
+const Valoration = mongoose.model('Valoration', valorationSchema);
 
-module.exports = Review;
+module.exports = Valoration;

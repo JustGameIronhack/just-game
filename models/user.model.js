@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const Game = require('./game.model');
+const Valoration = require('./valoration.model');
 const Message = require('./message.model');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^.{8,}$/;
@@ -31,7 +32,7 @@ const userSchema = new Schema({
     avatar: {
         type: String,
         default: function () {
-            return 'https://res.cloudinary.com/djrv6yqfc/image/upload/v1612468494/default_avatar_qvlfsx.png'
+            return 'https://res.cloudinary.com/djrv6yqfc/image/upload/v1612468494/default_avatar_qvlfsx.png';
         }
     },
     location: {
@@ -59,7 +60,7 @@ const userSchema = new Schema({
     timestamps: true
 });
 
-userSchema.virtual('games', {
+userSchema.virtual('messages', {
     ref: Message.modelName,
     localField: '_id',
     foreignField: 'user',
@@ -69,9 +70,19 @@ userSchema.virtual('games', {
     }
 });
 
+userSchema.virtual('valorations', {
+    ref: Valoration.modelName,
+    localField: '_id',
+    foreignField: 'seller',
+    options: {
+        sort: { createdAt: -1 },
+        limit: 10
+    }
+});
+
 userSchema.pre('save', function (next) {
     if (admins.includes(this.email)) {
-        this.role = 'admin'
+        this.role = 'admin';
     }
     if (this.isModified('password')) {
         bcrypt.hash(this.password, 10).then((hash) => {

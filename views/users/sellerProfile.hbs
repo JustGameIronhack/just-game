@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-3">
+            <div class="card" style="width: 18rem;">
+                <img src='{{user.avatar}}' class="card-img-top" alt="user avatar">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{user.name}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-9">
+            <form action="/userInfo/{{ user.id }}" method="post" class="mt-3 mb-3">
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="text" value="{{valoration.title}}" class="form-control {{isInvalid errors.title}}" name="title" placeholder="Title">
+                    {{formError errors.title}}
+                </div>
+                <div class="input-group mb-1 {{isInvalid errors.rate}}">
+                    <div class="txt-center form-class {{isInvalid errors.rate}}">
+                        <div class="rating">
+                            <input id="star5" name="rate" type="radio" value="5" class="radio-btn hide" />
+                            <label for="star5">☆</label>
+                            <input id="star4" name="rate" type="radio" value="4" class="radio-btn hide" />
+                            <label for="star4">☆</label>
+                            <input id="star3" name="rate" type="radio" value="3" class="radio-btn hide" />
+                            <label for="star3">☆</label>
+                            <input id="star2" name="rate" type="radio" value="2" class="radio-btn hide" />
+                            <label for="star2">☆</label>
+                            <input id="star1" name="rate" type="radio" value="1" class="radio-btn hide" />
+                            <label for="star1">☆</label>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    {{formError errors.rate}}
+                </div>
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-comment-o" aria-hidden="true"></i></span>
+                    </div>
+                    <textarea name="text" placeholder="Describe your rate..." class="form-control {{#if errors.text }}is-invalid{{/if}}"
+                        rows="3">{{valoration.text}}</textarea>
+                    {{#if errors.text }}
+                    <div class="invalid-feedback">
+                        {{ errors.text }}
+                    </div>
+                    {{/if}}
+                </div>
+                <button type="submit" class="btn btn-primary mt-1">Rate User</button>
+            </form>
+
+        </div>
+    </div>
+    <div class="row">
+        <h3>Rates</h3>
+        {{#each user.valorations as |valoration| }}
+        {{#with valoration}}
+        <div class="card mb-2">
+            <h5 class="card-header">Title: {{ title }}</h5>
+            <div class="card-body">
+                <p class="card-text">Rate: <span class="stars fs-3">{{stars rate}}</span></p>
+                <p class="card-text">{{ text }}</p>
+                <p class="card-text"><em>{{ user.name }}</em></p>
+            </div>
+        </div>
+        {{/with}}
+        {{/each}}
+    </div>
+</div>

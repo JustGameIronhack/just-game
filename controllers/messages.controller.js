@@ -25,7 +25,7 @@ module.exports.create = (req, res, next) => {
         });
         return message.save()
           .then(message => {
-            mailer.incomingMessage(game.user.email, req.user.name, game.user.name, game.title, text)
+            mailer.incomingMessage(game.user.email, req.user.name, game.user.name, game.title, text);
             res.redirect(`/messages`);
           });
       }
@@ -47,16 +47,16 @@ module.exports.list = (req, res, next) => {
     .sort({ createdAt: -1 })
     .then(messages => {
       messages = messages.reduce((acc, el) => {
-        const conversations = acc.map(x => x.conversation)
+        const conversations = acc.map(x => x.conversation);
         if (conversations.includes(el.conversation)) {
-          return acc
+          return acc;
         }
-        return [...acc, el]
-      }, [])
+        return [...acc, el];
+      }, []);
 
       res.render('users/messages', { messages });
     })
-    .catch(next)
+    .catch(next);
 };
 
 module.exports.conversation = (req, res, next) => {
@@ -65,22 +65,27 @@ module.exports.conversation = (req, res, next) => {
     .sort({ createdAt: -1 })
     .populate('game from to')
     .then(messages => {
-     const to = messages.find(message => message.from.id !== req.user.id)
-      res.render('games/conversation', { messages, to, conversationId })
+     const to = messages.find(message => message.from.id !== req.user.id);
+      res.render('games/conversation', { messages, to, conversationId });
     })
     .catch(next);
 };
 
 
 module.exports.answer = (req, res, next) => {
-  const { text, toId, gameId } = req.body;
+  /* const { text, toId, gameId } = req.body;
   const { conversationId } = req.params;
+
+  Message.find( {conversation: conversationId} )
+    .sort({ createdAt: -1})
+    .populate('game from to')
+    .then(messages => {
       const newMessage = new Message ({
         text: text,
         from: req.user.id,
         to: toId,
         game: gameId,
-      })
+      });
        return newMessage.save()
         .then(message => {
           res.redirect(`/conversation/${conversationId}`);
@@ -88,12 +93,44 @@ module.exports.answer = (req, res, next) => {
         .catch(error => {
           if (error instanceof mongoose.Error.ValidationError) {
             res.render('games/conversation', {
-              message: req.body,
+              message: messages,
               errors: error.errors
             });
           } else {
             next(error);
           }
         });
-}
+    }); */
+
+
+  const { text, toId, gameId } = req.body;
+  const { conversationId } = req.params;
+  let previousMessages;
+  Message.find({conversation: conversationId})
+    .populate('from to')
+    .then(messages => {
+      previousMessages = messages;
+      const newMessage = new Message ({
+        text: text,
+        from: req.user.id,
+        to: toId,
+        game: gameId,
+      });
+       return newMessage.save()
+        .then(message => {
+          res.redirect(`/conversation/${conversationId}`);
+        });
+    })
+    .catch(error => {
+        if (error instanceof mongoose.Error.ValidationError) {
+          res.render('games/conversation', {
+            message: req.body,
+            messages: previousMessages,
+            errors: error.errors
+          });
+        } else {
+          next(error);
+        }
+    });
+};
 

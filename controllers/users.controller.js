@@ -160,7 +160,15 @@ module.exports.list = (req, res, next) => {
         .catch(next);
 };
 
-
+module.exports.userInfo = (req, res, next) => {
+    const { userId } = req.params;
+    User.findById(userId)
+        .populate('valorations')
+        .then(user => {
+            res.render('users/sellerProfile', { user });
+        })
+        .catch(next);
+};
 
 
 

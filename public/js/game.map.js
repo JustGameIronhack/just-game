@@ -39,7 +39,7 @@ class GameMap {
     }
 
     centerOnBrowser() {
-        if (!navigator.geolocation) return
+        if (!navigator.geolocation) return;
 
         navigator.geolocation.getCurrentPosition((position) => {
             const center = {
@@ -47,12 +47,12 @@ class GameMap {
                 lng: position.coords.longitude
             };
 
-            this.map.setCenter(center)
+            this.map.setCenter(center);
         });
     }
 
     addGame(game) {
-        const [lat, lng] = game.location.coordinates
+        const [lat, lng] = game.location.coordinates;
         const gameMarker = new google.maps.Marker({
             position: {
                 lat,
@@ -76,19 +76,18 @@ class GameMap {
             infoWindow.open(this.map, gameMarker);
         });
 
-        this.markers.push(gameMarker)
+        this.markers.push(gameMarker);
     }
 
     fetchGames() {
         axios.get('/games/locations')
             .then(response => {
                 const games = response.data;
-                console.log(games)
                 games.forEach(game => {
-                    this.addGame(game)
-                })
+                    this.addGame(game);
+                });
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
     }
 }
 
