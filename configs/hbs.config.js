@@ -62,3 +62,18 @@ hbs.registerHelper('next',  (page, gamesLength) => {
                 return currentPage + 1;
             }     
 });
+
+
+hbs.registerHelper('stars', (rate) => {
+    if(rate == 5) {
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9733;&#9733;`);
+    } else if (rate == 4) {
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9733;`);
+    } else if (rate == 3) {
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;`);
+    } else if (rate == 2) {
+        return new hbs.SafeString(`&#9733;&#9733;`);
+    } else if (rate == 1) {
+        return new hbs.SafeString(`&#9733;`);
+    }
+})

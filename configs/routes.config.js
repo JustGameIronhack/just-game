@@ -51,7 +51,6 @@ router.get('/games/locations', secure.isAuthenticated, gamesController.locations
 router.get('/game/:id/message', secure.isAuthenticated, gamesController.messages);
 router.post('/game/:gameId/message', secure.isAuthenticated, messageController.create);
 router.get('/messages', secure.isAuthenticated, messageController.list);
-/* router.post('/messages/:userId/:gameId/answer', secure.isAuthenticated, messageController.answer); */
 router.get('/conversation/:conversationId', secure.isAuthenticated, messageController.conversation);
 router.post('/conversation/:conversationId', secure.isAuthenticated, messageController.answer);
 

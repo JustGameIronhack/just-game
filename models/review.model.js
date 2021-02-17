@@ -6,7 +6,7 @@ const reviewSchema = new Schema(
         title: {
             type: String,
             required: 'Title is required',
-            minlength: 5,
+            minlength: [5, 'You need at least 5 characters'],
         },
         rate: {
             type: Number,

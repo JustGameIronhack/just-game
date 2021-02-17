@@ -33,7 +33,7 @@
     <div class="card mb-2">
       <h5 class="card-header">Title: {{ title }}</h5>
       <div class="card-body">
-        <p class="card-text">Rate: {{ rate }}</p>
+        <p class="card-text">Rate: <span class="stars fs-3">{{stars rate}}</span></p>
         <p class="card-text">{{ text }}</p>
         <p class="card-text"><em>{{ user.name }}</em></p>
       </div>
@@ -46,15 +46,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-tag" aria-hidden="true"></i></span>
         </div>
-        <input type="text" class="form-control {{#if errors.title }}is-invalid{{/if}}" name="title" placeholder="Title">
-        {{#if errors.title }}
-        <div class="invalid-feedback">
-          {{ errors.title }}
-        </div>
-        {{/if}}
+        <input type="text" class="form-control {{isInvalid errors.title}}" name="title" placeholder="Title">
+        {{formError errors.title}}
       </div>
-      <div class="input-group mb-1">
-        <div class="txt-center">
+      <div class="input-group mb-1 {{isInvalid errors.rate}}">
+        <div class="txt-center form-class {{isInvalid errors.rate}}">
             <div class="rating">
               <input id="star5" name="rate" type="radio" value="5" class="radio-btn hide" />
               <label for="star5">☆</label>
@@ -69,11 +65,7 @@
               <div class="clear"></div>
             </div>
         </div>
-        {{#if errors.rate }}
-        <div class="invalid-feedback">
-          {{ errors.rate }}
-        </div>
-        {{/if}}
+        {{formError errors.rate}}
       </div>
       <div class="input-group mb-1">
         <div class="input-group-prepend">

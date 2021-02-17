@@ -32,10 +32,10 @@
         <div class="mb-3 w-75">
             <div class="input-group">
                 <span class="input-group-text">Message</span>
-                <textarea class="form-control {{isInvalid errors.message}}" name="text"
+                <textarea class="form-control {{isInvalid errors.text}}" name="text"
                     aria-label="With textarea">{{message.text}}</textarea>
-                {{formError errors.message}}
                 <button type="submit" class="btn btn-primary">Post</button>
+                {{formError errors.text}}
             </div>
             
     </form>

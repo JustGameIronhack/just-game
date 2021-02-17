@@ -22,7 +22,6 @@ module.exports.create = (req, res, next) => {
           user: req.user.id,
           game: game.id
         })
-
         return review.save()
           .then(review => res.redirect(`/details/${game.id}`));
       }

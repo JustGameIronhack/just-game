@@ -69,8 +69,7 @@ module.exports.doLogin = (req, res, next) => {
         } else {
             req.login(user, error => {
                 if (error) next(error);
-                else res.redirect('/');
-                //TODO redirect /games  ??
+                else res.redirect('/games?page=1'); 
             });
         }
     }) (req, res, next);
@@ -87,8 +86,7 @@ module.exports.loginWithIDP = (strategy) => {
             } else {
                 req.login(user, error => {
                     if (error) next(error);
-                    else res.redirect('/');
-                    //TODO redirect /games  ??
+                    else res.redirect('/games?page=1');
                 });
             }
         }) (req, res, next);
