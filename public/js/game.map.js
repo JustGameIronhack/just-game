@@ -64,8 +64,9 @@ class GameMap {
         const infoWindow = new google.maps.InfoWindow({
             content: `
             <div style="width: 10rem">
-            <img style="max-width: 10rem", src="${game.image}"/>
+            <img class="mb-2" style="max-width: 10rem", src="${game.image}"/>
             <p><b>Title:</b> ${game.title}</p>
+            <p><b>Platform:</b> ${game.platform}</p>
             <p><b>Price:</b> ${game.price}€</p>
             <p><b>Seller:</b> <em><a href="/game/${game._id}/message">${game.user.name}</a></em></p>
             </div>`

@@ -4,11 +4,17 @@ const createError = require('http-errors');
 const Review = require('../models/review.model');
 
 module.exports.list = (req, res, next) => {
-    const { page, searchGame } = req.query;
+    const { page, search } = req.query;
     const limit = 6;
+    let criteria;
+    if (search) {
+        criteria = { title: { $regex : ".*"+ search +".*", $options:'i' }}
+    } else {
+        criteria = {};
+    }
         
     Promise.all([
-        Game.find().populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }),
+        Game.find(criteria).populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }),
         Game.estimatedDocumentCount()
         ])
         .then(([games, count]) =>  res.render('games/list', {games, count}))
