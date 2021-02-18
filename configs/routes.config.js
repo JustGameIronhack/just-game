@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users.controller');
 const gamesController = require('../controllers/games.controller');
-const valorationController = require('../controllers/valoration.controller');
+const valorationController = require('../controllers/ratings.controller');
 const messageController = require('../controllers/messages.controller');
 const passport = require('passport');
 const GOOGLE_SCOPES = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
@@ -42,9 +42,9 @@ router.get('/games', gamesController.list);
 router.get('/games/new', secure.isAuthenticated, gamesController.create);
 router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), gamesController.doCreate);
 router.get('/details/:id', secure.isAuthenticated ,gamesController.details);
-router.post('/games/:id/delete', secure.isAuthenticated, secure.checkOwner, gamesController.delete);
-router.get('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.edit);
-router.post('/games/:id/edit', secure.isAuthenticated, secure.checkOwner, gamesController.doEdit);
+router.post('/games/:id/delete', secure.isAuthenticated, secure.checkGameOwner, gamesController.delete);
+router.get('/games/:id/edit', secure.isAuthenticated, secure.checkGameOwner, gamesController.edit);
+router.post('/games/:id/edit', secure.isAuthenticated, secure.checkGameOwner, gamesController.doEdit);
 router.get('/games/locations', secure.isAuthenticated, gamesController.locations);
 
 //MESSAGES ROUTES
@@ -53,6 +53,7 @@ router.post('/game/:gameId/message', secure.isAuthenticated, messageController.c
 router.get('/messages', secure.isAuthenticated, messageController.list);
 router.get('/conversation/:conversationId', secure.isAuthenticated, messageController.conversation);
 router.post('/conversation/:conversationId', secure.isAuthenticated, messageController.answer);
+router.post('/conversation/:id/delete', secure.isAuthenticated, secure.checkMessageOwner, messageController.delete)
 
 
 module.exports = router;

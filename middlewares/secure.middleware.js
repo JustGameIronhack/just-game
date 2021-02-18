@@ -4,6 +4,7 @@ const {
 } = require('mongoose');
 const Game = require('../models/game.model');
 const mongoose = require('mongoose');
+const Message = require('../models/message.model');
 
 module.exports.isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -23,7 +24,7 @@ module.exports.checkRole = (role) => {
     };
 };
 
-module.exports.checkOwner = (req, res, next) => {
+module.exports.checkGameOwner = (req, res, next) => {
     if (req.user.role === 'admin') {
         return next()
     }
@@ -34,6 +35,21 @@ module.exports.checkOwner = (req, res, next) => {
                 next();
             } else {
                 next(createError(403, 'You are not allow to delete this game'));
+            }
+        })
+        .catch(next);
+};
+
+module.exports.checkMessageOwner = (req, res, next) => {
+    if (req.user.role === 'admin') {
+        return next()
+    }
+    Message.findById(req.params.id)
+        .then((message) => {
+            if (message.from.toString() === req.user.id.toString()) {
+                next();
+            } else {
+                next(createError(403, 'You are not allow to delete this message'));
             }
         })
         .catch(next);

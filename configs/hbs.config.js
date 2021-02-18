@@ -36,8 +36,16 @@ hbs.registerHelper('date', (date) => {
 });
 
 
-hbs.registerHelper('checkOwner', function (game, user, options) {
+hbs.registerHelper('checkGameOwner', function (game, user, options) {
     if ((user && user.role === 'admin') || (user && user.id.toString() === game.user.toString())) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
+hbs.registerHelper('checkMessageOwner', function (message, user, options) {
+    if ((user && user.role === 'admin') || (user && user.id.toString() === message.from._id.toString())) {
         return options.fn(this);
     } else {
         return options.inverse(this);

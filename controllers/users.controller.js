@@ -163,7 +163,7 @@ module.exports.list = (req, res, next) => {
 module.exports.userInfo = (req, res, next) => {
     const { userId } = req.params;
     User.findById(userId)
-        .populate('valorations')
+        .populate('ratings')
         .then(user => {
             res.render('users/sellerProfile', { user });
         })

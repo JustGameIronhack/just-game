@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const valorationSchema = new Schema(
+const ratingSchema = new Schema(
     {
         title: {
             type: String,
@@ -27,6 +27,6 @@ const valorationSchema = new Schema(
     }
 );
 
-const Valoration = mongoose.model('Valoration', valorationSchema);
+const Rating = mongoose.model('Rating', ratingSchema);
 
-module.exports = Valoration;
+module.exports = Rating;

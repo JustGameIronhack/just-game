@@ -2,7 +2,6 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 const Game = require('../models/game.model');
 const Message = require('../models/message.model');
-const User = require('../models/user.model');
 const mailer = require('../configs/mailer.config');
 const { messages } = require('./games.controller');
 
@@ -109,3 +108,14 @@ module.exports.answer = (req, res, next) => {
     });
 };
 
+module.exports.delete = (req, res, next) => {
+  Message.findByIdAndDelete(req.params.id)
+      .then((message) => {
+          if (message) {
+              res.redirect(`/conversation/${message.conversation}`);
+          }else {
+              next(createError(404, 'The message does not exist!'));
+          }
+      })
+      .catch(next);
+};

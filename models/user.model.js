@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const Game = require('./game.model');
-const Valoration = require('./valoration.model');
+const Rating = require('./rating.model');
 const Message = require('./message.model');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^.{8,}$/;
@@ -70,8 +70,8 @@ userSchema.virtual('messages', {
     }
 });
 
-userSchema.virtual('valorations', {
-    ref: Valoration.modelName,
+userSchema.virtual('ratings', {
+    ref: Rating.modelName,
     localField: '_id',
     foreignField: 'seller',
     options: {

@@ -16,12 +16,12 @@
           <p class="card-text fs-4">Price: {{game.price}}€</p>
           <p class="card-text fs-4">Uploaded: {{date game.createdAt }}</p>
 
-          {{#checkOwner game currentUser }}
+          {{#checkGameOwner game currentUser }}
           <a class="btn btn-primary mb-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog me-2"></i>Edit</a>
           <form action="/games/{{game.id}}/delete" method="POST">
             <button type="submit" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Delete</button>
           </form>
-          {{/checkOwner}}
+          {{/checkGameOwner}}
         </div>
       </div>
   </section>
