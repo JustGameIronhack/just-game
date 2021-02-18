@@ -65,7 +65,12 @@ module.exports.conversation = (req, res, next) => {
     .sort({ createdAt: -1 })
     .populate('game from to')
     .then(messages => {
-     const to = messages.find(message => message.from.id !== req.user.id);
+     let to = messages.find(message => message.from.id !== req.user.id); 
+     if (to === undefined) {
+       to = messages[0].game.user  
+     } else {
+       to = to.from._id
+     }
       res.render('games/conversation', { messages, to, conversationId });
     })
     .catch(next);
@@ -73,53 +78,23 @@ module.exports.conversation = (req, res, next) => {
 
 
 module.exports.answer = (req, res, next) => {
-  /* const { text, toId, gameId } = req.body;
-  const { conversationId } = req.params;
-
-  Message.find( {conversation: conversationId} )
-    .sort({ createdAt: -1})
-    .populate('game from to')
-    .then(messages => {
-      const newMessage = new Message ({
-        text: text,
-        from: req.user.id,
-        to: toId,
-        game: gameId,
-      });
-       return newMessage.save()
-        .then(message => {
-          res.redirect(`/conversation/${conversationId}`);
-        })
-        .catch(error => {
-          if (error instanceof mongoose.Error.ValidationError) {
-            res.render('games/conversation', {
-              message: messages,
-              errors: error.errors
-            });
-          } else {
-            next(error);
-          }
-        });
-    }); */
-
-
-  const { text, toId, gameId } = req.body;
+  const { text, toId } = req.body;
   const { conversationId } = req.params;
   let previousMessages;
   Message.find({conversation: conversationId})
-    .populate('from to')
+    .populate('game from to')
     .then(messages => {
       previousMessages = messages;
-      const newMessage = new Message ({
-        text: text,
-        from: req.user.id,
-        to: toId,
-        game: gameId,
-      });
-       return newMessage.save()
-        .then(message => {
-          res.redirect(`/conversation/${conversationId}`);
+        const newMessage = new Message ({
+          text: text,
+          from: req.user.id,
+          to: toId,
+          game: messages[0].game.id,
         });
+         return newMessage.save()
+          .then(message => {
+            res.redirect(`/conversation/${conversationId}`);
+          }); 
     })
     .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {

@@ -5,11 +5,11 @@
         <div class="input-group mb-3">
             <span class="input-group-text">Message</span>
             <textarea class="form-control {{isInvalid errors.text}}" name="text" aria-label="textarea"
-                rows="5">{{message.text}}</textarea>
+                rows="5">{{message.text}}</textarea>      
             {{formError errors.text}}
-            <input type="text" hidden value="{{ to.from.id }}" name="toId">
-            <input type="text" hidden value="{{ to.game.id }}" name="gameId">
+            <input type="text" hidden value="{{ to }}" name="toId">
         </div>
+        {{{to}}}
         
         <div class="mt-1 mb-4">
             <button type="submit" class="btn btnRegular">Send</button>
