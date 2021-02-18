@@ -4,8 +4,7 @@ const createError = require('http-errors');
 
 
 module.exports.list = (req, res, next) => {
-    const { page } = req.query;
-    const { search } = req.body;
+    const { page, search } = req.query;
     let limit = 6;
     let criteria;
     if (search) {
@@ -20,7 +19,7 @@ module.exports.list = (req, res, next) => {
     ])
     .then(([games, count]) => {
         console.log("COUNT", count)
-        res.render('games/list', { games, count })  
+        res.render('games/list', { games, count, search })  
     })
     .catch(next);   
 };
@@ -30,7 +29,6 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
-    /* return res.json(req.body) */
     const {latitude, longitude} = req.body;
     const image = {};
     if (req.file) {

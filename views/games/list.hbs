@@ -1,13 +1,25 @@
 <div class="container">
-    <form action="/games?page=1" method="post">
-    <div class="input-group flex-nowrap">
-        <span class="input-group-text"><i class="fa fa-search"></i></span>
-        <input type="text" class="form-control" value="{{search}}" name="search" placeholder="Search a game">
-        <button class="btn btn-primary" type="submit">Search</button>
-    </div>
-
-    </form>
     <div class="row d-flex align-items-center">
+        <form action="/games" method="get">
+            <div class="input-group flex-nowrap mt-3">
+                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" value="{{search}}" name="search" placeholder="Search a game">
+                <input type="hidden" name="page" value="1" />
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+
+        </form>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end m-3">
+                <li class="page-item"><a class="page-link"
+                        href="/games?page={{previous page}}&search={{search}}">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="/games?page=1&search={{search}}">1</a></li>
+                <li class="page-item"><a class="page-link" href="/games?page=2&search={{search}}">2</a></li>
+                <li class="page-item"><a class="page-link" href="/games?page=3&search={{search}}">3</a></li>
+                <li class="page-item"><a class="page-link"
+                        href="/games?page={{next page count}}&search={{search}}">Next</a></li>
+            </ul>
+        </nav>
         {{#each games as | game |}}
         <div class="col col-lg-4 mb-5 d-flex align-items-center flex-column">
             <div class="imageContainer">
@@ -21,21 +33,32 @@
                 <ul class="list-group list-group-flush fs-5">
                     <li class="list-group-item">Genre: <em>{{stringSpace game.genre}}</em></li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.id}}">{{game.user.name}}</a> <em>{{date game.createdAt}}</em></li>
-                    <li class="list-group-item d-flex justify-content-around"><a class="btn btnRegular" href="/game/{{game._id}}/message">Contact</a> <a href="/details/{{game.id}}" class="btn btnRegular">Details</a></li>
+                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.id}}">{{game.user.name}}</a>
+                        <em>{{date game.createdAt}}</em>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-around"><a class="btn btnRegular"
+                            href="/game/{{game._id}}/message">Contact</a> <a href="/details/{{game.id}}"
+                            class="btn btnRegular">Details</a></li>
                 </ul>
             </div>
         </div>
         {{/each}}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end me-5">
+                <li class="page-item"><a class="page-link"
+                        href="/games?page={{previous page}}&search={{search}}">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="/games?page=1&search={{search}}">1</a></li>
+                <li class="page-item"><a class="page-link" href="/games?page=2&search={{search}}">2</a></li>
+                <li class="page-item"><a class="page-link" href="/games?page=3&search={{search}}">3</a></li>
+                <li class="page-item"><a class="page-link"
+                        href="/games?page={{next page count}}&search={{search}}">Next</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="d-flex justify-content-center mb-3">
+            <a class="btn btn-danger" href="/games">Back to games</a>
+        </div>
     </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end fixed-bottom me-5">
-            <li class="page-item"><a class="page-link" href="/games?page={{previous page}}">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page=1">1</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page=2">2</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page=3">3</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page={{next page count}}">Next</a></li>
-        </ul>
-    </nav>
+
     <div id="map"></div>
 </div>

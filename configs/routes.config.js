@@ -39,7 +39,6 @@ router.post('/userInfo/:userId', secure.isAuthenticated, ratingsController.creat
 //GAMES ROUTES
 
 router.get('/games', gamesController.list);
-router.post('/games', gamesController.list);
 router.get('/games/new', secure.isAuthenticated, gamesController.create);
 router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), gamesController.doCreate);
 router.get('/details/:id', secure.isAuthenticated ,gamesController.details);
