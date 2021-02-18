@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users.controller');
 const gamesController = require('../controllers/games.controller');
-const valorationController = require('../controllers/ratings.controller');
+const ratingsController = require('../controllers/ratings.controller');
 const messageController = require('../controllers/messages.controller');
 const passport = require('passport');
 const GOOGLE_SCOPES = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
@@ -33,12 +33,13 @@ router.get('/profile', secure.isAuthenticated, usersController.profile);
 router.post('/profile', secure.isAuthenticated, storageUsers.single('avatar'), usersController.doProfile);
 router.get('/users', secure.isAuthenticated, secure.checkRole('admin'), usersController.list);
 router.get('/userInfo/:userId', secure.isAuthenticated, usersController.userInfo);
-router.post('/userInfo/:userId', secure.isAuthenticated, valorationController.create);
+router.post('/userInfo/:userId', secure.isAuthenticated, ratingsController.create);
 
 
 //GAMES ROUTES
 
 router.get('/games', gamesController.list);
+router.post('/games', gamesController.list);
 router.get('/games/new', secure.isAuthenticated, gamesController.create);
 router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), gamesController.doCreate);
 router.get('/details/:id', secure.isAuthenticated ,gamesController.details);

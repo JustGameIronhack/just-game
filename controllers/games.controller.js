@@ -4,8 +4,9 @@ const createError = require('http-errors');
 
 
 module.exports.list = (req, res, next) => {
-    const { page, search } = req.query;
-    const limit = 6;
+    const { page } = req.query;
+    const { search } = req.body;
+    let limit = 6;
     let criteria;
     if (search) {
         criteria = { title: { $regex : ".*"+ search +".*", $options:'i' }};
@@ -15,10 +16,13 @@ module.exports.list = (req, res, next) => {
         
     Promise.all([
         Game.find(criteria).populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }),
-        Game.estimatedDocumentCount()
-        ])
-        .then(([games, count]) =>  res.render('games/list', {games, count}))
-        .catch(next);   
+        Game.countDocuments(criteria)
+    ])
+    .then(([games, count]) => {
+        console.log("COUNT", count)
+        res.render('games/list', { games, count })  
+    })
+    .catch(next);   
 };
 
 module.exports.create = (req, res, next) => {

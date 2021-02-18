@@ -1,8 +1,8 @@
 <div class="container">
-    <form action="/games" method="get">
+    <form action="/games?page=1" method="post">
     <div class="input-group flex-nowrap">
         <span class="input-group-text"><i class="fa fa-search"></i></span>
-        <input type="text" class="form-control" name="search" placeholder="Search a game">
+        <input type="text" class="form-control" value="{{search}}" name="search" placeholder="Search a game">
         <button class="btn btn-primary" type="submit">Search</button>
     </div>
 
@@ -30,11 +30,11 @@
     </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end fixed-bottom me-5">
-            <li class="page-item"><a class="page-link" href="/games?page={{previous page}}&search=">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page=1&search=">1</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page=2&search=">2</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page=3&search=">3</a></li>
-            <li class="page-item"><a class="page-link" href="/games?page={{next page count}}&search=">Next</a></li>
+            <li class="page-item"><a class="page-link" href="/games?page={{previous page}}">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="/games?page=1">1</a></li>
+            <li class="page-item"><a class="page-link" href="/games?page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="/games?page=3">3</a></li>
+            <li class="page-item"><a class="page-link" href="/games?page={{next page count}}">Next</a></li>
         </ul>
     </nav>
     <div id="map"></div>

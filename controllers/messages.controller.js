@@ -65,7 +65,7 @@ module.exports.conversation = (req, res, next) => {
     .populate('game from to')
     .then(messages => {
      let to = messages.find(message => message.from.id !== req.user.id); 
-     if (to === undefined) {
+     if (!to) {
        to = messages[0].game.user  
      } else {
        to = to.from._id
@@ -99,6 +99,7 @@ module.exports.answer = (req, res, next) => {
         if (error instanceof mongoose.Error.ValidationError) {
           res.render('games/conversation', {
             message: req.body,
+            conversationId,
             messages: previousMessages,
             errors: error.errors
           });
