@@ -20,10 +20,10 @@ module.exports.create = (req, res, next) => {
           rate: rate,
           text: text,
           user: req.user.id,
-          seller: userId
+          seller: ratingUser._id
         });
         return rating.save()
-          .then(rating => res.redirect(`/userInfo/${userId}`));
+          .then(rating => res.redirect(`/userInfo/${ratingUser.name}`));
       }
     }).catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {

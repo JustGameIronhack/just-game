@@ -1,8 +1,30 @@
 @import url('../fonts/Blanka-Regular.otf');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
 
+/* Nav-bar */
+
+.navbar-nav li a {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0,41,255,1);
+}
+
+
+.nav-item a {
+  text-decoration: none;
+}
+
+.nav-item a span {
+  color: rgba(0,41,255,1);
+}
+
 body {
   margin-bottom: 7rem;
+}
+
+p {
+  font-family: 'Maven Pro' sans-serif;
+  font-size: 16px;
 }
 
 .avatar {
@@ -16,6 +38,10 @@ body {
 
 .input-group-text i {
     margin: 0 auto;
+}
+
+.userAvatar {
+  max-width: 200px;
 }
 
 /* Stars */
@@ -36,8 +62,15 @@ body {
       width: 180px;
       unicode-bidi: bidi-override;
       direction: rtl;
-      text-align: center;
+      text-align: start;
       position: relative;
+  }
+
+  .ratingHeader {
+    margin: 10px auto;
+    font-size: 18px;
+    font-weight: 600;
+    color: #0029ff;
   }
   
   .rating > label {
@@ -152,6 +185,12 @@ body {
       font-style: italic;
   }
 
+  h6 {
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 600;
+    color: #0029ff;
+  }
+
   .imageContainer {
       width: 15rem;
       height: 22rem;
@@ -186,7 +225,7 @@ body {
   
   /* footer social icons */
   .footer {
-    background-color: #e3ecf6;
+    background: rgb(214, 214, 218);
     padding: 20px 0;
     text-align: center;
     position: fixed;
@@ -327,4 +366,39 @@ body {
       line-height: 40px;
       text-align: center;
     }
+  }
+
+  .footerList {
+    list-style: none;
+  }
+  .footerList li p {
+    font-size: 13px;
+    margin: 2px auto;
+    color: #0029ff;
+  }
+
+  .footerList li {
+    text-align: start;
+  }
+
+  .footerList li a {
+    text-decoration: none;
+    font-size: 13px;
+    margin: 2px auto;
+    color: #0029ff;
+  }
+
+  .footerList li h6 {
+    color: #0029ff;
+    margin-bottom: 1px;
+  }
+
+  .footerList li a:hover {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .trophy {
+    color: #FFD700;
+    margin-right: 10px;
   }

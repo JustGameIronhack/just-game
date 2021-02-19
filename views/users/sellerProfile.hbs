@@ -1,24 +1,17 @@
 <div class="container">
     <div class="row">
-        <div class="col-12 col-lg-3">
-            <div class="card" style="width: 18rem;">
+        <div class="col-12 col-lg-3 mt-5">
+            <div class="userAvatar" style="width: 18rem;">
                 <img src='{{user.avatar}}' class="card-img-top" alt="user avatar">
                 <div class="card-body text-center">
-                    <h5 class="card-title">{{user.name}}</h5>
+                    <h6>{{user.name}}</h6>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-lg-9 mt-5 mb-5">
             <form action="/userInfo/{{ user.name }}" method="post" class="mt-3 mb-3">
-                <div class="input-group mb-1">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                    </div>
-                    <input type="text" value="{{rating.title}}" class="form-control {{isInvalid errors.title}}" name="title" placeholder="Title">
-                    {{formError errors.title}}
-                </div>
-                <div class="input-group mb-1 {{isInvalid errors.rate}}">
-                    <div class="txt-center form-class {{isInvalid errors.rate}}">
+                <div class="input-group mb-3 {{isInvalid errors.rate}}">
+                    <div class="txt-center {{isInvalid errors.rate}}">
                         <div class="rating">
                             <input id="star5" name="rate" type="radio" value="5" class="radio-btn hide" />
                             <label for="star5">☆</label>
@@ -37,10 +30,19 @@
                 </div>
                 <div class="input-group mb-1">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-comment-o" aria-hidden="true"></i></span>
+                        {{!-- <span class="input-group-text"><i class="fa fa-tag" aria-hidden="true"></i></span> --}}
                     </div>
-                    <textarea name="text" placeholder="Describe your rate..." class="form-control {{isInvalid errors.text}}"
-                        rows="3">{{rating.text}}</textarea>
+                    <input type="text" value="{{rating.title}}" class="form-control {{isInvalid errors.title}}"
+                        name="title" placeholder="Title">
+                    {{formError errors.title}}
+                </div>
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                        {{!-- <span class="input-group-text"><i class="fa fa-comment-o" aria-hidden="true"></i></span>
+                        --}}
+                    </div>
+                    <textarea name="text" placeholder="Describe your rate..."
+                        class="form-control {{isInvalid errors.text}}" rows="3">{{rating.text}}</textarea>
                     {{formError errors.text}}
                 </div>
                 <button type="submit" class="btn btn-primary mt-1">Rate User</button>
@@ -48,14 +50,25 @@
 
         </div>
     </div>
-    <div class="row">
-        <h3>Feedback ratings</h3>
+    <div class="row mt-3">
+        <div class="col d-flex justify-content-start align-items-baseline">
+            <div class="trophy">
+                <i class="fa fa-trophy" aria-hidden="true"></i>
+            </div>
+            <div class="col col-2">
+                <h3>Feedback ratings</h3>
+            </div>
+        </div>
+
+
         {{#each user.ratings as |rating| }}
         {{#with rating}}
         <div class="card mb-2">
-            <h5 class="card-header">Title: {{ title }}</h5>
+            <div style="border-bottom: solid grey 1px;">
+                <h4 class="ratingHeader">{{ title }}</h4>
+            </div>
             <div class="card-body">
-                <p class="card-text">Rate: <span class="stars fs-3">{{stars rate}}</span></p>
+                <p class="card-text"><span class="stars fs-3">{{stars rate}}</span></p>
                 <p class="card-text">{{ text }}</p>
                 <p class="card-text"><em>{{ user.name }}</em></p>
             </div>
