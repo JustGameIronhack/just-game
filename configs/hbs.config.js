@@ -86,8 +86,10 @@ hbs.registerHelper('stars', (rate) => {
     }
 })
 
-hbs.registerHelper('sellerRate', (rates) => {
-  
+hbs.registerHelper('sellerRate', (ratings) => {
+    let sellerRating = ratings.map(rating => rating.rate)
+    sumRates = sellerRating.reduce((acc, el) => acc + el, 0)
+    return sumRates / sellerRating.length 
     /* sumRates = rates.reduce((acc, el) => acc + el)
     return sumRates / rates.length; */
 })
