@@ -1,79 +1,46 @@
 @import url('../fonts/Blanka-Regular.otf');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
-
 /* Nav-bar */
-
-
-.navbar-nav li a {
-  font-size: 18px;
-  font-weight: 600;
-  color: rgba(0,41,255,1);
-}
-
-
-.nav-item a {
-  text-decoration: none;
-}
-
-.nav-item a span {
-  color: rgba(0,41,255,1);
-}
-
-body {
-  margin-bottom: 12rem;
-}
-
 p {
   font-family: 'Maven Pro' sans-serif;
   font-size: 16px;
 }
-
 .avatar {
     margin-right: 5px;
     max-width: 50px; 
 }
-
 .input-group-text {
     min-width: 42px;
 }
-
 .input-group-text i {
     margin: 0 auto;
 }
-
 .userAvatar {
   max-width: 200px;
 }
-
 /* Stars */
-
 .txt-center {
     text-align: center;
   }
   .hide {
     display: none;
   }
-  
   .clear {
     float: none;
     clear: both;
   }
-  
   .rating {
-      width: 180px;
       unicode-bidi: bidi-override;
       direction: rtl;
       text-align: start;
       position: relative;
   }
-
   .ratingHeader {
     margin: 10px auto;
     font-size: 18px;
     font-weight: 600;
     color: #0029ff;
   }
-  
   .rating > label {
       float: right;
       display: inline;
@@ -85,13 +52,11 @@ p {
       color: #000;
       transform: scale(2);
   }
-  
   .rating > label:hover,
   .rating > label:hover ~ label,
   .rating > input.radio-btn:checked ~ label {
       color: transparent;
   }
-  
   .rating > label:hover:before,
   .rating > label:hover ~ label:before,
   .rating > input.radio-btn:checked ~ label:before,
@@ -101,9 +66,7 @@ p {
       left: 0;
       color: #FFD700;
   }
-  
  /*  End Stars */
-
  .registerBlock {
      display: flex;
      flex-direction: row;
@@ -111,130 +74,110 @@ p {
      justify-content: center;
      margin-top: 30px;
  }
-
  .registerSocialLogin {
      display: flex;
      flex-direction: column;
      justify-content: center;
      align-items: center;
  }
-
  .verticalLine {
     border-right: solid grey;
     margin-right: 45px;
     padding-right: 45px;
     border-width: 1px;
  }
-
  .registerSize {
      width: 600px;
  }
-
  .registerSize > a {
      width: 300px;
  }
-
  .btnGoogle {
      background-color: #4885ed;
      color: white;
  }
-
  .btnSteam {
     background-color: #000;
     color: white;
  }
-
  .btnGoogle:hover {
    box-shadow: 0 0.5em 0.5em -0.4em grey;
    transform: translateY(-0.25em);
    color: white;
  }
-
  .btnSteam:hover {
     box-shadow: 0 0.5em 0.5em -0.4em grey;
     transform: translateY(-0.25em);
     color: white;
   }
-
   .btnRegular {
       background-color: #0029ff;
       color: white;
   }
-
   .btnRegular:hover {
     box-shadow: 0 0.5em 0.5em -0.4em grey;
     transform: translateY(-0.25em);
     color: white;
   }
-
   h1 {
     font-family: 'Blanka';
     font-size: 40px;
     color: #0029ff;
   }
-
   h2,
   h3 {
     font-family: 'Maven Pro', sans-serif;
     font-size: 20px;
   }
-
   h4,
   h5 {
       font-family: 'Maven Pro', sans-serif;
       font-size: 15px;
       font-style: italic;
   }
-
   h6 {
     font-family: 'Maven Pro', sans-serif;
     font-weight: 600;
     color: #0029ff;
   }
-
   .imageContainer {
       width: 15rem;
       height: 22rem;
   }
-
   .imageList {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    height: 300px;
+    width: 250px;
+    border: 1px solid transparent;
+    border-radius: 15px;
   }
-
   .separatorLines {
       width: 40%;
       margin: 2rem;
       background-color: #0029ff;
       height: 0.1rem;
   }
-
   #map {
     height: 50rem;
     width: 100%;
+    margin-bottom: 2rem;
   }
-
   .stars {  
     color: #FFD700;
   }
-
   * {
     margin: 0;
     padding: 0;
   }
-  
   /* footer social icons */
   .footer {
     background: rgb(214, 214, 218);
     padding: 20px 0;
     text-align: center;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    height: 10%;
   }
-  
   ul.social-network {
     list-style: none;
     display: inline;
@@ -244,7 +187,6 @@ p {
     display: inline;
     margin: 0 10px;
   }
-  
   /* footer social icons */
   .social-network a.icoFacebook:hover {
     background-color: #3B5998;
@@ -252,9 +194,8 @@ p {
   .social-network a.icoTwitter:hover {
     background-color: #33ccff;
   }
-
-  .social-network a.icoLinkedin:hover {
-    background-color: #007bb7;
+  .social-network a.icoSteam:hover {
+    background-color: #000000;
   }
   .social-network a.icoInstagram:hover {
     background: #f09433;
@@ -263,11 +204,9 @@ p {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f09433", endColorstr="#bc1888", GradientType=1);
   }
-  
-  .social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i, .social-network a.icoLinkedin:hover i {
+  .social-network a.icoRss:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i, .social-network a.icoSteam:hover i {
     color: #fff;
   }
-  
   .social-circle li a {
     display: inline-block;
     position: relative;
@@ -276,17 +215,15 @@ p {
     -webkit-border-radius: 50%;
     border-radius: 50%;
     text-align: center;
-    width: 60px;
-    height: 60px;
-    font-size: 22px;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
   }
-  
   .social-circle li i {
     margin: 0;
-    line-height: 60px;
+    line-height: 30px;
     text-align: center;
   }
-  
   .social-circle li a:hover i, .triggeredHover {
     -moz-transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
@@ -298,7 +235,6 @@ p {
     -ms-transition: all 0.2s;
     transition: all 0.2s;
   }
-  
   .social-circle i {
     color: #fff;
     -webkit-transition: all 0.8s;
@@ -307,11 +243,9 @@ p {
     -ms-transition: all 0.8s;
     transition: all 0.8s;
   }
-  
   .social-circle a {
     background-color: #CCD8EA;
   }
-  
   @media screen and (max-width: 500px) {
     ul.social-network li {
       display: inline;
@@ -323,7 +257,6 @@ p {
       display: inline;
       margin: 0 5px;
     }
-  
     .social-circle li a {
       display: inline-block;
       position: relative;
@@ -336,7 +269,6 @@ p {
       height: 40px;
       font-size: 16px;
     }
-  
     .social-circle li i {
       margin: 0;
       line-height: 40px;
@@ -348,7 +280,6 @@ p {
       display: inline;
       margin: 0 2px;
     }
-  
     .social-circle li a {
       display: inline-block;
       position: relative;
@@ -361,14 +292,12 @@ p {
       height: 40px;
       font-size: 16px;
     }
-  
     .social-circle li i {
       margin: 0;
       line-height: 40px;
       text-align: center;
     }
   }
-
   .footerList {
     list-style: none;
   }
@@ -377,28 +306,23 @@ p {
     margin: 2px auto;
     color: #0029ff;
   }
-
   .footerList li {
     text-align: start;
   }
-
   .footerList li a {
     text-decoration: none;
     font-size: 13px;
     margin: 2px auto;
     color: #0029ff;
   }
-
   .footerList li h6 {
     color: #0029ff;
     margin-bottom: 1px;
   }
-
   .footerList li a:hover {
     color: #000;
     text-decoration: underline;
   }
-
   .trophy {
     color: #FFD700;
     margin-right: 10px;

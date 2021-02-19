@@ -5,7 +5,7 @@ const createError = require('http-errors');
 
 module.exports.list = (req, res, next) => {
     const { page, search } = req.query;
-    let limit = 6;
+    let limit = 8;
     let criteria;
     if (search) {
         criteria = { title: { $regex : ".*"+ search +".*", $options:'i' }};
