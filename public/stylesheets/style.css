@@ -7,7 +7,7 @@ p {
 }
 
 body {
-  height: 100%;
+  margin-bottom: 10rem;
 }
 
 .avatar {
@@ -151,7 +151,7 @@ body {
   }
   .imageList {
     height: 100%;
-    width: 50%;
+    width: 80%;
     border: 1px solid transparent;
     border-radius: 15px;
   }
