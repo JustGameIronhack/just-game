@@ -3,6 +3,7 @@
 
 /* Nav-bar */
 
+
 .navbar-nav li a {
   font-size: 18px;
   font-weight: 600;
@@ -19,7 +20,7 @@
 }
 
 body {
-  margin-bottom: 7rem;
+  margin-bottom: 12rem;
 }
 
 p {

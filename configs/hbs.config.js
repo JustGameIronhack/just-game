@@ -61,9 +61,9 @@ hbs.registerHelper('previous', (page) => {
     }  
 });
 
-hbs.registerHelper('next',  (page, gamesLength) => {
+hbs.registerHelper('next',  (page, itemsLength) => {
     const currentPage = Number(page);
-            const maxPage = Math.ceil(Number(gamesLength) / 6);
+            const maxPage = Math.ceil(Number(itemsLength) / 6);
             if(currentPage === maxPage) {
                 return maxPage;
             } else {  

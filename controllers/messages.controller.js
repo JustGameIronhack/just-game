@@ -60,17 +60,20 @@ module.exports.list = (req, res, next) => {
 
 module.exports.conversation = (req, res, next) => {
   const { conversationId } = req.params;
-  Message.find( {conversation: conversationId})
-    .sort({ createdAt: -1 })
-    .populate('game from to')
-    .then(messages => {
+  const { page } = req.query;
+  let limit = 6;
+  Promise.all([
+    Message.find( {conversation: conversationId}).limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }).populate('game from to'),
+    Message.countDocuments({conversation: conversationId})
+  ])
+    .then(([messages, count]) => {
      let to = messages.find(message => message.from.id !== req.user.id); 
      if (!to) {
        to = messages[0].game.user  
      } else {
        to = to.from._id
      }
-      res.render('games/conversation', { messages, to, conversationId });
+      res.render('games/conversation', { messages, to, conversationId, count });
     })
     .catch(next);
 };
@@ -79,6 +82,7 @@ module.exports.conversation = (req, res, next) => {
 module.exports.answer = (req, res, next) => {
   const { text, toId } = req.body;
   const { conversationId } = req.params;
+  const { page } = req.query;
   let previousMessages;
   Message.find({conversation: conversationId})
     .populate('game from to')
@@ -92,7 +96,7 @@ module.exports.answer = (req, res, next) => {
         });
          return newMessage.save()
           .then(message => {
-            res.redirect(`/conversation/${conversationId}`);
+            res.redirect(`/conversation/${conversationId}?page=${page}`)  
           }); 
     })
     .catch(error => {
@@ -113,7 +117,7 @@ module.exports.delete = (req, res, next) => {
   Message.findByIdAndDelete(req.params.id)
       .then((message) => {
           if (message) {
-              res.redirect(`/conversation/${message.conversation}`);
+              res.redirect(`/conversation/${message.conversation}?page=1`);
           }else {
               next(createError(404, 'The message does not exist!'));
           }

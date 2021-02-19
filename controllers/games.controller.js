@@ -18,7 +18,6 @@ module.exports.list = (req, res, next) => {
         Game.countDocuments(criteria)
     ])
     .then(([games, count]) => {
-        console.log("COUNT", count)
         res.render('games/list', { games, count, search })  
     })
     .catch(next);   
