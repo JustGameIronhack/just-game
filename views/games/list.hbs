@@ -39,7 +39,7 @@
                         <em>{{date game.createdAt}}</em>
                     </li>
                     {{#if game.user.ratings}}
-                    {{sellerRate game.user.ratings}}     
+                    {{sellerRate game.user.ratings}}
                     {{/if}}
                     <li class="list-group-item d-flex justify-content-around"><a class="btn btnRegular"
                             href="/game/{{game._id}}/message">Contact</a> <a href="/details/{{game.id}}"
@@ -48,38 +48,41 @@
             </div>
         </div>
         {{/each}} --}}
+        <div class="row align-items-end">
         {{#each games as | game |}}
-        <div class="col-12 col-lg-3">
-            <div>
-                <img src="{{game.image}}" class="imageList">
-            </div>
-            <div>
-                <h3>{{game.title}}</h3>
-            </div>
-            <div>
+        <div class="col-12 col-md-6 col-lg-3 mb-5 d-flex align-items-center flex-column">
+            <div>   
+                <div style="width: 25rem;">
+                    <img src="{{game.image}}" class="imageList">
+                </div>
+                <div>
+                    <h3>{{game.title}}</h3>
+                </div>
                 <div class="col-2">
                     <h3>{{game.price}}€</h3>
                 </div>
-            </div>
-            <div class="row">
-                {{#if game.user.ratings}}
-                <div>
+                <div class="row">
+                    {{#if game.user.ratings}}
+                    <div class="col-1">
                         <p>{{sellerRate game.user.ratings}}</p>
+                    </div>
+                    <div class="col-1">
+                        <i class="trophy fa fa-star"></i>
+                    </div>
+                    {{/if}}
+                    <div class="col-10">
+                        <h4><a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h4>
+                    </div>
                 </div>
                 <div>
-                    <i class="trophy fa fa-star"></i>
+                    <a class="btn btnRegular" href="/game/{{game._id}}/message">Contact</a>
+                    <a class="btn btnRegular" href="/details/{{game.id}}">Details</a>
                 </div>
-                {{/if}}
-                <div>
-                    <h4><a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h4>
-                </div>
-            </div>
-            <div>
-                <a class="btn btnRegular" href="/game/{{game._id}}/message">Contact</a>
-                <a class="btn btnRegular" href="/details/{{game.id}}">Details</a>
+                
             </div>
         </div>
         {{/each}}
+        </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end me-5">
                 <li class="page-item"><a class="page-link"
