@@ -82,7 +82,6 @@ module.exports.conversation = (req, res, next) => {
 module.exports.answer = (req, res, next) => {
   const { text, toId } = req.body;
   const { conversationId } = req.params;
-  const { page } = req.query;
   let previousMessages;
   Message.find({conversation: conversationId})
     .populate('game from to')
@@ -96,7 +95,7 @@ module.exports.answer = (req, res, next) => {
         });
          return newMessage.save()
           .then(message => {
-            res.redirect(`/conversation/${conversationId}?page=${page}`)  
+            res.redirect(`/conversation/${conversationId}?page=1`)  
           }); 
     })
     .catch(error => {

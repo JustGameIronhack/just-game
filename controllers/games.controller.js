@@ -14,7 +14,14 @@ module.exports.list = (req, res, next) => {
     }
         
     Promise.all([
-        Game.find(criteria).populate({path: 'user', select: '_id name'}).limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }),
+        Game.find(criteria).populate({
+            path: 'user', 
+            populate: {
+                path: 'ratings',
+                model: 'Rating'
+            }
+        })
+            .limit(limit * 1).skip((page - 1) * limit).sort({ createdAt: -1 }),
         Game.countDocuments(criteria)
     ])
     .then(([games, count]) => {

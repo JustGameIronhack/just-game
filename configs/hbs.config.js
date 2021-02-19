@@ -85,3 +85,9 @@ hbs.registerHelper('stars', (rate) => {
         return new hbs.SafeString(`&#9733;`);
     }
 })
+
+hbs.registerHelper('sellerRate', (rates) => {
+  
+    /* sumRates = rates.reduce((acc, el) => acc + el)
+    return sumRates / rates.length; */
+})

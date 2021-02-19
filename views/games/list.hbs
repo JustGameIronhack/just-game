@@ -33,9 +33,15 @@
                 <ul class="list-group list-group-flush fs-5">
                     <li class="list-group-item">Genre: <em>{{stringSpace game.genre}}</em></li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a>
+                    <li class="list-group-item">Uploaded by: <a
+                            href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></li>
+                    <li class="list-group-item">
                         <em>{{date game.createdAt}}</em>
                     </li>
+                    
+                    {{#each game.user.ratings as |rating|}}
+                        <em>{{sellerRate rating.rate}}</em>
+                    {{/each}}
                     <li class="list-group-item d-flex justify-content-around"><a class="btn btnRegular"
                             href="/game/{{game._id}}/message">Contact</a> <a href="/details/{{game.id}}"
                             class="btn btnRegular">Details</a></li>
