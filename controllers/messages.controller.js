@@ -100,7 +100,7 @@ module.exports.answer = (req, res, next) => {
           res.render('games/conversation', {
             message: req.body,
             conversationId,
-            messages: previousMessages,
+            messages: previousMessages.sort((a, b) => b.createdAt - a.createdAt),
             errors: error.errors
           });
         } else {

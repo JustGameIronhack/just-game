@@ -21,13 +21,14 @@ module.exports.doRegister = (req, res, next) => {
     if (password && password !== passwordMatch) {
         renderWithErrors({passwordMatch: 'The password do not match!'});
     }else {
-        User.findOne({ email: req.body.email })
+        User.findOne({ $or: [{ email: req.body.email }, { name: req.body.name }]})
         .then((user) => {
             if (user) {
-                renderWithErrors({ email: 'Email already registered' });
+                renderWithErrors({ email: 'Email or Name already registered', name: 'Name or Email already registered' });
             } else { 
                return User.create(req.body).then((user) => {
                 mailer.sendValidationEmail(user.email, user.verified.token, user.name);
+                req.flash('data', JSON.stringify({ verification: true }))
                 res.redirect('/login');
                });
             }
@@ -161,8 +162,8 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.userInfo = (req, res, next) => {
-    const { userId } = req.params;
-    User.findById(userId)
+    const { userName } = req.params;
+    User.findOne({ name: userName })
         .populate('ratings')
         .then(user => {
             res.render('users/sellerProfile', { user });

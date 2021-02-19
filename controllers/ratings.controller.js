@@ -4,11 +4,11 @@ const User = require('../models/user.model');
 const Rating = require('../models/rating.model');
 
 module.exports.create = (req, res, next) => {
-  const { userId } = req.params;
+  const { userName } = req.params;
   const { title, rate, text } = req.body;
   
   let ratingUser;
-  User.findById(userId)
+  User.findOne({ name: userName })
     .populate('ratings')
     .then(user => {
       ratingUser =  user;

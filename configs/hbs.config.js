@@ -37,7 +37,7 @@ hbs.registerHelper('date', (date) => {
 
 
 hbs.registerHelper('checkGameOwner', function (game, user, options) {
-    if ((user && user.role === 'admin') || (user && user.id.toString() === game.user.toString())) {
+    if ((user && user.role === 'admin') || (user && user.id.toString() === game.user.id.toString())) {
         return options.fn(this);
     } else {
         return options.inverse(this);

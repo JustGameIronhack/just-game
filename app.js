@@ -8,12 +8,14 @@ const session = require('./configs/session.config');
 require('./configs/hbs.config');
 require('./configs/db.config');
 require('./configs/passport.config');
+const flash = require('connect-flash');
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(session);
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -21,10 +23,13 @@ app.use((req, res, next) => {
     res.locals.path = req.path;
     res.locals.currentUser = req.user;
     res.locals.page = req.query.page;
+    const flashData = req.flash('data')
+      .reduce((data, message) => {
+        return {...data, ...JSON.parse(message)}
+      }, {});
+    Object.assign(res.locals, flashData);
     next();
 });
-
-
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

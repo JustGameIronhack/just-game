@@ -32,8 +32,8 @@ router.post('/logout', usersController.logout);
 router.get('/profile', secure.isAuthenticated, usersController.profile);
 router.post('/profile', secure.isAuthenticated, storageUsers.single('avatar'), usersController.doProfile);
 router.get('/users', secure.isAuthenticated, secure.checkRole('admin'), usersController.list);
-router.get('/userInfo/:userId', secure.isAuthenticated, usersController.userInfo);
-router.post('/userInfo/:userId', secure.isAuthenticated, ratingsController.create);
+router.get('/userInfo/:userName', secure.isAuthenticated, usersController.userInfo);
+router.post('/userInfo/:userName', secure.isAuthenticated, ratingsController.create);
 
 
 //GAMES ROUTES

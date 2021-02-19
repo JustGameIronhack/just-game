@@ -33,7 +33,7 @@
                 <ul class="list-group list-group-flush fs-5">
                     <li class="list-group-item">Genre: <em>{{stringSpace game.genre}}</em></li>
                     <li class="list-group-item">Price: {{game.price}}€</li>
-                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.id}}">{{game.user.name}}</a>
+                    <li class="list-group-item">Uploaded by: <a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a>
                         <em>{{date game.createdAt}}</em>
                     </li>
                     <li class="list-group-item d-flex justify-content-around"><a class="btn btnRegular"
@@ -55,9 +55,11 @@
                 </li>
             </ul>
         </nav>
+        {{#if search}}
         <div class="d-flex justify-content-center mb-3">
-            <a class="btn btn-danger" href="/games">Back to games</a>
+            <a class="btn btn-danger" href="/games?page=1">Back to games</a>
         </div>
+        {{/if}}
     </div>
 
     <div id="map"></div>
