@@ -6,10 +6,6 @@ p {
   font-size: 16px;
 }
 
-body {
-  margin-bottom: 10rem;
-}
-
 .avatar {
     margin-right: 5px;
     max-width: 50px; 
@@ -170,16 +166,16 @@ body {
   .stars {  
     color: #FFD700;
   }
-  * {
+  /* * {
     margin: 0;
     padding: 0;
-  }
+  } */
   /* footer social icons */
   .footer {
     background: rgb(214, 214, 218);
     padding: 20px 0;
     text-align: center;
-    position: fixed;
+    margin-top: 3rem;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -333,4 +329,16 @@ body {
   .trophy {
     color: #FFD700;
     margin-right: 10px;
+  }
+
+  .navbar {
+    margin-bottom: 2rem;
+  }
+
+  .divMain {
+    min-height: 100vh;
+  }
+
+  .row {
+    --bs-gutter-x: 0 !important;
   }

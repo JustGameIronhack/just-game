@@ -9,20 +9,31 @@
       </div>
 
       <div class="col-lg-8">
-        <div class="card-body text-center">
-          <h5 class="card-title fs-2">Title: {{game.title}}</h5>
-          <p class="card-text fs-4">Platform: {{game.platform}}</p>
-          <p class="card-text fs-4">Description:<em> {{game.description}}</em></p>
-          <p class="card-text fs-4">Price: {{game.price}}€</p>
-          <p class="card-text fs-4">Uploaded: {{date game.createdAt }}</p>
+        <div class="row">
 
-          {{#checkGameOwner game currentUser }}
-          <a class="btn btn-primary mb-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog me-2"></i>Edit</a>
-          <form action="/games/{{game.id}}/delete" method="POST">
-            <button type="submit" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Delete</button>
-          </form>
-          {{/checkGameOwner}}
+        <div class="col-lg-12 align-items-center justify-content-center d-flex flex-row ">
+          <img class="rounded-circle me-4" src="{{game.user.avatar}}">
+          <h4><a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h4>
         </div>
+
+          <div class="card-body text-center col-lg-12">
+            <h5 class="card-title fs-2">{{game.title}}</h5>
+            <p class="card-text fs-4">{{game.platform}}</p>
+            <p class="card-text fs-4"><em> {{game.description}}</em></p>
+            <p class="card-text fs-4">{{game.price}}€</p>
+            <p class="card-text fs-4">{{date game.createdAt }}</p>
+
+            {{#checkGameOwner game currentUser }}
+            <a class="btn btn-primary mb-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog me-2"></i>Edit</a>
+            <form action="/games/{{game.id}}/delete" method="POST">
+              <button type="submit" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Delete</button>
+            </form>
+            {{/checkGameOwner}}
+          </div>
+        </div>
+        
       </div>
+
+
   </section>
 </div>

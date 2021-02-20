@@ -1,15 +1,10 @@
-<div class="row">
+<div class="row px-0">
     <div class="col-12 col-sm-4 mx-auto">
         {{#if verification}}
         <div class="alert alert-warning" role="alert">
             Please verify your email account.
         </div>
         {{/if}}
-       {{!--  {{#if errors.oauth}}
-        <div class="alert alert-danger" role="alert">
-            {{ errors.oauth }}
-        </div>
-        {{/if}} --}}
         <form action="/login" method="POST" class="row g-3">
             <div class="col-md-12">
                 <label for="validationCustomUsername" class="form-label">Email</label>
