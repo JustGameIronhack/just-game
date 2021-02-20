@@ -44,6 +44,9 @@ const gameSchema = new Schema(
                 type: String,
                 default: "Point"
             },
+            location: {
+                type: String,
+            },
             coordinates: [Number] 
         }
     }, { timestamps: true }

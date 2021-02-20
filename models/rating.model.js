@@ -18,7 +18,8 @@ const ratingSchema = new Schema(
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            unique: true
         },
         seller: {
             type: mongoose.Schema.Types.ObjectId,

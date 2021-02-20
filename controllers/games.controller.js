@@ -35,17 +35,17 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
-    const {latitude, longitude} = req.body;
+    const { latitude, longitude, location } = req.body;
     const image = {};
     if (req.file) {
         image.image = req.file.path;
     }
     Object.assign(req.body, image);
-    console.log(req.body);
     Game.create({
         ...req.body,
         user: req.user,
         location: {
+            location: location,
             coordinates: [Number(latitude), Number(longitude)]
         }  
     })
@@ -64,7 +64,13 @@ module.exports.doCreate = (req, res, next) => {
 
 module.exports.details = (req, res, next) => {
     Game.findById(req.params.id)
-        .populate('user')
+        .populate({
+            path: 'user', 
+            populate: {
+                path: 'ratings',
+                model: 'Rating'
+            }
+        })
         .then((game) => {
             if (game) {
                 res.render('games/details', { game });
@@ -123,7 +129,13 @@ module.exports.doEdit = (req, res, next) => {
 
 module.exports.messages = (req, res, next) => {
     Game.findById(req.params.id)
-        .populate('user')
+        .populate({
+            path: 'user', 
+            populate: {
+                path: 'ratings',
+                model: 'Rating'
+            }
+        })
         .populate('messages')
         .then((game) => {
             res.render('games/messages', { game });

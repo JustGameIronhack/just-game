@@ -1,42 +1,40 @@
-<div class="container">
-    <h1>Send a Message to {{game.user.name}}!!</h1>
-    <hr class="mb-4">
+<div class="container bg-light rounded p-4">
+    <h1 class="mb-4">Send a Message to {{game.user.name}}!!</h1>
     <div class="row mb-4 d-flex align-items-center">
-        <div class="col-12 col-lg-2">
-            <div class="card" style="width: 10rem;">
-                <img src='{{game.user.avatar}}' class="card-img-top" alt="user avatar">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{game.user.name}}</h5>
-                </div>
+        <div class="col-12 col-lg-3 text-center">
+                <img src='{{game.user.avatar}}' class="w-50" alt="user avatar"/>
+                <div class="text-center">
+                    <h5 class="fs-5 mt-2"><a class="text-decoration-none" href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h5>
+                    <span class="stars fs-4 me-1">{{sellerRate game.user.ratings}}</span>
+                </div>   
+        </div>
+        <div class="col-12 col-lg-4 border-start text-center">
+            <div class="ms-2">
+                <a href="/details/{{game.id}}"><img src="{{game.image}}" class="imageList" style="width: 14rem" alt="game image"/></a>
             </div>
         </div>
-        <div class="col-12 col-lg-3 border-start">
-            <div class="ms-5">
-                <img src="{{game.image}}" style="width: 14rem" alt="game image">
+        <div class="col-12 col-lg-5">
+            <div>
+                <h2><b>{{game.title}}</b></h2>
+            </div>
+            <div>
+                <h3>{{game.price}}€</h3>
+            </div>
+            <div>
+                <h3>{{game.location.location}}</h3>
             </div>
         </div>
-        <div class="col-12 col-lg-7">
-
-            <div>
-                <h3>Tittle: {{game.title}}</h3>
-            </div>
-            <div>
-                <h3>Price: {{game.price}}€</h3>
-            </div>
-        </div> 
-        
     </div>
-
 
     <form action="/game/{{ game.id }}/message" method="post">
         <div class="mb-3 w-75">
             <div class="input-group">
                 <span class="input-group-text">Message</span>
                 <textarea class="form-control {{isInvalid errors.text}}" name="text"
-                    aria-label="With textarea">{{message.text}}</textarea>
-                <button type="submit" class="btn btn-primary">Post</button>
+                    aria-label="With textarea" rows="4">{{message.text}}</textarea>
                 {{formError errors.text}}
             </div>
-            
+            <button type="submit" class="btn btn-primary mt-3 w-25">Post</button>
+        </div>
     </form>
 </div>

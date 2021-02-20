@@ -4,16 +4,29 @@ const User = require('../models/user.model');
 const Rating = require('../models/rating.model');
 
 module.exports.create = (req, res, next) => {
+  function renderWithErrors(errors) {
+    res.status(403).render('users/sellerProfile', {
+        errors: errors,
+    });
+}
   const { userName } = req.params;
   const { title, rate, text } = req.body;
   
   let ratingUser;
   User.findOne({ name: userName })
-    .populate('ratings')
+    .populate({
+      path: "ratings",
+      populate: {
+        path: 'user',
+        model: "User"
+      }
+    })
     .then(user => {
       ratingUser =  user;
       if (!user) {
         next(createError(404, 'User not found'));
+      } else if (user.ratings.user === req.user.id) {
+        renderWithErrors( { text: `You have already rated ${user.name}` })
       } else {
         const rating = new Rating({
           title: title,
