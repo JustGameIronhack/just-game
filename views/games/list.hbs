@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-light rounded">
     <div class="row d-flex align-items-end">
         <form action="/games" method="get">
             <div class="input-group flex-nowrap mt-3">
@@ -21,28 +21,29 @@
             </ul>
         </nav>
         {{#each games as | game |}}
-        <div class="col-12 col-md-6 col-lg-3 mb-5">
+        <div class="col-12 col-md-6 col-lg-3 mb-5 mt-5 gameContainer">
             <div class="text-center">
-                <img src="{{game.image}}" class="imageList">
-                <h3 class="mt-2"><b>{{game.title}}</b></h3>
+                <a href="/details/{{game.id}}"><img src="{{game.image}}" class="imageList"></a>
+                <h3 class="mt-3"><b>{{game.title}}</b></h3>
                 <h3>{{game.price}}€</h3>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-12 mb-2 d-flex flex-row justify-content-center">
-                    {{#if game.user.ratings}}
-                    <p>{{sellerRate game.user.ratings}}<span><i class="trophy fa fa-star"></i></span></p>
-                    {{/if}}
-                    <h4><a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h4>
+                <div class="col-12 mb-2 d-flex justify-content-center">
+                    <div class="fs-5 text-center d-flex flex-row">
+                        {{#if game.user.ratings}}
+                        <span class="stars fs-4 me-1">{{sellerRate game.user.ratings}}</span>
+                        {{/if}}
+                        <a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a>
+                    </div>
                 </div>
-                <div class="col-12 d-flex justify-content-around">
+                <div class="col-12 d-flex justify-content-center">
                     <a class="btn btnRegular" href="/game/{{game._id}}/message">Contact</a>
-                    <a class="btn btnRegular" href="/details/{{game.id}}">Details</a>
                 </div>
             </div>
         </div>
         {{/each}}
         <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-end me-5">
+            <ul class="pagination justify-content-end me-5 mt-4">
                 <li class="page-item"><a class="page-link"
                         href="/games?page={{previous page}}&search={{search}}">Previous</a></li>
                 <li class="page-item"><a class="page-link" href="/games?page=1&search={{search}}">1</a></li>

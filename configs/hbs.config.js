@@ -86,8 +86,26 @@ hbs.registerHelper('stars', (rate) => {
     }
 });
 
-hbs.registerHelper('sellerRate', (ratings) => {
+/* hbs.registerHelper('sellerRate', (ratings) => {
     let sellerRating = ratings.map(rating => rating.rate)
     sumRates = sellerRating.reduce((acc, el) => acc + el, 0)
     return sumRates / sellerRating.length;
+}); */
+
+hbs.registerHelper('sellerRate', (ratings) => {
+    let sellerRating = ratings.map(rating => rating.rate)
+    sumRates = sellerRating.reduce((acc, el) => acc + el, 0)
+    total = sumRates / sellerRating.length;
+
+    if (total == 1) {
+        return new hbs.SafeString(`&#9733;&#9734;&#9734;&#9734;&#9734;`);
+    } else if (total == 2) {
+        return new hbs.SafeString(`&#9733;&#9733;&#9734;&#9734;&#9734;`);
+    } else if (total == 3) {
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9734;&#9734;`);
+    } else if (total == 4) {
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9733;&#9734;`);
+    } else if (total == 5) {
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9733;&#9733;`);
+    }
 });
