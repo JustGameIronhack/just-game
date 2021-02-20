@@ -6,6 +6,10 @@ p {
   font-size: 16px;
 }
 
+body {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613830201/dark-souls-girl-4k-b9_xwwuso.jpg) no-repeat center center/cover;
+}
+
 .avatar {
     margin-right: 5px;
     max-width: 50px; 
@@ -145,11 +149,17 @@ p {
       width: 15rem;
       height: 22rem;
   }
-  .imageList {
-    height: 100%;
-    width: 80%;
+  .imageList { 
+    min-width: 12rem;
+    min-height: 22rem;
+    max-height: 22rem;
+    max-width: 16rem;
     border: 1px solid transparent;
-    border-radius: 15px;
+    border-radius: 16px;
+  }
+
+  .imageList:hover {
+    transform: scale(1.1);
   }
 
   .separatorLines {
@@ -166,10 +176,7 @@ p {
   .stars {  
     color: #FFD700;
   }
-  /* * {
-    margin: 0;
-    padding: 0;
-  } */
+
   /* footer social icons */
   .footer {
     background: rgb(214, 214, 218);
@@ -341,4 +348,8 @@ p {
 
   .row {
     --bs-gutter-x: 0 !important;
+  }
+
+  .gameContainer {
+    max-height: 50rem;
   }
