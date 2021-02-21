@@ -52,6 +52,14 @@ hbs.registerHelper('checkMessageOwner', function (message, user, options) {
     }
 });
 
+hbs.registerHelper('checkRatingOwner', function (rating, user, options) {
+    if ((user && user.role === 'admin') || (user && user.id.toString() === rating.user.id.toString())) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
 hbs.registerHelper('previous', (page) => {
     const currentPage = Number(page);
     if (currentPage === 1) {
@@ -76,21 +84,15 @@ hbs.registerHelper('stars', (rate) => {
     if(rate == 5) {
         return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9733;&#9733;`);
     } else if (rate == 4) {
-        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9733;`);
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9733;&#9734;`);
     } else if (rate == 3) {
-        return new hbs.SafeString(`&#9733;&#9733;&#9733;`);
+        return new hbs.SafeString(`&#9733;&#9733;&#9733;&#9734;&#9734;`);
     } else if (rate == 2) {
-        return new hbs.SafeString(`&#9733;&#9733;`);
+        return new hbs.SafeString(`&#9733;&#9733;&#9734;&#9734;&#9734;`);
     } else if (rate == 1) {
-        return new hbs.SafeString(`&#9733;`);
+        return new hbs.SafeString(`&#9733;&#9734;&#9734;&#9734;&#9734;`);
     }
 });
-
-/* hbs.registerHelper('sellerRate', (ratings) => {
-    let sellerRating = ratings.map(rating => rating.rate)
-    sumRates = sellerRating.reduce((acc, el) => acc + el, 0)
-    return sumRates / sellerRating.length;
-}); */
 
 hbs.registerHelper('sellerRate', (ratings) => {
     let sellerRating = ratings.map(rating => rating.rate)

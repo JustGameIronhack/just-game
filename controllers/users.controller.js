@@ -164,7 +164,14 @@ module.exports.list = (req, res, next) => {
 module.exports.userInfo = (req, res, next) => {
     const { userName } = req.params;
     User.findOne({ name: userName })
-        .populate('ratings')
+        .populate({
+            path: 'ratings',
+            populate: {
+                path: 'user',
+                model: 'User'
+            }
+        })
+        .sort({ createdAt: - 1 })
         .then(user => {
             res.render('users/sellerProfile', { user });
         })

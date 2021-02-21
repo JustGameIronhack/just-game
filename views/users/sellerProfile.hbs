@@ -1,15 +1,16 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12 col-lg-3 mt-5">
-            <div class="userAvatar" style="width: 18rem;">
-                <img src='{{user.avatar}}' class="card-img-top" alt="user avatar">
-                <div class="card-body text-center">
+    <div class="row justify-content-between align-items-center">
+
+        <div class="col-12 col-lg-2 d-flex justify-content-around bg-light rounded p-1">
+            <div class="text-center">
+                <img src='{{user.avatar}}' class="card-img-top userAvatar" alt="user avatar">
+                <div class="card-body">
                     <h6>{{user.name}}</h6>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-9 mt-5 mb-5">
-            <form action="/userInfo/{{ user.name }}" method="post" class="mt-3 mb-3">
+        <div class="col-12 col-lg-9 bg-light rounded d-flex justify-content-center">
+            <form action="/userInfo/{{ user.name }}" method="post" class="mt-3 mb-3 w-75">
                 <div class="input-group mb-3 {{isInvalid errors.rate}}">
                     <div class="txt-center {{isInvalid errors.rate}}">
                         <div class="rating">
@@ -37,18 +38,16 @@
                     {{formError errors.title}}
                 </div>
                 <div class="input-group mb-1">
-                    <div class="input-group-prepend">
-                        {{!-- <span class="input-group-text"><i class="fa fa-comment-o" aria-hidden="true"></i></span>
-                        --}}
-                    </div>
+                    <span class="input-group-text"><i class="fa fa-comment-o" aria-hidden="true"></i></span>
                     <textarea name="text" placeholder="Describe your rate..."
                         class="form-control {{isInvalid errors.text}}" rows="3">{{rating.text}}</textarea>
                     {{formError errors.text}}
                 </div>
                 <button type="submit" class="btn btn-primary mt-1">Rate User</button>
             </form>
-
         </div>
+
+
     </div>
     <div class="row mt-3">
         <div class="col d-flex justify-content-start align-items-baseline">
@@ -56,21 +55,32 @@
                 <i class="fa fa-trophy" aria-hidden="true"></i>
             </div>
             <div class="col col-2">
-                <h3>Feedback ratings</h3>
+                <h3><b>Feedback ratings</b></h3>
             </div>
         </div>
 
 
         {{#each user.ratings as |rating| }}
         {{#with rating}}
-        <div class="card mb-2">
+        <div class="card mb-2 p-3">
             <div style="border-bottom: solid grey 1px;">
                 <h4 class="ratingHeader">{{ title }}</h4>
             </div>
             <div class="card-body">
                 <p class="card-text"><span class="stars fs-3">{{stars rate}}</span></p>
                 <p class="card-text">{{ text }}</p>
-                <p class="card-text"><em>{{ user.name }}</em></p>
+                <p class="card-text"><em>By: {{ user.name }}</em></p>
+                <div class="row align-items-center">
+                    <p class="col-12 col-lg-1 m-0" style="font-size: 0.8rem;">{{ date createdAt }}</p>
+                    <div class="col-12 col-lg-10 ms-2">
+                        {{#checkRatingOwner rating ../currentUser}}
+                        <form action="/userInfo/{{rating.id}}/delete" method="post">
+                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i>
+                                Delete</button>
+                        </form>
+                        {{/checkRatingOwner}}
+                    </div>
+                </div>
             </div>
         </div>
         {{/with}}

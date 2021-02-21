@@ -32,8 +32,7 @@ router.post('/logout', usersController.logout);
 router.get('/profile', secure.isAuthenticated, usersController.profile);
 router.post('/profile', secure.isAuthenticated, storageUsers.single('avatar'), usersController.doProfile);
 router.get('/users', secure.isAuthenticated, secure.checkRole('admin'), usersController.list);
-router.get('/userInfo/:userName', secure.isAuthenticated, usersController.userInfo);
-router.post('/userInfo/:userName', secure.isAuthenticated, ratingsController.create);
+
 
 
 //GAMES ROUTES
@@ -55,5 +54,11 @@ router.get('/conversation/:conversationId', secure.isAuthenticated, messageContr
 router.post('/conversation/:conversationId', secure.isAuthenticated, messageController.answer);
 router.post('/conversation/:id/delete', secure.isAuthenticated, secure.checkMessageOwner, messageController.delete)
 
+
+//RATING ROUTER
+
+router.get('/userInfo/:userName', secure.isAuthenticated, usersController.userInfo);
+router.post('/userInfo/:userName', secure.isAuthenticated, ratingsController.create);
+router.post('/userInfo/:id/delete', secure.isAuthenticated, ratingsController.delete);
 
 module.exports = router;

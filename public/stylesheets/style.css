@@ -22,7 +22,7 @@ body {
     margin: 0 auto;
 }
 .userAvatar {
-  max-width: 200px;
+  max-width: 12rem;
 }
 /* Stars */
 .txt-center {

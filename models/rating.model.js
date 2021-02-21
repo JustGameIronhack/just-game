@@ -25,7 +25,7 @@ const ratingSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }
-    }
+    }, { timestamps: true }
 );
 
 const Rating = mongoose.model('Rating', ratingSchema);
