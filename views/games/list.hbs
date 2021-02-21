@@ -1,4 +1,4 @@
-<div class="container bg-light rounded">
+<div class="container bg-light rounded-3 p-5">
     <div class="row d-flex align-items-end">
         <form action="/games" method="get">
             <div class="input-group flex-nowrap mt-3">
@@ -29,11 +29,11 @@
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 mb-2 d-flex justify-content-center">
-                    <div class="fs-5 text-center d-flex flex-row">
+                    <div class="fs-5 d-flex flex-row align-items-center">
+                        <a class="text-decoration-none" href="/userInfo/{{game.user.name}}"><p>{{game.user.name}}</p></a>
                         {{#if game.user.ratings}}
-                        <span class="stars fs-4 me-1">{{sellerRate game.user.ratings}}</span>
+                        <p class="stars fs-4">{{sellerRate game.user.ratings}}</p>
                         {{/if}}
-                        <a href="/userInfo/{{game.user.name}}">{{game.user.name}}</a>
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-center">

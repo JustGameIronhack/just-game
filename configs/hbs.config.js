@@ -97,7 +97,7 @@ hbs.registerHelper('stars', (rate) => {
 hbs.registerHelper('sellerRate', (ratings) => {
     let sellerRating = ratings.map(rating => rating.rate)
     sumRates = sellerRating.reduce((acc, el) => acc + el, 0)
-    total = sumRates / sellerRating.length;
+    total = Math.round(sumRates / sellerRating.length);
 
     if (total == 1) {
         return new hbs.SafeString(`&#9733;&#9734;&#9734;&#9734;&#9734;`);

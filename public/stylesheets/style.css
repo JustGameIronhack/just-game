@@ -1,5 +1,6 @@
-@import url('../fonts/Blanka-Regular.otf');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 /* Nav-bar */
 p {
   font-family: 'Maven Pro' sans-serif;
@@ -78,7 +79,7 @@ body {
      flex-direction: row;
      align-items: center;
      justify-content: center;
-     margin-top: 30px;
+     margin-top: 2.5rem;
  }
  .registerSocialLogin {
      display: flex;
@@ -126,19 +127,19 @@ body {
     color: white;
   }
   h1 {
-    font-family: 'Blanka';
+    font-family: 'Righteous';
     font-size: 40px;
     color: #0029ff;
   }
   h2,
   h3 {
     font-family: 'Maven Pro', sans-serif;
-    font-size: 20px;
+    font-size: 1.5rem;
   }
   h4,
   h5 {
       font-family: 'Maven Pro', sans-serif;
-      font-size: 15px;
+      font-size: 1rem;
       font-style: italic;
   }
   h6 {
@@ -183,6 +184,7 @@ body {
     background: rgb(214, 214, 218);
     padding: 20px 0;
     text-align: center;
+    font-family: 'Righteous';
     margin-top: 3rem;
     left: 0;
     bottom: 0;
@@ -341,11 +343,15 @@ body {
 
   .navbar {
     margin-bottom: 2rem;
-    background-color: seashell;
   }
 
-  .navbar li a {
-    font-weight: bold;
+  .nav-item a {
+    font-family: 'Righteous';
+  }
+
+  .nav-item li a {
+    font-weight: 500;
+    color: #0029ff;
   }
 
   .form-label {
@@ -362,4 +368,36 @@ body {
 
   .gameContainer {
     max-height: 50rem;
+  }
+
+  .h2Index {
+    font-size: 2rem;
+    color: white;
+  }
+
+  .h1Index {
+    color: white;
+  }
+
+  .bg-secondary p {
+    color: white;
+  }
+
+  .h5UserProfile {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .registerSocialLogin h3, h4 {
+    color: white;
+    font-weight: 600;
+  }
+
+  .text-decoration-none p {
+    font-weight: 600;
+    color: #0029ff;
+  }
+
+  .text-decoration-none p:hover {
+    color: black;
   }

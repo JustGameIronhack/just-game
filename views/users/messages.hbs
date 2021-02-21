@@ -1,21 +1,18 @@
-<div class="container bg-light rounded p-4">
-    <h1 class="mb-3">MESSAGES</h1>
+<div class="container bg-light rounded-3 p-5">
+    <h1 class="mb-4">Messeges</h1>
     {{#each messages as |message|}}
-    <div class="row mb-5 d-flex align-items-sm-center">
+    <div class="row mb-5 d-flex align-items-sm-center container bg-secondary rounded-3">
         <div class="col col-lg-2">
             <img style="width: 9rem" src="{{message.game.image}}" alt="Card image cap">
         </div>
-        <div class="col col-lg-10 border-start">
+        <div class="col col-lg-8">
             <p class="fw-bold">{{message.game.title}}</p>
             <p class="card-text">{{message.text}}</p>
             <p>{{date message.createdAt}} - <em>{{message.from.name}}</em></p>
         </div>
-        <div class="col col-lg-12">
-            <a href="/conversation/{{message.conversation}}?page=1">Conversation</a>
+        <div class="col col-lg-2">
+            <a class="btn btnRegular" href="/conversation/{{message.conversation}}?page=1">Go Conversation</a>
         </div>
-    </div>
-    <div class="separatorLines mx-auto">
-        <hr>
     </div>
     {{/each}}
 </div>
