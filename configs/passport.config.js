@@ -81,8 +81,8 @@ passport.use('google-auth', new GoogleStrategy({
 
 
 passport.use('steam-auth', new SteamStrategy({
-    returnURL: 'http://localhost:3000/steam/return',
-    realm: 'http://localhost:3000/',
+    returnURL: process.env.STEAM_RETURN_URI,
+    realm: process.env.STEAM_REALM,
     apiKey: process.env.STEAM_API_KEY,
 }, (identifier, profile, next) => {
     if (profile.id && profile.displayName) {
