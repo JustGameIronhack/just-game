@@ -4,9 +4,10 @@ const User = require('../models/user.model');
 const Rating = require('../models/rating.model');
 
 module.exports.create = (req, res, next) => {
+  let limit = 2;
   function renderWithErrors(errors) {
     res.status(403).render('users/sellerProfile', {
-        rating: req.body,
+        ratings: ratingUser.ratings,
         user: ratingUser,
         errors: errors,
     });
@@ -25,11 +26,11 @@ module.exports.create = (req, res, next) => {
     })
     .then(user => {
       ratingUser =  user;
-      const idchecked = user.ratings.find(rating => rating.user.id === req.user.id)
+      const idChecked = user.ratings.find(rating => rating.user.id === req.user.id)
       if (!user) {
         next(createError(404, 'User not found'));
-      } else if (idchecked) {
-        renderWithErrors( { text: `You have already rated ${user.name}` }, { rating: req.body }, { user: ratingUser })
+      } else if (idChecked) {
+        renderWithErrors( { text: `You have already rated ${user.name}` }, { user: ratingUser })
       } else {
         const rating = new Rating({
           title: title,
@@ -39,12 +40,13 @@ module.exports.create = (req, res, next) => {
           seller: ratingUser._id
         });
         return rating.save()
-          .then(rating => res.redirect(`/userInfo/${ratingUser.name}`));
+          .then(rating => res.redirect(`/userInfo/${ratingUser.name}?page=1`));
       }
     }).catch(error => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.render('users/sellerProfile', {
-          rating: req.body, 
+          rating: req.body,
+          ratings: ratingUser.ratings,
           user: ratingUser,
           errors: error.errors
         });

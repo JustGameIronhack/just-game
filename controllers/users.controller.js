@@ -4,6 +4,7 @@ const httpError = require('http-errors');
 const mailer = require('../configs/mailer.config');
 const passport = require('passport');
 const Game = require('../models/game.model');
+const Rating = require('../models/rating.model');
 
 module.exports.register = (req, res, next) => {
     res.render('users/register');
@@ -161,7 +162,7 @@ module.exports.list = (req, res, next) => {
         .catch(next);
 };
 
-module.exports.userInfo = (req, res, next) => {
+/* module.exports.userInfo = (req, res, next) => {
     const { userName } = req.params;
     User.findOne({ name: userName })
         .populate({
@@ -176,7 +177,24 @@ module.exports.userInfo = (req, res, next) => {
             res.render('users/sellerProfile', { user });
         })
         .catch(next);
+}; */
+
+
+module.exports.userInfo = (req, res, next) => {
+    const { userName } = req.params;
+    const { page } = req.query;
+    let limit = 3;
+    User.findOne({ name: userName })
+        .then(user => {
+            Promise.all([
+                Rating.find({ seller: user.id }).limit(limit * 1).skip((page - 1) * limit).populate('user seller ratings').sort({ createdAt: - 1 }),
+                Rating.countDocuments({ seller: user.id })
+            ])
+            .then(([ratings, count]) => {
+                console.log(count)
+                res.render('users/sellerProfile', { user, ratings, count });
+            })
+            .catch(next);
+        });
 };
-
-
 

@@ -79,6 +79,15 @@ hbs.registerHelper('next',  (page, itemsLength) => {
             }     
 });
 
+hbs.registerHelper('nextRating',  (page, itemsLength) => {
+    const currentPage = Number(page);
+            const maxPage = Math.ceil(Number(itemsLength) / 3);
+            if(currentPage === maxPage) {
+                return maxPage;
+            } else {  
+                return currentPage + 1;
+            }     
+});
 
 hbs.registerHelper('stars', (rate) => {
     if(rate == 5) {
@@ -99,7 +108,9 @@ hbs.registerHelper('sellerRate', (ratings) => {
     sumRates = sellerRating.reduce((acc, el) => acc + el, 0)
     total = Math.round(sumRates / sellerRating.length);
 
-    if (total == 1) {
+    if (!total) {
+        return new hbs.SafeString(`&#9734;&#9734;&#9734;&#9734;&#9734;`);
+    } else if (total == 1) {
         return new hbs.SafeString(`&#9733;&#9734;&#9734;&#9734;&#9734;`);
     } else if (total == 2) {
         return new hbs.SafeString(`&#9733;&#9733;&#9734;&#9734;&#9734;`);

@@ -29,11 +29,11 @@
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-12 mb-2 d-flex justify-content-center">
-                    <div class="fs-5 d-flex flex-row align-items-center">
-                        <a class="text-decoration-none" href="/userInfo/{{game.user.name}}"><p>{{game.user.name}}</p></a>
-                        {{#if game.user.ratings}}
+                    <div class="fs-5 text-center">
+                        <a class="text-decoration-none" href="/userInfo/{{game.user.name}}?page=1"><p>{{game.user.name}}</p></a>
+                        
                         <p class="stars fs-4">{{sellerRate game.user.ratings}}</p>
-                        {{/if}}
+                        
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
