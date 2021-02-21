@@ -1,39 +1,41 @@
-
-<div class="row">
-    <div class="col-12 col-sm-4 mx-auto">
-        {{#if verification}}
-        <div class="alert alert-warning" role="alert">
-            Please verify your email account.
+<div class="backgroundIndex">
+    <div class="row">
+        <div class="col-12 col-sm-4 mx-auto">
+            {{#if verification}}
+            <div class="alert alert-warning" role="alert">
+                Please verify your email account.
+            </div>
+            {{/if}}
+            <form action="/login" method="POST" class="row g-3">
+                <div class="col-md-12">
+                    <label for="validationCustomUsername" class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-envelope-o"
+                                aria-hidden="true"></i></span>
+                        <input placeholder="Please, enter your email" value="{{user.email}}" name="email" type="text"
+                            class="form-control {{isInvalid errors.email}}" aria-describedby="inputGroupPrepend">
+                        {{formError errors.email}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="validationCustomUsername" class="form-label">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
+                                aria-hidden="true"></i></span>
+                        <input placeholder="Please, enter your password" name="password" type="password"
+                            class="form-control {{isInvalid errors.password}}" aria-describedby="inputGroupPrepend">
+                        {{formError errors.password}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btnRegular" type="submit">Login</button>
+                </div>
+            </form>
+            <hr>
+            <a class="btn btnGoogle btn-block" href="/authenticate/google"><i class="fa fa-google"></i> Login with
+                Google</a>
+            <a class="btn btnSteam btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Login with
+                Steam</a>
         </div>
-        {{/if}}
-        <form action="/login" method="POST" class="row g-3">
-            <div class="col-md-12">
-                <label for="validationCustomUsername" class="form-label">Email</label>
-                <div class="input-group">
-                    <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-envelope-o"
-                            aria-hidden="true"></i></span>
-                    <input placeholder="Please, enter your email" value="{{user.email}}" name="email" type="text"
-                        class="form-control {{isInvalid errors.email}}" aria-describedby="inputGroupPrepend">
-                    {{formError errors.email}}
-                </div>
-            </div>
-            <div class="col-md-12">
-                <label for="validationCustomUsername" class="form-label">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-lock"
-                            aria-hidden="true"></i></span>
-                    <input placeholder="Please, enter your password" name="password" type="password"
-                        class="form-control {{isInvalid errors.password}}" aria-describedby="inputGroupPrepend">
-                    {{formError errors.password}}
-                </div>
-            </div>
-            <div class="col-12">
-                <button class="btn btnRegular" type="submit">Login</button>
-            </div>
-        </form>
-        <hr>
-        <a class="btn btnGoogle btn-block" href="/authenticate/google"><i class="fa fa-google"></i> Login with
-            Google</a>
-        <a class="btn btnSteam btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Login with Steam</a>
     </div>
 </div>

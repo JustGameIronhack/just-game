@@ -7,9 +7,116 @@ p {
   font-size: 16px;
 }
 
-body {
+/* BACKGROUNDS */
+
+.backgroundGames {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613933429/JustGame/Background%20Images/vzRN4in_his9xl.jpg) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundIndex {
   background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613830201/dark-souls-girl-4k-b9_xwwuso.jpg) no-repeat center center/cover;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundMessages {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613937723/JustGame/Background%20Images/u64ej6vi0hi51_k76jpl.png) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundProfile {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613938149/JustGame/Background%20Images/RE_1_mw9nuv.png) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundNewGame {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613938850/JustGame/Background%20Images/Geralt_y5ruui.png) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundUserList {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613939181/JustGame/Background%20Images/LOL_kjhryi.jpg) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundGameMessage {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613937723/JustGame/Background%20Images/692913_yew0in.jpg) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundGameEdit {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613940026/JustGame/Background%20Images/40102_ltedog.jpg) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundGameDetail {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613940980/JustGame/Background%20Images/wp2745575-warhammer-fantasy-wallpaper_litzm2.jpg) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.backgroundUserInfo {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613940809/JustGame/Background%20Images/WarhammerFantasy_vdt5hu.jpg) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .avatar {
@@ -187,7 +294,6 @@ body {
     padding: 20px 0;
     text-align: center;
     font-family: 'Righteous';
-    margin-top: 3rem;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -343,9 +449,9 @@ body {
     margin-right: 10px;
   }
 
-  .navbar {
+ /*  .navbar {
     margin-bottom: 2rem;
-  }
+  } */
 
   .nav-item a {
     font-family: 'Righteous';
@@ -375,10 +481,12 @@ body {
   .h2Index {
     font-size: 2rem;
     color: white;
+    text-shadow: 0px 3px 4px rgba(150, 150, 150, 1);
   }
 
   .h1Index {
     color: white;
+    text-shadow: 0px 3px 4px rgba(150, 150, 150, 1);
   }
 
   .bg-secondary p {
@@ -403,3 +511,15 @@ body {
   .text-decoration-none p:hover {
     color: black;
   }
+
+  /* INDEX */
+
+  .imageLogo {
+    width: 30rem;
+  }
+
+  .mainMargin {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+  }
+

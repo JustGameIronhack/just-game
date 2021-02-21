@@ -1,44 +1,46 @@
-<div class="container bg-light rounded-3 p-5">
-  <section class="mb-3">
-    <h1 class="mb-3">Game detail</h1>
-    <div class="row d-flex align-items-sm-center">
-      <div class="col-lg-6">
+<div class="backgroundGameDetail">
+  <div class="container bg-light rounded-3 p-5">
+    <section class="mb-3">
+      <h1 class="mb-3">Game detail</h1>
+      <div class="row d-flex align-items-sm-center">
+        <div class="col-lg-6">
 
-        <img class="card-img-top rounded" src="{{game.image}}" alt="Card image cap">
-      </div>
-
-      <div class="col-lg-6">
-        <div class="row">
-
-          <div class="col-lg-12 align-items-center justify-content-center d-flex flex-row">
-            <img class="rounded-circle me-4 w-25" src="{{game.user.avatar}}">
-            <div class="text-center">
-              <h4><a class="fs-4 text-decoration-none" href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h4>
-              <p class="stars fs-4">{{sellerRate game.user.ratings}}</p>
-            </div>
-          </div>
-
-          <div class="card-body text-center col-lg-12">
-            <h5 class="card-title fs-2">{{game.title}}</h5>
-            <p class="card-text fs-4">{{game.platform}}</p>
-            <p class="card-text fs-4"><em> {{game.description}}</em></p>
-            <p class="card-text fs-4">{{game.price}}€</p>
-            <p class="card-text fs-4">{{game.location.location}}</p>
-            <p class="card-text fs-4">{{date game.createdAt }}</p>
-
-            {{#checkGameOwner game currentUser }}
-            <div class="d-flex flex-row justify-content-around">
-              <a class="btn btn-primary mb-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog me-2"></i>Edit</a>
-              <form action="/games/{{game.id}}/delete" method="POST">
-                <button type="submit" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Delete</button>
-              </form>
-            </div>
-            {{/checkGameOwner}}
-          </div>
+          <img class="card-img-top rounded" src="{{game.image}}" alt="Card image cap">
         </div>
 
-      </div>
+        <div class="col-lg-6">
+          <div class="row">
+
+            <div class="col-lg-12 align-items-center justify-content-center d-flex flex-row">
+              <img class="rounded-circle me-4 w-25" src="{{game.user.avatar}}">
+              <div class="text-center">
+                <h4><a class="fs-4 text-decoration-none" href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h4>
+                <p class="stars fs-4">{{sellerRate game.user.ratings}}</p>
+              </div>
+            </div>
+
+            <div class="card-body text-center col-lg-12">
+              <h5 class="card-title fs-2">{{game.title}}</h5>
+              <p class="card-text fs-4">{{game.platform}}</p>
+              <p class="card-text fs-4"><em> {{game.description}}</em></p>
+              <p class="card-text fs-4">{{game.price}}€</p>
+              <p class="card-text fs-4">{{game.location.location}}</p>
+              <p class="card-text fs-4">{{date game.createdAt }}</p>
+
+              {{#checkGameOwner game currentUser }}
+              <div class="d-flex flex-row justify-content-around">
+                <a class="btn btn-primary mb-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog me-2"></i>Edit</a>
+                <form action="/games/{{game.id}}/delete" method="POST">
+                  <button type="submit" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Delete</button>
+                </form>
+              </div>
+              {{/checkGameOwner}}
+            </div>
+          </div>
+
+        </div>
 
 
-  </section>
+    </section>
+  </div>
 </div>

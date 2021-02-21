@@ -1,3 +1,4 @@
+<div class="backgroundGameMessage">
 <div class="container bg-light rounded-3 p-5">
     <h1 class="mb-4">Send a Message to {{game.user.name}}!!</h1>
     <div class="row mb-4 d-flex align-items-center">
@@ -8,7 +9,7 @@
                     <span class="stars fs-4 me-1">{{sellerRate game.user.ratings}}</span>
                 </div>   
         </div>
-        <div class="col-12 col-lg-4 border-start text-center">
+        <div class="col-12 col-lg-4 text-center">
             <div class="ms-2">
                 <a href="/details/{{game.id}}"><img src="{{game.image}}" class="imageList" style="width: 14rem" alt="game image"/></a>
             </div>
@@ -37,4 +38,5 @@
             <button type="submit" class="btn btn-primary mt-3 w-25">Post</button>
         </div>
     </form>
+</div>
 </div>
