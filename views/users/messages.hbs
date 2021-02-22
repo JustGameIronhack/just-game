@@ -1,10 +1,10 @@
 <div class="backgroundMessages">
-    <div class="container bg-light rounded-3 p-5">
+    <div class="container rounded-3 p-5">
         <h1 class="mb-4">Messages</h1>
         {{#each messages as |message|}}
         <div class="row mb-5 d-flex align-items-sm-center">
             <div class="col col-lg-2">
-                <img style="width: 9rem" src="{{message.game.image}}" alt="Card image cap">
+                <img class="rounded" style="width: 9rem" src="{{message.game.image}}" alt="Card image cap">
             </div>
             <div class="container bg-secondary rounded-3 p-3 col col-lg-10">
                 <div class="row d-flex align-items-sm-center">

@@ -71,6 +71,16 @@ hbs.registerHelper('previous', (page) => {
 
 hbs.registerHelper('next',  (page, itemsLength) => {
     const currentPage = Number(page);
+            const maxPage = Math.ceil(Number(itemsLength) / 8);
+            if(currentPage === maxPage) {
+                return maxPage;
+            } else {  
+                return currentPage + 1;
+            }     
+});
+
+hbs.registerHelper('nextMessage',  (page, itemsLength) => {
+    const currentPage = Number(page);
             const maxPage = Math.ceil(Number(itemsLength) / 6);
             if(currentPage === maxPage) {
                 return maxPage;
