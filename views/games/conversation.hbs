@@ -1,56 +1,55 @@
-<div class="container">
-    <h1 class="mb-4">Conversation</h1>
+<div class="backgroundConversation">
+    <div class="container p-5">
+        <h1 class="mb-4">Messages</h1>
 
-    <form action="/conversation/{{conversationId}}?page=1" method="post">
-        <div class="input-group mb-3">
-            <span class="input-group-text">Message</span>
-            <textarea class="form-control {{isInvalid errors.text}}" name="text" aria-label="textarea"
-                rows="5">{{message.text}}</textarea>
-            {{formError errors.text}}
-            <input type="text" hidden value="{{ to }}" name="toId">
-        </div>
+        <form action="/conversation/{{conversationId}}?page=1" method="post">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Message</span>
+                <textarea class="form-control {{isInvalid errors.text}}" name="text" aria-label="textarea"
+                    rows="5">{{message.text}}</textarea>
+                {{formError errors.text}}
+                <input type="text" hidden value="{{ to }}" name="toId">
+            </div>
 
-        <div class="mt-1 mb-4">
-            <button type="submit" class="btn btnRegular">Send</button>
-        </div>
-    </form>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end me-5">
-            <li class="page-item"><a class="page-link"
-                    href="/conversation/{{conversationId}}?page={{previous page}}">Previous</a></li>
-            <li class="page-item"><a class="page-link"
-                    href="/conversation/{{conversationId}}?page={{next page count}}">Next</a>
-            </li>
-        </ul>
-    </nav>
-    {{#each messages as |message|}}
-    <div class="row mb-5 d-flex align-items-sm-center">
-        <div class="col-12 col-lg-2">
-            <img class="rounded" style="width: 9rem" src="{{message.from.avatar}}" alt="Card image cap">
-        </div>
-        <div class="col-12 col-lg-10 border-start">
-            <p class="fw-bold">{{message.game.title}}</p>
-            <p class="card-text">{{message.text}}</p>
-            <p>{{date message.createdAt}} - <em>{{message.from.name}}</em></p>
-            {{#checkMessageOwner message ../currentUser}}
-            <form action="/conversation/{{message.id}}/delete" method="post">
-                <button class="btn btn-danger" type="submit"><i class="fa fa-trash me-2"></i> Delete</button>
-            </form>
-            {{/checkMessageOwner}}
-        </div>
+            <div class="mt-1 mb-4">
+                <button type="submit" class="btn btnRegular">Send</button>
+            </div>
+        </form>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end me-5">
+                <li class="page-item"><a class="page-link"
+                        href="/conversation/{{conversationId}}?page={{previous page}}">Previous</a></li>
+                <li class="page-item"><a class="page-link"
+                        href="/conversation/{{conversationId}}?page={{next page count}}">Next</a>
+                </li>
+            </ul>
+        </nav>
+        {{#each messages as |message|}}
+        <div class="container bg-light rounded-3 row mb-5 d-flex align-items-sm-center">
+            <div class="col-12 col-lg-2">
+                <img class="rounded" style="width: 9rem" src="{{message.from.avatar}}" alt="Card image cap">
+            </div>
+            <div class="col-12 col-lg-10">
+                <p class="fw-bold">{{message.game.title}}</p>
+                <p class="card-text">{{message.text}}</p>
+                <p>{{date message.createdAt}} - <em>{{message.from.name}}</em></p>
+                {{#checkMessageOwner message ../currentUser}}
+                <form action="/conversation/{{message.id}}/delete" method="post">
+                    <button class="btn btn-danger" type="submit"><i class="fa fa-trash me-2"></i> Delete</button>
+                </form>
+                {{/checkMessageOwner}}
+            </div>
 
+        </div>
+        {{/each}}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end me-5">
+                <li class="page-item"><a class="page-link"
+                        href="/conversation/{{conversationId}}?page={{previous page}}">Previous</a></li>
+                <li class="page-item"><a class="page-link"
+                        href="/conversation/{{conversationId}}?page={{nextMessage page count}}">Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
-    <div class="separatorLines mx-auto">
-        <hr>
-    </div>
-    {{/each}}
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end me-5">
-            <li class="page-item"><a class="page-link"
-                    href="/conversation/{{conversationId}}?page={{previous page}}">Previous</a></li>
-            <li class="page-item"><a class="page-link"
-                    href="/conversation/{{conversationId}}?page={{nextMessage page count}}">Next</a>
-            </li>
-        </ul>
-    </nav>
 </div>

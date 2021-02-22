@@ -1,5 +1,5 @@
 <div class="backgroundGameDetail">
-  <div class="container bg-light rounded-3 p-5">
+  <div class="container rounded-3 p-5">
     <section class="mb-3">
       <h1 class="mb-3">Game detail</h1>
       <div class="row d-flex align-items-sm-center">
@@ -11,7 +11,7 @@
         <div class="col-lg-6">
           <div class="row">
 
-            <div class="col-lg-12 align-items-center justify-content-center d-flex flex-row">
+            <div class="col-lg-12 align-items-center justify-content-center d-flex flex-row mb-5">
               <img class="rounded-circle me-4 w-25" src="{{game.user.avatar}}">
               <div class="text-center">
                 <h4><a class="fs-4 text-decoration-none" href="/userInfo/{{game.user.name}}">{{game.user.name}}</a></h4>
@@ -19,22 +19,23 @@
               </div>
             </div>
 
-            <div class="card-body text-center col-lg-12">
-              <h5 class="card-title fs-2">{{game.title}}</h5>
-              <p class="card-text fs-4">{{game.platform}}</p>
-              <p class="card-text fs-4"><em> {{game.description}}</em></p>
-              <p class="card-text fs-4">{{game.price}}€</p>
-              <p class="card-text fs-4">{{game.location.location}}</p>
-              <p class="card-text fs-4">{{date game.createdAt }}</p>
-
+            <div class="text-center col-lg-12">
+              <h5 class="boldText fs-2 mb-3">{{game.title}}</h5>
+              <div class="row align-items-center justify-content-center mb-3">
+                <p class="boldText fs-5 col-lg-2">{{game.platform}}</p>
+                <p class="boldText fs-5 col-lg-2 mb-3">{{game.price}}€</p>
+              </div>
+              <p class="card-text fs-5 mb-3"><em> {{game.description}}</em></p>
               {{#checkGameOwner game currentUser }}
-              <div class="d-flex flex-row justify-content-around">
+              <div class="d-flex flex-row justify-content-around mb-3">
                 <a class="btn btn-primary mb-3" href="/games/{{game.id}}/edit"><i class="fa fa-cog me-2"></i>Edit</a>
                 <form action="/games/{{game.id}}/delete" method="POST">
                   <button type="submit" class="btn btn-danger"><i class="fa fa-trash me-2"></i>Delete</button>
                 </form>
               </div>
               {{/checkGameOwner}}
+              <i class="boldText fs-6 col-lg-4">{{game.location.location}}</i>
+              <i class="boldText fs-6 col-lg-4">{{date game.createdAt }}</i>
             </div>
           </div>
 

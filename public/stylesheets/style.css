@@ -119,6 +119,17 @@ p {
   padding-bottom: 5rem;
 }
 
+.backgroundConversation {
+  background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1614008588/JustGame/Background%20Images/775057_vvw87j.png) no-repeat center center/cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
 .avatar {
     margin-right: 5px;
     max-width: 50px; 
@@ -181,30 +192,11 @@ p {
       color: #FFD700;
   }
  /*  End Stars */
- .registerBlock {
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-     justify-content: center;
-     margin-top: 2.5rem;
- }
- .registerSocialLogin {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
- }
  .verticalLine {
     border-right: solid grey;
     margin-right: 45px;
     padding-right: 45px;
     border-width: 1px;
- }
- .registerSize {
-     width: 600px;
- }
- .registerSize > a {
-     width: 300px;
  }
  .btnGoogle {
      background-color: #4885ed;
@@ -449,10 +441,6 @@ p {
     margin-right: 10px;
   }
 
- /*  .navbar {
-    margin-bottom: 2rem;
-  } */
-
   .nav-item a {
     font-family: 'Righteous';
   }
@@ -498,7 +486,7 @@ p {
     font-weight: 600;
   }
 
-  .registerSocialLogin h3, h4 {
+  .textRegister {
     color: white;
     font-weight: 600;
   }
@@ -525,4 +513,23 @@ p {
 
 .container {
   background-color: rgba(248, 249, 250, 0.8);
+}
+
+.titleCarousel {
+  font-size: 5vh;
+  font-weight: 600;
+}
+
+.textCarousel {
+  font-size: 2.5vh;
+  font-weight: 600;
+}
+
+.boldText {
+  font-weight: 600;
+}
+
+.videoIndex {
+  width: 50rem;
+  height: 25rem;
 }

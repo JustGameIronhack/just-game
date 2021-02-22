@@ -1,18 +1,18 @@
 <div class="backgroundIndex">
-    <div class="registerSocialLogin">
-        <div>
-            <h1>REGISTER YOURSELF!</h1>
+    <div class="mx-auto">
+        <div class="col-12">
+            <div class="text-center">
+                <h1>REGISTER YOURSELF!</h1>
+            </div>
+            <div class="text-center textRegister">
+                <h3>Access thousands of games to buy or put your own for sale</h3>
+            </div>
+            <div class="text-center textRegister">
+                <h4>Don't forget to check your e-mail to activate your account</h4>
+            </div>
         </div>
-        <div>
-            <h3>Access thousands of games to buy or put your own for sale</h3>
-        </div>
-        <div>
-            <h4>Don't forget to check your e-mail to activate your account</h4>
-        </div>
-    </div>
-    <div class="registerBlock mx-auto">
-        <div class="registerSize">
-            <form action="/register" method="POST">
+        <div class="row align-items-center justify-content-between">
+            <form class="col col-lg-7" action="/register" method="POST">
                 <div>
                     <label for="validationCustomUsername" class="form-label">Name</label>
                     <div class="input-group">
@@ -70,15 +70,14 @@
                     <button class="btn btnRegular btn-block" type="submit">Register</button>
                 </div>
             </form>
-        </div>
-
-
-        <div class="registerSocialLogin registerSize">
-            <a class="btn btnGoogle btn-block mb-3" href="/authenticate/google"><i class="fa fa-google"></i> Register
-                with
-                Google</a>
-            <a class="btn btnSteam btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Register with
-                Steam</a>
+            <div class="col col-lg-4 text-center">
+                <a class="btn btnGoogle btn-block mb-2" href="/authenticate/google"><i class="fa fa-google"></i>
+                    Register
+                    with
+                    Google</a>
+                <a class="btn btnSteam btn-block" href="/authenticate/steam"><i class="fa fa-steam"></i> Register with
+                    Steam</a>
+            </div>
         </div>
     </div>
 </div>
