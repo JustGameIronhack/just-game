@@ -4,6 +4,7 @@ const usersController = require('../controllers/users.controller');
 const gamesController = require('../controllers/games.controller');
 const ratingsController = require('../controllers/ratings.controller');
 const messageController = require('../controllers/messages.controller');
+const indexController = require('../controllers/index.controller');
 const passport = require('passport');
 const GOOGLE_SCOPES = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'];
 const secure = require('../middlewares/secure.middleware');
@@ -11,9 +12,9 @@ const storageUsers = require('./storageUsers.config');
 const storageGames = require('./storageGames.config');
 
 
-router.get('/', (req, res, next) => {
+/* router.get('/', (req, res, next) => {
     res.render('index');
-});
+}); */
 
 
 //USERS ROUTES
@@ -37,6 +38,7 @@ router.get('/users', secure.isAuthenticated, secure.checkRole('admin'), usersCon
 
 //GAMES ROUTES
 
+router.get('/', indexController.index);
 router.get('/games', gamesController.list);
 router.get('/games/new', secure.isAuthenticated, gamesController.create);
 router.post('/games/new', secure.isAuthenticated, storageGames.single('image'), gamesController.doCreate);
