@@ -9,6 +9,15 @@ p {
 
 /* BACKGROUNDS */
 
+.backgroundErrors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
 .backgroundGames {
   background: url(https://res.cloudinary.com/djrv6yqfc/image/upload/v1613933429/JustGame/Background%20Images/vzRN4in_his9xl.jpg) no-repeat center center/cover;
   background-attachment: fixed;
